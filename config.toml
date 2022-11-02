@@ -2,3 +2,70 @@ baseURL = 'https://iocanel.github.io'
 languageCode = 'en-us'
 title = 'Ioannis Canellos - My Blog'
 theme = "hugo-coder"
+
+paginate = 20
+
+pygmentsstyle = "bw"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+
+[params]
+  author = "Ioannis Canellos"
+  info = "Software Engineer"
+  description = "Ioannis Canellos personal website"
+  keywords = "blog,developer,personal"
+  avatarurl = "images/avatar.jpg"
+  #gravatar = "iocanel@gmail.com"
+
+  since = 2019
+  enableTwemoji = true
+  colorScheme = "auto"
+  hidecolorschemetoggle = false
+
+[permalinks]
+  posts = '/:year/:month/:title/'
+
+# Social links
+[[params.social]]
+  name = "Github"
+  icon = "fa fa-github fa-2x"
+  weight = 1
+  url = "https://github.com/iocanel/"
+[[params.social]]
+  name = "Twitter"
+  icon = "fa fa-twitter fa-2x"
+  weight = 2
+  url = "https://twitter.com/iocanel/"
+[[params.social]]
+  name = "LinkedIn"
+  icon = "fa fa-linkedin fa-2x"
+  weight = 3
+  url = "https://linkedin.com/iocanel/"
+
+# Menu links
+[[menu.main]]
+  name = "blog"
+  weight = 1
+  url  = "posts/"
+[[menu.main]]
+  name = "about"
+  weight = 2
+  url  = "about/"
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ''
+    hl_inline = false
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = true
+    noHl = false
+    style = 'nord'
+    tabWidth = 4  
+    pygmentsUseClasses = true
+    pygmentsCodefences = true
