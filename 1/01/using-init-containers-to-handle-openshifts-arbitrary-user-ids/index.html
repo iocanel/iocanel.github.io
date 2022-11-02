@@ -1,0 +1,136 @@
+<!doctype html><html lang=en><head><title>Using init containers to handle Openshift’s arbitrary user ids · Ioannis Canellos - My Blog</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Ioannis Canellos"><meta name=description content="intro Link to heading openshift takes security seriously. Sometimes more seriously than I’d like (mostly cause I am lazy). One such example is the fact that containers run using arbitrary users. This is done as an extra measure to control damages, should a process somehow escapes its container boundaries.
+But how does it affect users?
+the problem Link to heading Users need to follow certain guidelines when creating container images."><meta name=keywords content="blog,developer,personal"><meta name=twitter:card content="summary"><meta name=twitter:title content="Using init containers to handle Openshift’s arbitrary user ids"><meta name=twitter:description content="intro Link to heading openshift takes security seriously. Sometimes more seriously than I’d like (mostly cause I am lazy). One such example is the fact that containers run using arbitrary users. This is done as an extra measure to control damages, should a process somehow escapes its container boundaries.
+But how does it affect users?
+the problem Link to heading Users need to follow certain guidelines when creating container images."><meta property="og:title" content="Using init containers to handle Openshift’s arbitrary user ids"><meta property="og:description" content="intro Link to heading openshift takes security seriously. Sometimes more seriously than I’d like (mostly cause I am lazy). One such example is the fact that containers run using arbitrary users. This is done as an extra measure to control damages, should a process somehow escapes its container boundaries.
+But how does it affect users?
+the problem Link to heading Users need to follow certain guidelines when creating container images."><meta property="og:type" content="article"><meta property="og:url" content="https://iocanel.github.io/1/01/using-init-containers-to-handle-openshifts-arbitrary-user-ids/"><meta property="article:section" content="posts"><link rel=canonical href=https://iocanel.github.io/1/01/using-init-containers-to-handle-openshifts-arbitrary-user-ids/><link rel=preload href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.c4d7e93a158eda5a65b3df343745d2092a0a1e2170feeec909b8a89443903c6a.css integrity="sha256-xNfpOhWO2lpls980N0XSCSoKHiFw/u7JCbiolEOQPGo=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/coder-dark.min.78b5fe3864945faf5207fb8fe3ab2320d49c3365def0e88ac1df0ddadc54a03c.css integrity="sha256-eLX+OGSUX69SB/uP46sjINScM2Xe8OiKwd8N2txUoDw=" crossorigin=anonymous media=screen><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5><meta name=generator content="Hugo 0.105.0"></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=/>Ioannis Canellos - My Blog</a>
+<input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/posts/>blog</a></li><li class=navigation-item><a class=navigation-link href=/about/>about</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title><a class=title-link href=https://iocanel.github.io/1/01/using-init-containers-to-handle-openshifts-arbitrary-user-ids/>Using init containers to handle Openshift’s arbitrary user ids</a></h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fa fa-calendar" aria-hidden=true></i>
+<time datetime=0001-01-01T00:00:00Z>January 1, 0001</time></span>
+<span class=reading-time><i class="fa fa-clock-o" aria-hidden=true></i>
+5-minute read</span></div></div></header><div><h2 id=intro>intro
+<a class=heading-link href=#intro><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p><a href=https://github.com/openshift/orgin>openshift</a> takes security seriously. Sometimes more seriously than I’d like (mostly cause I am lazy). One such example is the fact that containers run using arbitrary users. This is done as an extra measure to control damages, should a process somehow escapes its container boundaries.</p><p>But how does it affect users?</p><h2 id=the-problem>the problem
+<a class=heading-link href=#the-problem><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Users need to follow certain guidelines when creating container images.</p><h4 id=don-t-assume-a-user>don’t assume a user
+<a class=heading-link href=#don-t-assume-a-user><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h4><p>you don’t have a known uid
+The uid of the user is not known in advnace. Also there is no way of controlling it.</p><h4 id=you-don-t-have-a-prefixed-username>you don’t have a prefixed username
+<a class=heading-link href=#you-don-t-have-a-prefixed-username><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h4><p>The same applies to the username (regardless of what’s in your Dockerfile). Even though the `whoami` command seems to always return `default`, I am not sure if this is something you can rely on.</p><h4 id=you-don-t-have-a-home>you don’t have a home
+<a class=heading-link href=#you-don-t-have-a-home><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h4><p>Executing command that rely on the $HOME environment variable, might not work as expected.</p><p>examples where this becomes a problem:</p><h3 id=git>git
+<a class=heading-link href=#git><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>The git binary complaints when there is no entry of the user inside the /etc/passwd file. Using an arbitrary user id, means that there will be no entry there and thus the git binary will refuse to work.</p><h3 id=maven>maven
+<a class=heading-link href=#maven><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Maven picks up custom user settings by looking up for a settings.xml under ~/.m2/settings.xml?</p><p>Where does ~ point? Exactly!</p><h2 id=a-solution>a solution
+<a class=heading-link href=#a-solution><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>All of the above stem from the fact that the user is not present in /etc/passwd. So the recommended approach is to use the nsswrapper library in order to use a custom passwd file on runtime.</p><p>Details of the approach can be found in <a href=https://github.com/openshift/orgin>openshift</a>’s guidelines for creating image.</p><p>The basic idea is that you install and load the libnsswrapper.so and then using environment variables you point to a custom `passwd` and `group`. These files are generated on runtime (where u know the uid and can now generate an entry for the passwd). So the steps are:</p><p>use the uid to generate a passwd
+use the NSS_WRAPPER_PASSWD to point to the generated passwd
+use the NSS_WRAPPER_GROUP to point to a the generated group
+Note: The `NSS_WRAPPER_GROUP` environment variable is required. If you don’t have a use for a custom group file, point it to the original one.</p><h3 id=using-init-containers>using init containers
+<a class=heading-link href=#using-init-containers><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>The problem with the approach described in the previous section is that the nswrapper library needs to be added to each image that is affected by it. And if you are lazy like me, you are probably not going to like it.</p><p>So, here’s a possibly controversial (as in hacky) approach I come up with, so that I can limit the amount of effort I need to put into it.</p><h4 id=composition-vs-inheritance>composition vs inheritance
+<a class=heading-link href=#composition-vs-inheritance><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h4><p>Instead of creating a new version of docker image that contains the nsswrapper library for each of the affected images, I decided to try and create: `One image to wrap them all`.</p><p>In openshift, a pod may contain multiple containers and these containers can share file system (both regular and init containers). So, it is absolutely possible to have an init container copy a library to the shared file system, so that a regular container can pickup an use. And since all of the nsswrapper container handling is done via environment variables (which can be defined in the pod), it can be completely transparent to the target container.</p><p>So, `the one image` (that will be used as init container) will contain the `libnsswrapper.so` and a helper script that will:</p><p>copy that file to a shared file system.
+generate the passwd (and optionally the group file)
+copy the generated passwd to the shared filesystem
+The script below, does the all of the above, with the use of a passwd template:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">7
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#5e81ac;font-style:italic>#!/bin/bash
+</span></span></span><span style=display:flex><span><span style=color:#5e81ac;font-style:italic></span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1>export</span> USER_ID<span style=color:#81a1c1>=</span><span style=color:#a3be8c>`</span>id -u<span style=color:#a3be8c>`</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1>export</span> GROUP_ID<span style=color:#81a1c1>=</span><span style=color:#a3be8c>`</span>id -g<span style=color:#a3be8c>`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cp /usr/lib64/libnss_wrapper.so <span style=color:#a3be8c>${</span>SHARED_DIR<span style=color:#a3be8c>}</span>/libnss_wrapper.so
+</span></span><span style=display:flex><span>envsubst &lt; /usr/local/share/passwd.template &gt; <span style=color:#a3be8c>${</span>SHARED_DIR<span style=color:#a3be8c>}</span>/generated.passwd
+</span></span></code></pre></td></tr></table></div></div><p>The template is used to render the passwd file using environment variables. In the end both the generated file and library are copied to the shared file system. The template could look like:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>root:x:0:0:root:/root:/bin/bash
+</span></span><span style=display:flex><span>bin:x:1:1:bin:/bin:/sbin/nologin
+</span></span><span style=display:flex><span>daemon:x:2:2:daemon:/sbin:/sbin/nologin
+</span></span><span style=display:flex><span>adm:x:3:4:adm:/var/adm:/sbin/nologin
+</span></span><span style=display:flex><span>lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+</span></span><span style=display:flex><span>sync:x:5:0:sync:/sbin:/bin/sync
+</span></span><span style=display:flex><span>shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+</span></span><span style=display:flex><span>halt:x:7:0:halt:/sbin:/sbin/halt
+</span></span><span style=display:flex><span>mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+</span></span><span style=display:flex><span>operator:x:11:0:operator:/root:/sbin/nologin
+</span></span><span style=display:flex><span>games:x:12:100:games:/usr/games:/sbin/nologin
+</span></span><span style=display:flex><span>ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+</span></span><span style=display:flex><span>nobody:x:99:99:Nobody:/:/sbin/nologin
+</span></span><span style=display:flex><span>${USER_NAME}:x:${USER_ID}:${GROUP_ID}:${USER_DESCRIPTION}:${USER_HOME}:/bin/bash
+</span></span></code></pre></td></tr></table></div></div><p>A working version of this concept can be found here: <a href=https://github.com/syndesisio/nsswrapper>https://github.com/syndesisio/nsswrapper</a>.</p><p>So, the only things that remains is to specify:</p><p>the shared filesystem and the environment variables
+the environment variables so that the target container can make use of the resources.
+defining a shared volume
+To define a shared file system for all containers of a pod is as simple as defining an `emptyDir` volume:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#81a1c1>volumes</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>- <span style=color:#81a1c1>emptyDir</span><span style=color:#eceff4>:</span> {}
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1>name</span><span style=color:#eceff4>:</span> shared-volume
+</span></span></code></pre></td></tr></table></div></div><p>mounting the shared volume
+Then we just need to make sure that the volume is mounted from all containers.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#81a1c1>volumeMounts</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>- <span style=color:#81a1c1>mountPath</span><span style=color:#eceff4>:</span> /home/someuser
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1>name</span><span style=color:#eceff4>:</span> shared-volume
+</span></span></code></pre></td></tr></table></div></div><h4 id=configuring-nsswrapper>configuring nsswrapper
+<a class=heading-link href=#configuring-nsswrapper><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h4><p>Last but not least we are providing then environment variables to the target container.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#81a1c1>env</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span> - <span style=color:#81a1c1>name</span><span style=color:#eceff4>:</span> LD_PRELOAD
+</span></span><span style=display:flex><span>   <span style=color:#81a1c1>value</span><span style=color:#eceff4>:</span> /home/someuser/libnss_wrapper.so
+</span></span><span style=display:flex><span> - <span style=color:#81a1c1>name</span><span style=color:#eceff4>:</span> NSS_DIR
+</span></span><span style=display:flex><span>   <span style=color:#81a1c1>value</span><span style=color:#eceff4>:</span> /home/someuser
+</span></span><span style=display:flex><span> - <span style=color:#81a1c1>name</span><span style=color:#eceff4>:</span> NSS_WRAPPER_PASSWD
+</span></span><span style=display:flex><span>   <span style=color:#81a1c1>value</span><span style=color:#eceff4>:</span> /home/someuser/build.passwd
+</span></span><span style=display:flex><span> - <span style=color:#81a1c1>name</span><span style=color:#eceff4>:</span> NSS_WRAPPER_GROUP
+</span></span><span style=display:flex><span>   <span style=color:#81a1c1>value</span><span style=color:#eceff4>:</span> /etc/group
+</span></span><span style=display:flex><span> - <span style=color:#81a1c1>name</span><span style=color:#eceff4>:</span> NSS_USER_NAME
+</span></span><span style=display:flex><span>   <span style=color:#81a1c1>value</span><span style=color:#eceff4>:</span> someuser
+</span></span><span style=display:flex><span> - <span style=color:#81a1c1>name</span><span style=color:#eceff4>:</span> NSS_USER_DESCRIPTION
+</span></span><span style=display:flex><span>   <span style=color:#81a1c1>value</span><span style=color:#eceff4>:</span> Some User
+</span></span><span style=display:flex><span> - <span style=color:#81a1c1>name</span><span style=color:#eceff4>:</span> NSS_USER_HOME
+</span></span><span style=display:flex><span>   <span style=color:#81a1c1>value</span><span style=color:#eceff4>:</span> /home/someuser
+</span></span></code></pre></td></tr></table></div></div><h2 id=closing-thoughts>closing thoughts
+<a class=heading-link href=#closing-thoughts><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>As I mentioned this approach may be considered `too hacky`. It’s not a recognized / recommended pattern… at least not yet. So, use it at your own risk.</p><p>Also, sharing libraries between containers, can only work as long as containers use compatible standard C library implementations. For example using glibc based image (e.g. <a href=https://github.com/syndesisio/nsswrapper>https://github.com/syndesisio/nsswrapper</a>) will just don’t work with a musl based container (e.g. an alpine one). So, you may need to have a different image for each implementation of the C standard library.</p></div><footer></footer></article></section></div><footer class=footer><section class=container>©
+2019 -
+2022
+Ioannis Canellos
+·
+Powered by <a href=https://gohugo.io/>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/>Coder</a>.</section></footer></main><script src=/js/coder.min.236049395dc3682fb2719640872958e12f1f24067bb09c327b233e6290c7edac.js integrity="sha256-I2BJOV3DaC+ycZZAhylY4S8fJAZ7sJwyeyM+YpDH7aw="></script></body></html>

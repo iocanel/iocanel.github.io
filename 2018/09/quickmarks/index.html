@@ -1,0 +1,114 @@
+<!doctype html><html lang=en><head><title>Quickmarks · Ioannis Canellos - My Blog</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Ioannis Canellos"><meta name=description content="Create an emacs snippet to easily create org links using quickmarks"><meta name=keywords content="blog,developer,personal"><meta name=twitter:card content="summary"><meta name=twitter:title content="Quickmarks"><meta name=twitter:description content="Create an emacs snippet to easily create org links using quickmarks"><meta property="og:title" content="Quickmarks"><meta property="og:description" content="Create an emacs snippet to easily create org links using quickmarks"><meta property="og:type" content="article"><meta property="og:url" content="https://iocanel.github.io/2018/09/quickmarks/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-09-05T18:52:00+03:00"><meta property="article:modified_time" content="2018-09-05T18:52:00+03:00"><link rel=canonical href=https://iocanel.github.io/2018/09/quickmarks/><link rel=preload href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.c4d7e93a158eda5a65b3df343745d2092a0a1e2170feeec909b8a89443903c6a.css integrity="sha256-xNfpOhWO2lpls980N0XSCSoKHiFw/u7JCbiolEOQPGo=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/coder-dark.min.78b5fe3864945faf5207fb8fe3ab2320d49c3365def0e88ac1df0ddadc54a03c.css integrity="sha256-eLX+OGSUX69SB/uP46sjINScM2Xe8OiKwd8N2txUoDw=" crossorigin=anonymous media=screen><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5><meta name=generator content="Hugo 0.105.0"></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=/>Ioannis Canellos - My Blog</a>
+<input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/posts/>blog</a></li><li class=navigation-item><a class=navigation-link href=/about/>about</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title><a class=title-link href=https://iocanel.github.io/2018/09/quickmarks/>Quickmarks</a></h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fa fa-calendar" aria-hidden=true></i>
+<time datetime=2018-09-05T18:52:00+03:00>September 5, 2018</time></span>
+<span class=reading-time><i class="fa fa-clock-o" aria-hidden=true></i>
+3-minute read</span></div></div></header><div><h2 id=overview>Overview
+<a class=heading-link href=#overview><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>This is a small post that describes how I made authoring <a href=https://en.wikipedia.org/wiki/Markdown>markdown</a>, <a href=https://orgmode.org>org-mode</a> etc easier by using snippets that help me handle links like a pro.</p><h2 id=prologue>Prologue
+<a class=heading-link href=#prologue><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>I am a heavy user of <a href=https://orgmode.org>org-mode</a>. I use it for taking notes, writing blogs, presentations and so on.
+As a software developer I often use markdown too. In both cases at some point I have to deal with links.</p><p>Embarrassingly enough, I used to rely on my browsers bookmarks to handle links, so my workflow looked a little like:</p><ul><li>open the browser</li><li>search for the url of interest in bookmarks</li><li>copy the url</li><li>jump to the editor</li><li>use the special syntax for adding links</li><li>paste the copied url</li><li>add a text to appear on the link</li></ul><p>I find this so counter-intuitive that is hands down the most boring thing for me when it comes to writing.</p><h2 id=quickmarks>Quickmarks
+<a class=heading-link href=#quickmarks><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><h3 id=all-the-cool-kids-should-try-dot-dot-dot>All the cool kids should try&mldr;
+<a class=heading-link href=#all-the-cool-kids-should-try-dot-dot-dot><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>A year back (maybe) more I came across a video for linux geeks, according to which all the cool kids should try <a href=https://qutebrowser.org>qutebrowser</a>.
+And so I did.</p><p>Among other a feature of this browser I liked was quickmarks.</p><h3 id=what-are-quickmarks>What are quickmarks?
+<a class=heading-link href=#what-are-quickmarks><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>Quickmarks are just labeled bookmarks.</p><h3 id=and-what-so-special-about-them>And what so special about them?
+<a class=heading-link href=#and-what-so-special-about-them><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>It makes it easy to search for bookmarks, since the `open` action does not just search in history and bookmarks it also allows you to search by label.
+It might not sound much, but it did add a lot to my browsing experience.</p><h3 id=what-does-it-have-to-do-with-writing-docs-blogs-and-presentations>What does it have to do with writing docs, blogs and presentations?
+<a class=heading-link href=#what-does-it-have-to-do-with-writing-docs-blogs-and-presentations><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>I&rsquo;d like my editor to support quickmarks, so that I don&rsquo;t have to jump back and forth to my browser.</p><p>As an <a href=http://emacs.org>emacs</a> user adding quickmarks is as easy as adding the following code to my config:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>     (defvar quickmarks-alist &#39;() &#34;A list of labeled links for quick access&#34;)
+</span></span><span style=display:flex><span>     (setq quickmarks-alist &#39;(
+</span></span><span style=display:flex><span>                              ;; emacs
+</span></span><span style=display:flex><span>                              (org-mode . https://orgmode.org)
+</span></span><span style=display:flex><span>                              (emacs . http://emacs.org)
+</span></span><span style=display:flex><span>                              (spacemacs . http://spacemacs.org)
+</span></span><span style=display:flex><span>                              (yasnippets . https://github.com/joaotavora/yasnippet)
+</span></span><span style=display:flex><span>                              ;; linux
+</span></span><span style=display:flex><span>                              (i3 . https://i3wm.org)
+</span></span><span style=display:flex><span>                              (mutt . http://www.mutt.org)
+</span></span><span style=display:flex><span>                              (weechat . https://weechat.org)
+</span></span><span style=display:flex><span>                              (qutebrowser . https://qutebrowser.org)
+</span></span><span style=display:flex><span>                              (ranger . https://github.com/ranger/ranger)
+</span></span><span style=display:flex><span>                              ;; work
+</span></span><span style=display:flex><span>                              (docker . https://docker.io)
+</span></span><span style=display:flex><span>                              (fabric8 . https://fabric8.io)
+</span></span><span style=display:flex><span>                              (kubernetes . https://kubernetes.io)
+</span></span><span style=display:flex><span>                              (openshift . https://openshift.com)
+</span></span><span style=display:flex><span>                              (snowdrop . https://snowdrop.me)
+</span></span><span style=display:flex><span>                              (spring . https://spring.io)
+</span></span><span style=display:flex><span>                              (spring cloud . https://cloud.spring.io)
+</span></span><span style=display:flex><span>                              (spring boot . https://spring.io/projects/spring-boot)
+</span></span><span style=display:flex><span>                              (spring cloud connectors . https://cloud.spring.io/spring-cloud-connectors)
+</span></span><span style=display:flex><span>                              (jenkins . https://jenkins.io)
+</span></span><span style=display:flex><span>                              )
+</span></span><span style=display:flex><span>           )
+</span></span></code></pre></td></tr></table></div></div><p>And then to easily access those links I can use a function as follows:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>     (defun quickmarks-get (k)
+</span></span><span style=display:flex><span>       &#34;Get the value of the quickmark with the key K.&#34;
+</span></span><span style=display:flex><span>       (alist-get (intern k) quickmarks-alist)
+</span></span><span style=display:flex><span>       )
+</span></span></code></pre></td></tr></table></div></div><h3 id=creating-quickmark-aware-snippets>Creating quickmark aware snippets
+<a class=heading-link href=#creating-quickmark-aware-snippets><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>For writing snippets I use <a href=https://github.com/joaotavora/yasnippet>yasnippets</a>. <a href=https://github.com/joaotavora/yasnippet>yasnippets</a> allow users to integrate code into the snippet and that will help us look up our quickmarks from within the snippet.</p><p>So for markdown documents the snippet looks like:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">5
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>     # -*- mode: snippet -*-
+</span></span><span style=display:flex><span>     # name: quickmark
+</span></span><span style=display:flex><span>     # key: qm
+</span></span><span style=display:flex><span>     # --
+</span></span><span style=display:flex><span>     [${1:Name}](${1:$(quickmarks-get yas-text)}) $0
+</span></span></code></pre></td></tr></table></div></div><p>and for org-mode:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">5
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>     # -*- mode: snippet -*-
+</span></span><span style=display:flex><span>     # name: quickmark
+</span></span><span style=display:flex><span>     # key: qm
+</span></span><span style=display:flex><span>     # --
+</span></span><span style=display:flex><span>[[${1:$(quickmarks-get yas-text)}][${1:Name}]] $0
+</span></span></code></pre></td></tr></table></div></div><h3 id=using-the-snippet-in-action>Using the snippet in action
+<a class=heading-link href=#using-the-snippet-in-action><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><figure><img src=demo.gif></figure><h2 id=epilogue>Epilogue
+<a class=heading-link href=#epilogue><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>All of the code used in this post can also be found in my <a href=https://github.com/iocanel/dotfiles>dotfiles</a> repository.</p><p>I hope you found it useful!</p></div><footer></footer></article></section></div><footer class=footer><section class=container>©
+2019 -
+2022
+Ioannis Canellos
+·
+Powered by <a href=https://gohugo.io/>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/>Coder</a>.</section></footer></main><script src=/js/coder.min.236049395dc3682fb2719640872958e12f1f24067bb09c327b233e6290c7edac.js integrity="sha256-I2BJOV3DaC+ycZZAhylY4S8fJAZ7sJwyeyM+YpDH7aw="></script></body></html>

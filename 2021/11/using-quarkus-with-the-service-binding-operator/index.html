@@ -1,0 +1,390 @@
+<!doctype html><html lang=en><head><title>Using Quarkus with the Service Binding Operator · Ioannis Canellos - My Blog</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Ioannis Canellos"><meta name=description content="A quick walkthrough on how to use Quarkus with the Service Binding Operator"><meta name=keywords content="blog,developer,personal"><meta name=twitter:card content="summary"><meta name=twitter:title content="Using Quarkus with the Service Binding Operator"><meta name=twitter:description content="A quick walkthrough on how to use Quarkus with the Service Binding Operator"><meta property="og:title" content="Using Quarkus with the Service Binding Operator"><meta property="og:description" content="A quick walkthrough on how to use Quarkus with the Service Binding Operator"><meta property="og:type" content="article"><meta property="og:url" content="https://iocanel.github.io/2021/11/using-quarkus-with-the-service-binding-operator/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-11-29T17:56:00+02:00"><meta property="article:modified_time" content="2021-11-29T17:56:00+02:00"><link rel=canonical href=https://iocanel.github.io/2021/11/using-quarkus-with-the-service-binding-operator/><link rel=preload href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.c4d7e93a158eda5a65b3df343745d2092a0a1e2170feeec909b8a89443903c6a.css integrity="sha256-xNfpOhWO2lpls980N0XSCSoKHiFw/u7JCbiolEOQPGo=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/coder-dark.min.78b5fe3864945faf5207fb8fe3ab2320d49c3365def0e88ac1df0ddadc54a03c.css integrity="sha256-eLX+OGSUX69SB/uP46sjINScM2Xe8OiKwd8N2txUoDw=" crossorigin=anonymous media=screen><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5><meta name=generator content="Hugo 0.105.0"></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=/>Ioannis Canellos - My Blog</a>
+<input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/posts/>blog</a></li><li class=navigation-item><a class=navigation-link href=/about/>about</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title><a class=title-link href=https://iocanel.github.io/2021/11/using-quarkus-with-the-service-binding-operator/>Using Quarkus with the Service Binding Operator</a></h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fa fa-calendar" aria-hidden=true></i>
+<time datetime=2021-11-29T17:56:00+02:00>November 29, 2021</time></span>
+<span class=reading-time><i class="fa fa-clock-o" aria-hidden=true></i>
+8-minute read</span></div></div></header><div><h2 id=introduction>Introduction
+<a class=heading-link href=#introduction><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p><a href=https://kubernetes.io>Kubernetes</a> is around for almost 7 years now!
+Ever since the beggining there have been efforts to make consuming / binding to services simpler.
+And while discovering the actual service is not so much of an issue
+(if you employ a set of conventions), getting the credentials etc is slightly trickier.</p><p>The <a href=https://svc-cat.io>Service Catalog</a> has been an effort that promised to simplify provisioning and binding to
+services, but it seems that it has lost its momentum.
+The lack of uniformity between providers, the differences in how each service communicated
+the binding information and the fact that people tend to favor operators for provisioning services
+made it pretty hard to use in practice.</p><p>The <a href=https://github.com/redhat-developer/service-binding-operator>Service Binding Operator</a> is a more recent and modern initiative.
+It stays out of the way of service provisioning (leaving that to operators) and
+focuses on how to best communicate the binding information to the application.
+An interesting part of the specification is the <a href=https://github.com/servicebinding/spec#workload-projection>workload projection</a>, which defines a directory
+structure that will be mounted to the application container when the binding happens in order to
+pass all the required binding information:</p><ul><li>type</li><li>uri</li><li>credentials</li></ul><p>Other parts of the specification are related to the `ServiceBinding` resource (which controls what
+services are bound to which application and how).</p><p><a href=https://quarkus.io/>Quarkus</a> already supports the <a href=https://github.com/servicebinding/spec#workload-projection>workload projection</a> part of the spec and recently received enhancments
+on the binding part, which is going to be the focus of this post.
+In particular this post is going to discuss how the `ServiceBinding` can be automatically
+genenerated for the user and will walk you through the whole process from installing the needed
+operators to configuring and deploying the application.</p><p>For the shake of this post we are going to use <a href=https://kind.sigs.k8s.io/>kind</a> install the <a href=https://github.com/redhat-developer/service-binding-operator>Service Binding Operator</a> and
+the <a href=https://github.com/CrunchyData/postgres-operator>Crunchy data operator for Postgres</a>.
+Then, we are going to create a postgres cluster and finally we will create a simple todo application,
+deploy and bind it to the provisioned postgres.</p><h2 id=start-a-new-kind-cluster>Start a new kind cluster
+<a class=heading-link href=#start-a-new-kind-cluster><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>If you&rsquo;ve already created one, or don&rsquo;t use <a href=https://kind.sigs.k8s.io/>kind</a> at all, feel free to skip.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>  kind create cluster
+</span></span></code></pre></td></tr></table></div></div><h2 id=install-the-olm>Install the OLM
+<a class=heading-link href=#install-the-olm><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Both operators that will be installed in this post, will be installed through the <a href=https://operatorhub.io>Operatorhub</a>.
+So, the first step is to install the <a href=https://olm.operatorframework.io/>Operator Lifecycle Manager</a>.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>  curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.19.1/install.sh <span style=color:#eceff4>|</span> bash -s v0.19.1
+</span></span></code></pre></td></tr></table></div></div><h2 id=install-the-service-binding-operator>Install the Service Binding Operator
+<a class=heading-link href=#install-the-service-binding-operator><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>  kubectl create -f https://operatorhub.io/install/service-binding-operator.yaml
+</span></span></code></pre></td></tr></table></div></div><p>To verify the installation execute the following command.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>    kubectl get csv -n operators -w
+</span></span></code></pre></td></tr></table></div></div><p>When the `phase` of the <a href=https://github.com/redhat-developer/service-binding-operator>Service Binding Operator</a> is `Succeeded` you may proceed to the next step.</p><h2 id=install-the-postgres-crunchy-operator>Install the Postgres Crunchy Operator
+<a class=heading-link href=#install-the-postgres-crunchy-operator><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>  kubectl create -f https://operatorhub.io/install/postgresql.yaml
+</span></span></code></pre></td></tr></table></div></div><p>As above to verify the installation execute:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>    kubectl get csv -n operators -w
+</span></span></code></pre></td></tr></table></div></div><p>When the `phase` of the operator is `Succeeded` you may proceed to the next step.</p><h2 id=create-a-postgres-cluster>Create a Postgres cluster
+<a class=heading-link href=#create-a-postgres-cluster><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>We shall create a new namespace, where we will install our cluster and application:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>     kubectl create ns demo
+</span></span><span style=display:flex><span>     kubectl config set-context --current --namespace<span style=color:#81a1c1>=</span>demo
+</span></span></code></pre></td></tr></table></div></div><p>To create the cluster we need to apply the following custom resource:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">36
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">37
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">38
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">39
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span>     <span style=color:#81a1c1>apiVersion</span><span style=color:#eceff4>:</span> postgres-operator.crunchydata.com/v1beta1
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1>kind</span><span style=color:#eceff4>:</span> PostgresCluster
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1>metadata</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>       <span style=color:#81a1c1>name</span><span style=color:#eceff4>:</span> pg-cluster
+</span></span><span style=display:flex><span>       <span style=color:#81a1c1>namespace</span><span style=color:#eceff4>:</span> demo
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1>spec</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>       <span style=color:#81a1c1>image</span><span style=color:#eceff4>:</span> registry.developers.crunchydata.com/crunchydata/crunchy-postgres-ha:centos8-13.4-0
+</span></span><span style=display:flex><span>       <span style=color:#81a1c1>postgresVersion</span><span style=color:#eceff4>:</span> <span style=color:#b48ead>13</span>
+</span></span><span style=display:flex><span>       <span style=color:#81a1c1>instances</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>         - <span style=color:#81a1c1>name</span><span style=color:#eceff4>:</span> instance1
+</span></span><span style=display:flex><span>           <span style=color:#81a1c1>dataVolumeClaimSpec</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>             <span style=color:#81a1c1>accessModes</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>             - <span style=color:#a3be8c>&#34;ReadWriteOnce&#34;</span>
+</span></span><span style=display:flex><span>             <span style=color:#81a1c1>resources</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>               <span style=color:#81a1c1>requests</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>                 <span style=color:#81a1c1>storage</span><span style=color:#eceff4>:</span> 1Gi
+</span></span><span style=display:flex><span>       <span style=color:#81a1c1>backups</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1>pgbackrest</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>           <span style=color:#81a1c1>image</span><span style=color:#eceff4>:</span> registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:centos8-2.33-2
+</span></span><span style=display:flex><span>           <span style=color:#81a1c1>repos</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>           - <span style=color:#81a1c1>name</span><span style=color:#eceff4>:</span> repo1
+</span></span><span style=display:flex><span>             <span style=color:#81a1c1>volume</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>               <span style=color:#81a1c1>volumeClaimSpec</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>                 <span style=color:#81a1c1>accessModes</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>                 - <span style=color:#a3be8c>&#34;ReadWriteOnce&#34;</span>
+</span></span><span style=display:flex><span>                 <span style=color:#81a1c1>resources</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>                   <span style=color:#81a1c1>requests</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>                     <span style=color:#81a1c1>storage</span><span style=color:#eceff4>:</span> 1Gi
+</span></span><span style=display:flex><span>           - <span style=color:#81a1c1>name</span><span style=color:#eceff4>:</span> repo2
+</span></span><span style=display:flex><span>             <span style=color:#81a1c1>volume</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>               <span style=color:#81a1c1>volumeClaimSpec</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>                 <span style=color:#81a1c1>accessModes</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>                 - <span style=color:#a3be8c>&#34;ReadWriteOnce&#34;</span>
+</span></span><span style=display:flex><span>                 <span style=color:#81a1c1>resources</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>                   <span style=color:#81a1c1>requests</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>                     <span style=color:#81a1c1>storage</span><span style=color:#eceff4>:</span> 1Gi
+</span></span><span style=display:flex><span>       <span style=color:#81a1c1>proxy</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1>pgBouncer</span><span style=color:#eceff4>:</span>
+</span></span><span style=display:flex><span>           <span style=color:#81a1c1>image</span><span style=color:#eceff4>:</span> registry.developers.crunchydata.com/crunchydata/crunchy-pgbouncer:centos8-1.15-2
+</span></span></code></pre></td></tr></table></div></div><p>This resource has been borrowed from <a href=https://redhat-developer.github.io/service-binding-operator/userguide/getting-started/quick-start.html>Service Binding Operator Quickstart</a>, which is
+definitely something worth looking into (if you haven&rsquo;t already).</p><p>Let&rsquo;s save that file under `pg-cluster.yml` and apply it using `kubectl`</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>     kubectl apply -f ~/pg-cluster.yml
+</span></span></code></pre></td></tr></table></div></div><p>Let&rsquo;s check the pods to verify the installation:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>   kubectl get pods -n demo
+</span></span></code></pre></td></tr></table></div></div><h3 id=create-a-quarkus-application-that-will-bind-to-postgres>Create a Quarkus application that will bind to Postgres
+<a class=heading-link href=#create-a-quarkus-application-that-will-bind-to-postgres><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h3><p>The application we are going to create is going to be a simple `todo` application that will
+connect to postgres via hibernate and panache.</p><p>The application that we will create is heavily inspired by <a href=https://github.com/cescoffier/quarkus-todo-app>Clement Escoffier&rsquo;s Quarkus TODO app</a>,
+but will focus less on the presentation and more on the binding aspect.</p><p>We will generate the application using the following maven command.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>     mkdir -p ~/demo
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1>cd</span> ~/demo
+</span></span><span style=display:flex><span>     mvn io.quarkus.platform:quarkus-maven-plugin:2.5.0.Final:create -DprojectGroupId<span style=color:#81a1c1>=</span>org.acme -DprojectArtifactId<span style=color:#81a1c1>=</span>todo-example -DclassName<span style=color:#81a1c1>=</span><span style=color:#a3be8c>&#34;org.acme.TodoResource&#34;</span> -Dpath<span style=color:#81a1c1>=</span><span style=color:#a3be8c>&#34;/todo&#34;</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1>cd</span> todo-example
+</span></span></code></pre></td></tr></table></div></div><p>The next step is to add all required extensions for connecting to postgres, generating all required
+kubernetes resources and building the a container image for our application using docker.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>   ./mvnw quarkus:add-extension -Dextensions<span style=color:#81a1c1>=</span><span style=color:#a3be8c>&#34;resteasy-jackson,jdbc-postgresql,hibernate-orm-panache,kubernetes,kubernetes-service-binding,container-image-docker&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>At this point we need to create a simple entity:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>org.acme</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Column</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Entity</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>io.quarkus.hibernate.orm.panache.PanacheEntity</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>     <span style=color:#d08770>@Entity</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>Todo</span> <span style=color:#81a1c1;font-weight:700>extends</span> PanacheEntity <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@Column</span><span style=color:#81a1c1>(</span>length <span style=color:#81a1c1>=</span> 40<span style=color:#81a1c1>,</span> unique <span style=color:#81a1c1>=</span> <span style=color:#81a1c1;font-weight:700>true</span><span style=color:#81a1c1>)</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1;font-weight:700>public</span> String title<span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>boolean</span> completed<span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#88c0d0>Todo</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#88c0d0>Todo</span><span style=color:#81a1c1>(</span>String title<span style=color:#81a1c1>,</span> Boolean completed<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span>             <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>title</span> <span style=color:#81a1c1>=</span> title<span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>And expose that via rest:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">36
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">37
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">38
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">39
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">40
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">41
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">42
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">43
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">44
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">45
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">46
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">47
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">48
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">49
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">50
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">51
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">52
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">53
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">54
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">55
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">56
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">57
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">58
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>org.acme</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.transaction.Transactional</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.*</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.core.Response</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.core.Response.Status</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>java.util.List</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>     <span style=color:#d08770>@Path</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;/todo&#34;</span><span style=color:#81a1c1>)</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>TodoResource</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@GET</span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@Path</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;/&#34;</span><span style=color:#81a1c1>)</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1;font-weight:700>public</span> List<span style=color:#81a1c1>&lt;</span>Todo<span style=color:#81a1c1>&gt;</span> <span style=color:#88c0d0>getAll</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span>           <span style=color:#81a1c1;font-weight:700>return</span> Todo<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>listAll</span><span style=color:#81a1c1>();</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@GET</span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@Path</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;/{id}&#34;</span><span style=color:#81a1c1>)</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1;font-weight:700>public</span> Todo <span style=color:#88c0d0>get</span><span style=color:#81a1c1>(</span><span style=color:#d08770>@PathParam</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;id&#34;</span><span style=color:#81a1c1>)</span> Long id<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span>             Todo entity <span style=color:#81a1c1>=</span> Todo<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>findById</span><span style=color:#81a1c1>(</span>id<span style=color:#81a1c1>);</span>
+</span></span><span style=display:flex><span>             <span style=color:#81a1c1;font-weight:700>if</span> <span style=color:#81a1c1>(</span>entity <span style=color:#81a1c1>==</span> <span style=color:#81a1c1;font-weight:700>null</span><span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span>                 <span style=color:#81a1c1;font-weight:700>throw</span> <span style=color:#81a1c1;font-weight:700>new</span> WebApplicationException<span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;Todo with id of &#34;</span> <span style=color:#81a1c1>+</span> id <span style=color:#81a1c1>+</span> <span style=color:#a3be8c>&#34; does not exist.&#34;</span><span style=color:#81a1c1>,</span> Status<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>NOT_FOUND</span><span style=color:#81a1c1>);</span>
+</span></span><span style=display:flex><span>             <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>             <span style=color:#81a1c1;font-weight:700>return</span> entity<span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@POST</span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@Path</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;/&#34;</span><span style=color:#81a1c1>)</span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@Transactional</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1;font-weight:700>public</span> Response <span style=color:#88c0d0>create</span><span style=color:#81a1c1>(</span>Todo item<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span>             item<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>persist</span><span style=color:#81a1c1>();</span>
+</span></span><span style=display:flex><span>             <span style=color:#81a1c1;font-weight:700>return</span> Response<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>status</span><span style=color:#81a1c1>(</span>Status<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>CREATED</span><span style=color:#81a1c1>).</span><span style=color:#8fbcbb>entity</span><span style=color:#81a1c1>(</span>item<span style=color:#81a1c1>).</span><span style=color:#8fbcbb>build</span><span style=color:#81a1c1>();</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@GET</span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@Path</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;/{id}/complete&#34;</span><span style=color:#81a1c1>)</span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@Transactional</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1;font-weight:700>public</span> Response <span style=color:#88c0d0>complete</span><span style=color:#81a1c1>(</span><span style=color:#d08770>@PathParam</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;id&#34;</span><span style=color:#81a1c1>)</span> Long id<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span>             Todo entity <span style=color:#81a1c1>=</span> Todo<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>findById</span><span style=color:#81a1c1>(</span>id<span style=color:#81a1c1>);</span>
+</span></span><span style=display:flex><span>             entity<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>id</span> <span style=color:#81a1c1>=</span> id<span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>             entity<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>completed</span> <span style=color:#81a1c1>=</span> <span style=color:#81a1c1;font-weight:700>true</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>             <span style=color:#81a1c1;font-weight:700>return</span> Response<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>ok</span><span style=color:#81a1c1>(</span>entity<span style=color:#81a1c1>).</span><span style=color:#8fbcbb>build</span><span style=color:#81a1c1>();</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@DELETE</span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@Transactional</span>
+</span></span><span style=display:flex><span>         <span style=color:#d08770>@Path</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;/{id}&#34;</span><span style=color:#81a1c1>)</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1;font-weight:700>public</span> Response <span style=color:#88c0d0>delete</span><span style=color:#81a1c1>(</span><span style=color:#d08770>@PathParam</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;id&#34;</span><span style=color:#81a1c1>)</span> Long id<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span>             Todo entity <span style=color:#81a1c1>=</span> Todo<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>findById</span><span style=color:#81a1c1>(</span>id<span style=color:#81a1c1>);</span>
+</span></span><span style=display:flex><span>             <span style=color:#81a1c1;font-weight:700>if</span> <span style=color:#81a1c1>(</span>entity <span style=color:#81a1c1>==</span> <span style=color:#81a1c1;font-weight:700>null</span><span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span>                 <span style=color:#81a1c1;font-weight:700>throw</span> <span style=color:#81a1c1;font-weight:700>new</span> WebApplicationException<span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;Todo with id of &#34;</span> <span style=color:#81a1c1>+</span> id <span style=color:#81a1c1>+</span> <span style=color:#a3be8c>&#34; does not exist.&#34;</span><span style=color:#81a1c1>,</span> Status<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>NOT_FOUND</span><span style=color:#81a1c1>);</span>
+</span></span><span style=display:flex><span>             <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>             entity<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>delete</span><span style=color:#81a1c1>();</span>
+</span></span><span style=display:flex><span>             <span style=color:#81a1c1;font-weight:700>return</span> Response<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>noContent</span><span style=color:#81a1c1>().</span><span style=color:#8fbcbb>build</span><span style=color:#81a1c1>();</span>
+</span></span><span style=display:flex><span>         <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1>}</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li><p>Bind to the target Postgres cluster</p><p>In order to bind the postgres service to our application we need to either provide a `ServiceBidning` resource or have it generated.
+To have the binding generated for us we need to provide the service coordinates:</p><ul><li><p>apiVersion: `postgres-operator.crunchydata.com/v1beta1`</p></li><li><p>kind: `PostgresCluster`</p></li><li><p>name: `pg-cluster`</p><p>prefixed with `quarkus.kubernetes-service-binding.services.&lt;id>.` as shown below:</p></li></ul><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>       quarkus.kubernetes-service-binding.services.my-db.api-version=postgres-operator.crunchydata.com/v1beta1
+</span></span><span style=display:flex><span>       quarkus.kubernetes-service-binding.services.my-db.kind=PostgresCluster
+</span></span><span style=display:flex><span>       quarkus.kubernetes-service-binding.services.my-db.name=pg-cluster
+</span></span></code></pre></td></tr></table></div></div><p>The `id` is just used to group properties together and can be anything.</p><p>In addition to the configuration above we also need to configure the datasource:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>       quarkus.datasource.db-kind=postgresql
+</span></span><span style=display:flex><span>       quarkus.hibernate-orm.database.generation=drop-and-create
+</span></span><span style=display:flex><span>       quarkus.hibernate-orm.sql-load-script=import.sql
+</span></span></code></pre></td></tr></table></div></div><p>Finally, we will use `IfNotPresent` as image pull policy since we are not pushing our
+image to a registry and we just load it to the cluster.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>      quarkus.kubernetes.image-pull-policy=IfNotPresent
+</span></span></code></pre></td></tr></table></div></div><p>So, the application.properties file should look like:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">5
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">6
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">7
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">8
+</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">9
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>       quarkus.kubernetes-service-binding.services.my-db.api-version=postgres-operator.crunchydata.com/v1beta1
+</span></span><span style=display:flex><span>       quarkus.kubernetes-service-binding.services.my-db.kind=PostgresCluster
+</span></span><span style=display:flex><span>       quarkus.kubernetes-service-binding.services.my-db.name=pg-cluster
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       quarkus.datasource.db-kind=postgresql
+</span></span><span style=display:flex><span>       quarkus.hibernate-orm.database.generation=drop-and-create
+</span></span><span style=display:flex><span>       quarkus.hibernate-orm.sql-load-script=import.sql
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>       quarkus.kubernetes.image-pull-policy=IfNotPresent
+</span></span></code></pre></td></tr></table></div></div><p>Now, let&rsquo;s create an import sql script with some intial data.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span>       <span style=color:#81a1c1;font-weight:700>INSERT</span> <span style=color:#81a1c1;font-weight:700>INTO</span> todo<span style=color:#eceff4>(</span>id<span style=color:#eceff4>,</span> title<span style=color:#eceff4>,</span> completed<span style=color:#eceff4>)</span> <span style=color:#81a1c1;font-weight:700>VALUES</span> <span style=color:#eceff4>(</span>nextval<span style=color:#eceff4>(</span><span style=color:#a3be8c>&#39;hibernate_sequence&#39;</span><span style=color:#eceff4>),</span> <span style=color:#a3be8c>&#39;Finish the blog post&#39;</span><span style=color:#eceff4>,</span> <span style=color:#81a1c1;font-weight:700>false</span><span style=color:#eceff4>);</span>
+</span></span></code></pre></td></tr></table></div></div></li></ul><h2 id=prepare-for-deployment>Prepare for deployment
+<a class=heading-link href=#prepare-for-deployment><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>To deploy, we need to perform a container image build, load the image to our cluster
+(remember we are using <a href=https://kind.sigs.k8s.io/>kind</a>), generate the resource and perform the deployment.</p><ul><li><p>Build the container image</p><p>To build the container image, you can use:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>       mvn clean install -Dquarkus.container-image.build<span style=color:#81a1c1>=</span><span style=color:#81a1c1>true</span> -DskipTests
+</span></span></code></pre></td></tr></table></div></div><p>This assumes that you have docker up and running.</p></li></ul><ul><li><p>Load the docker image to the cluster</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>     kind load docker-image iocanel/todo-example:1.0.0-SNAPSHOT
+</span></span></code></pre></td></tr></table></div></div><ul><li><p>Loading the image on minikube</p><p>If you are using <a href=https://minikube.sigs.k8s.io/docs/start/>minikube</a> instead, then execute:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>     <span style=color:#81a1c1>eval</span> <span style=color:#81a1c1;font-weight:700>$(</span>minikube docker-env<span style=color:#81a1c1;font-weight:700>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>and re-build the image.</p><p>When using tools like <a href=https://kind.sigs.k8s.io/>kind</a> or <a href=https://minikube.sigs.k8s.io/docs/start/>minikube</a>, it is generally a good idea to change the image
+pull policy to `IfNotPresent` to avoid uneeded pulls, since most of the time the image
+will be loaded from the local docker daemon, as shown above.
+To set the image pull policy, we set `quarkus.kubernetes.image-pull-policy=IfNotPresent`
+as already shown above.</p></li></ul></li></ul><h2 id=deploy-the-application>Deploy the application
+<a class=heading-link href=#deploy-the-application><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The next step will generate the deployment manifest, including the `ServiceBinding` and will apply
+them on kubernetes.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>    mvn clean install -Dquarkus.kubernetes.deploy<span style=color:#81a1c1>=</span><span style=color:#81a1c1>true</span> -DskipTests
+</span></span></code></pre></td></tr></table></div></div><p>To verify everything is up and running:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>   kubectl get pods -n demo -w
+</span></span></code></pre></td></tr></table></div></div><h2 id=verify-the-installation>Verify the installation
+<a class=heading-link href=#verify-the-installation><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The simplest way to verify that everything works as expected is to port forward to http port
+locally and access the `/todo` endpoint:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>    kubectl port-forward service/todo-example 8080:80
+</span></span></code></pre></td></tr></table></div></div><p>Open your browser on <a href=http://localhost:8080/todo>http://localhost:8080/todo</a> and enjoy!</p><h2 id=thoughts-and-future-steps>Thoughts and future steps
+<a class=heading-link href=#thoughts-and-future-steps><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>I am really excited with the progress on the Service binding front. Thinks are looking great and
+can look even better.
+Some potential improvements I can see coming in the near future, is reducing the amount of needed
+configuration, with the use of smart conventions (e.g. assuming that custom resource name is the i
+same as the database name unless explicitly specified) and a reasonable set of defaults
+(e.g. assuming that for postgres the default operator is <a href=https://github.com/CrunchyData/postgres-operator>CrunchyData operator</a>).
+This could even allow us to bind to services with zero config, without really sacrificing in
+flexibility and customizability!</p><p>I hope I could get you even half as excited as I am!</p><h2 id=the-end>The end
+<a class=heading-link href=#the-end><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2></div><footer></footer></article></section></div><footer class=footer><section class=container>©
+2019 -
+2022
+Ioannis Canellos
+·
+Powered by <a href=https://gohugo.io/>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/>Coder</a>.</section></footer></main><script src=/js/coder.min.236049395dc3682fb2719640872958e12f1f24067bb09c327b233e6290c7edac.js integrity="sha256-I2BJOV3DaC+ycZZAhylY4S8fJAZ7sJwyeyM+YpDH7aw="></script></body></html>
