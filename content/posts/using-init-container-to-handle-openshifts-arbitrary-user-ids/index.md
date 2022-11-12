@@ -1,6 +1,7 @@
 +++
 title = "Using init containers to handle Openshift’s arbitrary user ids"
 author = ["Ioannis Canellos"]
+date = 2017-09-29T00:00:00+03:00
 draft = false
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "Hazelcast on Karaf"
 author = ["Ioannis Canellos"]
-date = 2011-03-03T00:00:00+02:00
+date = 2011-02-28T00:00:00+02:00
 draft = false
 +++
 
