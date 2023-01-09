@@ -164,41 +164,10 @@ Before demonstrating what exactly we are going to do with this blob of json in t
 
 ## Single application routing {#single-application-routing}
 
-To configure the routes served by the backend, let's create an \`@ApplicationScoped\` bean that configures the [Vertx](https://vertx.io/)  \`Router\`.
-The goal is to keep \`/api\` and \`/q\` for backend use. The former used for the API, the later for the Dev UI.
+To configure the routes served by the backend, let's set \`quarkus.quinoa.enable-spa-routing\` to true.
 
-```java
-package org.acme;
-
-import java.util.function.Predicate;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
-
-import io.vertx.ext.web.Router;
-
-@ApplicationScoped
-public class SinglePageApplicationRouting {
-
-    private static final String[] PATH_PREFIXES = { "/api/", "/q/" };
-    private static final Predicate<String> FILE_NAME_PREDICATE = Pattern
-        .compile(".*[.][a-zA-Z\\d]+").asMatchPredicate();
-
-    public void init(@Observes Router router) {
-        router.get("/*").handler(rc -> {
-            final String path = rc.normalizedPath();
-            if (!path.equals("/")
-                    && Stream.of(PATH_PREFIXES).noneMatch(path::startsWith)
-                    && !FILE_NAME_PREDICATE.test(path)) {
-                rc.reroute("/");
-            } else {
-                rc.next();
-            }
-        });
-    }
-}
+```sh
+echo "quarkus.quinoa.enable-spa-routing=true" >> src/main/resources/application.properties
 ```
 
 
@@ -209,7 +178,7 @@ Let's just delete the \`webui\` folder for now and create a new [reactjs](https:
 ```sh
 rm -r src/main/webui
 cd src/main
-npx create-react-app webui
+yarn create react-app webui
 cd webui
 ```
 
