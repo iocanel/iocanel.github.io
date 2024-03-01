@@ -1,8 +1,9 @@
-<!doctype html><html lang=en><head><title>Quarkus React with Quinoa and Keycloak · Ioannis Canellos - My Blog</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Ioannis Canellos"><meta name=description content="How to create Quarkus powered react applications that use Keycloak via DevServices"><meta name=keywords content="blog,developer,personal"><meta name=twitter:card content="summary"><meta name=twitter:title content="Quarkus React with Quinoa and Keycloak"><meta name=twitter:description content="How to create Quarkus powered react applications that use Keycloak via DevServices"><meta property="og:title" content="Quarkus React with Quinoa and Keycloak"><meta property="og:description" content="How to create Quarkus powered react applications that use Keycloak via DevServices"><meta property="og:type" content="article"><meta property="og:url" content="https://iocanel.github.io/2022/10/quarkus-react-with-quinoa-and-keycloak/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-10-17T14:36:00+03:00"><meta property="article:modified_time" content="2022-10-17T14:36:00+03:00"><link rel=canonical href=https://iocanel.github.io/2022/10/quarkus-react-with-quinoa-and-keycloak/><link rel=preload href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.c4d7e93a158eda5a65b3df343745d2092a0a1e2170feeec909b8a89443903c6a.css integrity="sha256-xNfpOhWO2lpls980N0XSCSoKHiFw/u7JCbiolEOQPGo=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/coder-dark.min.78b5fe3864945faf5207fb8fe3ab2320d49c3365def0e88ac1df0ddadc54a03c.css integrity="sha256-eLX+OGSUX69SB/uP46sjINScM2Xe8OiKwd8N2txUoDw=" crossorigin=anonymous media=screen><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5><meta name=generator content="Hugo 0.105.0"></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=/>Ioannis Canellos - My Blog</a>
-<input type=checkbox id=menu-toggle>
+<!doctype html><html lang=en><head><title>Quarkus React with Quinoa and Keycloak · Ioannis Canellos - My Blog
+</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Ioannis Canellos"><meta name=description content="How to create Quarkus powered react applications that use Keycloak via DevServices"><meta name=keywords content="blog,developer,personal"><meta name=twitter:card content="summary"><meta name=twitter:title content="Quarkus React with Quinoa and Keycloak"><meta name=twitter:description content="How to create Quarkus powered react applications that use Keycloak via DevServices"><meta property="og:title" content="Quarkus React with Quinoa and Keycloak"><meta property="og:description" content="How to create Quarkus powered react applications that use Keycloak via DevServices"><meta property="og:type" content="article"><meta property="og:url" content="https://iocanel.github.io/2022/10/quarkus-react-with-quinoa-and-keycloak/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-10-17T14:36:00+03:00"><meta property="article:modified_time" content="2022-10-17T14:36:00+03:00"><link rel=canonical href=https://iocanel.github.io/2022/10/quarkus-react-with-quinoa-and-keycloak/><link rel=preload href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.c4d7e93a158eda5a65b3df343745d2092a0a1e2170feeec909b8a89443903c6a.css integrity="sha256-xNfpOhWO2lpls980N0XSCSoKHiFw/u7JCbiolEOQPGo=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/coder-dark.min.78b5fe3864945faf5207fb8fe3ab2320d49c3365def0e88ac1df0ddadc54a03c.css integrity="sha256-eLX+OGSUX69SB/uP46sjINScM2Xe8OiKwd8N2txUoDw=" crossorigin=anonymous media=screen><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5><meta name=generator content="Hugo 0.123.6"></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=/>Ioannis Canellos - My Blog
+</a><input type=checkbox id=menu-toggle>
 <label class="menu-button float-right" for=menu-toggle><i class="fa fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/posts/>blog</a></li><li class=navigation-item><a class=navigation-link href=/about/>about</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title><a class=title-link href=https://iocanel.github.io/2022/10/quarkus-react-with-quinoa-and-keycloak/>Quarkus React with Quinoa and Keycloak</a></h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fa fa-calendar" aria-hidden=true></i>
-<time datetime=2022-10-17T14:36:00+03:00>October 17, 2022</time></span>
-<span class=reading-time><i class="fa fa-clock-o" aria-hidden=true></i>
+<time datetime=2022-10-17T14:36:00+03:00>October 17, 2022
+</time></span><span class=reading-time><i class="fa fa-clock-o" aria-hidden=true></i>
 11-minute read</span></div></div></header><div><h2 id=introduction>Introduction
 <a class=heading-link href=#introduction><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
 <span class=sr-only>Link to heading</span></a></h2><p>This year I decided to put some personal time in learning <a href=https://reactjs.org/>reactjs</a>. While I enjoy using Javascript for the frontend, I&rsquo;d say that it&rsquo;s not the language of choice for me for backend use.
@@ -13,141 +14,141 @@ frontend and backend can exchange information is a secure way.</p><p>The end res
 <a class=heading-link href=#challenges><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
 <span class=sr-only>Link to heading</span></a></h2><p>The main challenges that such a setup faces and addressed in this blog are:</p><ul><li>Starting <a href=https://www.keycloak.org/>Keycloak</a> dev service configured with a public client (for frontend use).</li><li><a href=https://www.keycloak.org/>Keycloak</a> discovery from the frontend.</li><li>Frontend/backend communication using the token obtained from <a href=https://www.keycloak.org/>Keycloak</a></li></ul><h2 id=getting-started-with-quinoa>Getting started with Quinoa
 <a class=heading-link href=#getting-started-with-quinoa><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>To create an empty <a href=https://quarkus.io/>Quarkus</a> project using the <a href=https://quarkiverse.github.io/quarkiverse-docs/quarkus-quinoa/dev/>Quinoa</a> extension:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
+<span class=sr-only>Link to heading</span></a></h2><p>To create an empty <a href=https://quarkus.io/>Quarkus</a> project using the <a href=https://quarkiverse.github.io/quarkiverse-docs/quarkus-quinoa/dev/>Quinoa</a> extension:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>mkdir -p ~/demo
 </span></span><span style=display:flex><span><span style=color:#81a1c1>cd</span> ~/demo
 </span></span><span style=display:flex><span>quarkus create app quarkus-react-keycloak -x<span style=color:#81a1c1>=</span>io.quarkiverse.quinoa:quarkus-quinoa
 </span></span><span style=display:flex><span><span style=color:#81a1c1>cd</span> quarkus-react-keycloak
 </span></span></code></pre></td></tr></table></div></div><p>The generated project has the structure shown below. It&rsquo;s a regular <a href=https://quarkus.io/>Quarkus</a> application with the addition of `webui` under `src/main`:</p><figure><img src=project-structure.png></figure><p>The `webui` folder is a traditional Javascript project.</p><h2 id=add-the-extensions-for-keycloak>Add the extensions for keycloak
 <a class=heading-link href=#add-the-extensions-for-keycloak><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>To be able to access the <a href=https://www.keycloak.org/>Keycloak</a> Dev Services, we&rsquo;ll need the following extension.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+<span class=sr-only>Link to heading</span></a></h2><p>To be able to access the <a href=https://www.keycloak.org/>Keycloak</a> Dev Services, we&rsquo;ll need the following extension.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>quarkus ext add -B oidc
 </span></span><span style=display:flex><span>quarkus ext add -B keycloak-authorization
-</span></span></code></pre></td></tr></table></div></div><p>Now, by running the application in dev mode, the <a href=https://www.keycloak.org/>Keycloak</a> Dev Service is automatically started:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></span></code></pre></td></tr></table></div></div><p>Now, by running the application in dev mode, the <a href=https://www.keycloak.org/>Keycloak</a> Dev Service is automatically started:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>./mvnw quarkus:dev
 </span></span></code></pre></td></tr></table></div></div><h2 id=exposing-keycloak-to-the-fronted>Exposing Keycloak to the fronted
 <a class=heading-link href=#exposing-keycloak-to-the-fronted><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
 <span class=sr-only>Link to heading</span></a></h2><p>The Dev Service for <a href=https://www.keycloak.org/>Keycloak</a> passes as properties all configuration information needed for interaction with the service.
-The fronted however, is completely unaware. Let&rsquo;s expose the information via rest. So, let&rsquo;s add the `quarkus-resteasy-reactive-jackson` extension:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+The fronted however, is completely unaware. Let&rsquo;s expose the information via rest. So, let&rsquo;s add the `quarkus-resteasy-reactive-jackson` extension:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>quarkus ext add -B resteasy-reactive-jackson
 </span></span></code></pre></td></tr></table></div></div><p>Now, let&rsquo;s add a resource that exposes <a href=https://www.keycloak.org/>Keycloak</a> information.
-The info we need to expose is:</p><ul><li>The url</li><li>The realm</li><li>The clientId</li></ul><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>org.acme</span><span style=color:#81a1c1>;</span>
+The info we need to expose is:</p><ul><li>The url</li><li>The realm</li><li>The clientId</li></ul><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>org.acme</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>KeycloakInfo</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>KeycloakInfo</span> <span style=color:#eceff4>{</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>final</span> String url<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>final</span> String realm<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>final</span> String clientId<span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>final</span> String url<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>final</span> String realm<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>final</span> String clientId<span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#88c0d0>KeycloakInfo</span><span style=color:#81a1c1>(</span>String url<span style=color:#81a1c1>,</span> String realm<span style=color:#81a1c1>,</span> String clientId<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>          <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>url</span> <span style=color:#81a1c1>=</span> url<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>          <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>realm</span> <span style=color:#81a1c1>=</span> realm<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>          <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>clientId</span> <span style=color:#81a1c1>=</span> clientId<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>      <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>     <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#88c0d0>KeycloakInfo</span><span style=color:#eceff4>(</span>String url<span style=color:#eceff4>,</span> String realm<span style=color:#eceff4>,</span> String clientId<span style=color:#eceff4>)</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>          <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#eceff4>.</span><span style=color:#8fbcbb>url</span> <span style=color:#81a1c1>=</span> url<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>          <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#eceff4>.</span><span style=color:#8fbcbb>realm</span> <span style=color:#81a1c1>=</span> realm<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>          <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#eceff4>.</span><span style=color:#8fbcbb>clientId</span> <span style=color:#81a1c1>=</span> clientId<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>      <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>      <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>getUrl</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>          <span style=color:#81a1c1;font-weight:700>return</span> url<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>      <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>      <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>getUrl</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>          <span style=color:#81a1c1;font-weight:700>return</span> url<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>      <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>      <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>getRealm</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>          <span style=color:#81a1c1;font-weight:700>return</span> realm<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>      <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>      <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>getRealm</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>          <span style=color:#81a1c1;font-weight:700>return</span> realm<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>      <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>      <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>getClientId</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>          <span style=color:#81a1c1;font-weight:700>return</span> clientId<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>      <span style=color:#81a1c1>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>      <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>getClientId</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>          <span style=color:#81a1c1;font-weight:700>return</span> clientId<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>      <span style=color:#eceff4>}</span>
+</span></span><span style=display:flex><span>  <span style=color:#eceff4>}</span>
 </span></span></code></pre></td></tr></table></div></div><p>In theory we can live with just the `url` (it&rsquo;s the only thing that is dynamic) and hardcode the rest in fronted.
 Let&rsquo;s create a rest resource that uses the path `/api/keycloak/info.json` to expose the `Keycloak` info.
-That resource obtains the `url`, and `clientId` from the configuration populated by the Dev Service using the `@ConfigurationProperty` annotation.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>org.acme</span><span style=color:#81a1c1>;</span>
+That resource obtains the `url`, and `clientId` from the configuration populated by the Dev Service using the `@ConfigurationProperty` annotation.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>org.acme</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.GET</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.Path</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.Produces</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.core.MediaType</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.GET</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.Path</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.Produces</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.core.MediaType</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>org.eclipse.microprofile.config.inject.ConfigProperty</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>org.eclipse.microprofile.config.inject.ConfigProperty</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d08770>@Path</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;/api/keycloak&#34;</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>KeycloakResource</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span><span style=color:#d08770>@Path</span><span style=color:#eceff4>(</span><span style=color:#a3be8c>&#34;/api/keycloak&#34;</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>KeycloakResource</span> <span style=color:#eceff4>{</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#d08770>@ConfigProperty</span><span style=color:#81a1c1>(</span>name<span style=color:#81a1c1>=</span><span style=color:#a3be8c>&#34;keycloak.url&#34;</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span>  String keycloakUrl<span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>  <span style=color:#d08770>@ConfigProperty</span><span style=color:#eceff4>(</span>name<span style=color:#81a1c1>=</span><span style=color:#a3be8c>&#34;keycloak.url&#34;</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span>  String keycloakUrl<span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  String realm<span style=color:#81a1c1>=</span><span style=color:#a3be8c>&#34;quarkus&#34;</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>  String realm<span style=color:#81a1c1>=</span><span style=color:#a3be8c>&#34;quarkus&#34;</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#d08770>@ConfigProperty</span><span style=color:#81a1c1>(</span>name<span style=color:#81a1c1>=</span><span style=color:#a3be8c>&#34;quarkus.oidc.client-id&#34;</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span>  String clientId<span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>  <span style=color:#d08770>@ConfigProperty</span><span style=color:#eceff4>(</span>name<span style=color:#81a1c1>=</span><span style=color:#a3be8c>&#34;quarkus.oidc.client-id&#34;</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span>  String clientId<span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#d08770>@GET</span>
-</span></span><span style=display:flex><span>  <span style=color:#d08770>@Path</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;info.json&#34;</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span>  <span style=color:#d08770>@Produces</span><span style=color:#81a1c1>(</span>MediaType<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>APPLICATION_JSON</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>public</span> KeycloakInfo <span style=color:#88c0d0>getInfo</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#81a1c1;font-weight:700>new</span> KeycloakInfo<span style=color:#81a1c1>(</span>keycloakUrl<span style=color:#81a1c1>,</span> realm<span style=color:#81a1c1>,</span> clientId<span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1>}</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1>}</span>
-</span></span></code></pre></td></tr></table></div></div><p>By accessing <a href=http://localhost:8080/api/keycloak/info.json>http://localhost:8080/api/keycloak/info.json</a> you get something similar to:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">5
+</span></span><span style=display:flex><span>  <span style=color:#d08770>@Path</span><span style=color:#eceff4>(</span><span style=color:#a3be8c>&#34;info.json&#34;</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span>  <span style=color:#d08770>@Produces</span><span style=color:#eceff4>(</span>MediaType<span style=color:#eceff4>.</span><span style=color:#8fbcbb>APPLICATION_JSON</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>public</span> KeycloakInfo <span style=color:#88c0d0>getInfo</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#81a1c1;font-weight:700>new</span> KeycloakInfo<span style=color:#eceff4>(</span>keycloakUrl<span style=color:#eceff4>,</span> realm<span style=color:#eceff4>,</span> clientId<span style=color:#eceff4>);</span>
+</span></span><span style=display:flex><span>  <span style=color:#eceff4>}</span>
+</span></span><span style=display:flex><span><span style=color:#eceff4>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>By accessing <a href=http://localhost:8080/api/keycloak/info.json>http://localhost:8080/api/keycloak/info.json</a> you get something similar to:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">5
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span><span style=color:#eceff4>{</span>
 </span></span><span style=display:flex><span> <span style=color:#bf616a>url:</span> <span style=color:#81a1c1>&#34;http://localhost:43749&#34;</span><span style=color:#eceff4>,</span>
 </span></span><span style=display:flex><span> <span style=color:#bf616a>realm:</span> <span style=color:#81a1c1>&#34;quarkus&#34;</span><span style=color:#eceff4>,</span>
@@ -155,100 +156,39 @@ That resource obtains the `url`, and `clientId` from the configuration populated
 </span></span><span style=display:flex><span><span style=color:#eceff4>}</span>
 </span></span></code></pre></td></tr></table></div></div><p>Before demonstrating what exactly we are going to do with this blob of json in the frontend, let&rsquo;s configure which paths served by the front and which by the backend.</p><h2 id=single-application-routing>Single application routing
 <a class=heading-link href=#single-application-routing><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>To configure the routes served by the backend, let&rsquo;s create an `@ApplicationScoped` bean that configures the <a href=https://vertx.io/>Vertx</a> `Router`.
-The goal is to keep `/api` and `/q` for backend use. The former used for the API, the later for the Dev UI.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>org.acme</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>java.util.function.Predicate</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>java.util.regex.Pattern</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>java.util.stream.Stream</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.enterprise.context.ApplicationScoped</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.enterprise.event.Observes</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>io.vertx.ext.web.Router</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d08770>@ApplicationScoped</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>SinglePageApplicationRouting</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>static</span> <span style=color:#81a1c1;font-weight:700>final</span> String<span style=color:#81a1c1>[]</span> PATH_PREFIXES <span style=color:#81a1c1>=</span> <span style=color:#81a1c1>{</span> <span style=color:#a3be8c>&#34;/api/&#34;</span><span style=color:#81a1c1>,</span> <span style=color:#a3be8c>&#34;/q/&#34;</span> <span style=color:#81a1c1>};</span>
-</span></span><span style=display:flex><span>    <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>static</span> <span style=color:#81a1c1;font-weight:700>final</span> Predicate<span style=color:#81a1c1>&lt;</span>String<span style=color:#81a1c1>&gt;</span> FILE_NAME_PREDICATE <span style=color:#81a1c1>=</span> Pattern
-</span></span><span style=display:flex><span>        <span style=color:#81a1c1>.</span><span style=color:#8fbcbb>compile</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;.*[.][a-zA-Z\\d]+&#34;</span><span style=color:#81a1c1>).</span><span style=color:#8fbcbb>asMatchPredicate</span><span style=color:#81a1c1>();</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>init</span><span style=color:#81a1c1>(</span><span style=color:#d08770>@Observes</span> Router router<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>        router<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>get</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;/*&#34;</span><span style=color:#81a1c1>).</span><span style=color:#8fbcbb>handler</span><span style=color:#81a1c1>(</span>rc <span style=color:#81a1c1>-&gt;</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>            <span style=color:#81a1c1;font-weight:700>final</span> String path <span style=color:#81a1c1>=</span> rc<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>normalizedPath</span><span style=color:#81a1c1>();</span>
-</span></span><span style=display:flex><span>            <span style=color:#81a1c1;font-weight:700>if</span> <span style=color:#81a1c1>(!</span>path<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>equals</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;/&#34;</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span>                    <span style=color:#81a1c1>&amp;&amp;</span> Stream<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>of</span><span style=color:#81a1c1>(</span>PATH_PREFIXES<span style=color:#81a1c1>).</span><span style=color:#8fbcbb>noneMatch</span><span style=color:#81a1c1>(</span>path<span style=color:#81a1c1>::</span>startsWith<span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span>                    <span style=color:#81a1c1>&amp;&amp;</span> <span style=color:#81a1c1>!</span>FILE_NAME_PREDICATE<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>test</span><span style=color:#81a1c1>(</span>path<span style=color:#81a1c1>))</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>                rc<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>reroute</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;/&#34;</span><span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span>            <span style=color:#81a1c1>}</span> <span style=color:#81a1c1;font-weight:700>else</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>                rc<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>next</span><span style=color:#81a1c1>();</span>
-</span></span><span style=display:flex><span>            <span style=color:#81a1c1>}</span>
-</span></span><span style=display:flex><span>        <span style=color:#81a1c1>});</span>
-</span></span><span style=display:flex><span>    <span style=color:#81a1c1>}</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1>}</span>
+<span class=sr-only>Link to heading</span></a></h2><p>To configure the routes served by the backend, let&rsquo;s set `quarkus.quinoa.enable-spa-routing` to true.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#81a1c1>echo</span> <span style=color:#a3be8c>&#34;quarkus.quinoa.enable-spa-routing=true&#34;</span> &gt;&gt; src/main/resources/application.properties
 </span></span></code></pre></td></tr></table></div></div><h2 id=setup-the-react-application>Setup the react application
 <a class=heading-link href=#setup-the-react-application><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>Let&rsquo;s just delete the `webui` folder for now and create a new <a href=https://reactjs.org/>reactjs</a> application from scratch:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
+<span class=sr-only>Link to heading</span></a></h2><p>Let&rsquo;s just delete the `webui` folder for now and create a new <a href=https://reactjs.org/>reactjs</a> application from scratch:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>rm -r src/main/webui
 </span></span><span style=display:flex><span><span style=color:#81a1c1>cd</span> src/main
-</span></span><span style=display:flex><span>npx create-react-app webui
+</span></span><span style=display:flex><span>yarn create react-app webui
 </span></span><span style=display:flex><span><span style=color:#81a1c1>cd</span> webui
 </span></span></code></pre></td></tr></table></div></div><p>An alternative is to use a react template. I usually go with <a href=https://github.com/iotemplates/react-template>https://github.com/iotemplates/react-template</a> which is a simple todo app
 and is setup with tests, github actions etc.</p><h2 id=add-dependencies>Add dependencies
 <a class=heading-link href=#add-dependencies><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>We need two additional dependencies:</p><ul><li><a href=https://github.com/axios/axios>axios</a></li><li><a href=http://keycloak.org>keycloak-js</a><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+<span class=sr-only>Link to heading</span></a></h2><p>We need two additional dependencies:</p><ul><li><a href=https://github.com/axios/axios>axios</a></li><li><a href=http://keycloak.org>keycloak-js</a><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>  npm install --save axios
 </span></span><span style=display:flex><span>  npm install --save keycloak-js
 </span></span></code></pre></td></tr></table></div></div></li></ul><h2 id=configuring-the-keycloak-client-in-javascript>Configuring the Keycloak client in Javascript
 <a class=heading-link href=#configuring-the-keycloak-client-in-javascript><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
 <span class=sr-only>Link to heading</span></a></h2><p>To initialize the <a href=https://www.keycloak.org/>keycloak</a> javascript client we need to fetch the `info.json` from the backend and pass it to the constructor.
-Then it&rsquo;s just a matter of calling the `init` function with the proper configuration:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+Then it&rsquo;s just a matter of calling the `init` function with the proper configuration:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>let</span> keycloak<span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>fetch<span style=color:#eceff4>(</span><span style=color:#a3be8c>`http://localhost:8080/api/keycloak/info.json`</span><span style=color:#eceff4>)</span>
 </span></span><span style=display:flex><span>    <span style=color:#eceff4>.</span>then<span style=color:#eceff4>(</span>response <span style=color:#eceff4>=&gt;</span> response<span style=color:#eceff4>.</span>json<span style=color:#eceff4>()).</span>then<span style=color:#eceff4>(</span>json <span style=color:#eceff4>=&gt;</span> <span style=color:#eceff4>{</span>
@@ -260,70 +200,70 @@ Then it&rsquo;s just a matter of calling the `init` function with the proper con
 </span></span><span style=display:flex><span>        checkLoginIframe<span style=color:#81a1c1>:</span> <span style=color:#81a1c1;font-weight:700>false</span><span style=color:#eceff4>,</span>
 </span></span><span style=display:flex><span>    <span style=color:#eceff4>}};</span>
 </span></span><span style=display:flex><span><span style=color:#eceff4>});</span>
-</span></span></code></pre></td></tr></table></div></div><p>The java developer in me feels compelled to encapsulate the <a href=https://www.keycloak.org/>keycloak</a> client so, let&rsquo;s wrap it in a class:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">36
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">37
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">38
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">39
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">40
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">41
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">42
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">43
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">44
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">45
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">46
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">47
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">48
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">49
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">50
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">51
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">52
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">53
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">54
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">55
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">56
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">57
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">58
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">59
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">60
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">61
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">62
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">63
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">64
+</span></span></code></pre></td></tr></table></div></div><p>The java developer in me feels compelled to encapsulate the <a href=https://www.keycloak.org/>keycloak</a> client so, let&rsquo;s wrap it in a class:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">45
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">46
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">47
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">48
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">49
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">50
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">51
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">52
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">53
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">54
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">55
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">56
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">57
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">58
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">59
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">60
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">61
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">62
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">63
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">64
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> Keycloak from <span style=color:#a3be8c>&#39;keycloak-js&#39;</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>class</span> KeycloakService <span style=color:#eceff4>{</span>
@@ -398,27 +338,27 @@ Another options is to `bring your own realm`.
 The <a href=https://raw.githubusercontent.com/iocanel/quarkus-react-keycloak/main/src/main/resources/quarkus-realm.json>provided realm</a> is ready to use. The only difference from the generated one, are the customization mentioned above. Additional customization is possbile by logging to the <a href=https://www.keycloak.org/>Keycloak</a> instance as admin. The instance itself is accessible through the <a href=https://quarkus.io/>Quarkus</a> Dev UI `<a href=http://localhost:8080/q/dev>http://localhost:8080/q/dev</a>`.</p><figure><img src=dev-console-openid.png></figure><p>By default the admin credentials are `admin` / `admin`.</p><p>After customization, the realm can be exported and passed to the Dev Service configuration.</p><p>In case you provide your own realm, make sure to also set `quarkus.keycloak.devservices.realm-path=` in the `application.properties`.</p><h2 id=the-login-process>The login process
 <a class=heading-link href=#the-login-process><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
 <span class=sr-only>Link to heading</span></a></h2><p>With the realm properly configured, the `login` method of `KeycloakService` provided above, will bring up the login screen.
-<img src=login.png alt></p><p>The <a href=https://raw.githubusercontent.com/iocanel/quarkus-react-keycloak/main/src/main/resources/quarkus-realm.json>provided realm</a> comes with a user named `alice` that use `alice` as a password.</p><p>The only thing left is to configure the <a href=https://reactjs.org/>reactjs</a> routes, so that login initiates, when the user is anonymous and tries to visit protected pages (e.g. `/dashboard` or `profile`). In jsx this is expressed like:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+<img src=login.png alt></p><p>The <a href=https://raw.githubusercontent.com/iocanel/quarkus-react-keycloak/main/src/main/resources/quarkus-realm.json>provided realm</a> comes with a user named `alice` that use `alice` as a password.</p><p>The only thing left is to configure the <a href=https://reactjs.org/>reactjs</a> routes, so that login initiates, when the user is anonymous and tries to visit protected pages (e.g. `/dashboard` or `profile`). In jsx this is expressed like:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#eceff4>{</span> BrowserRouter as Router<span style=color:#eceff4>,</span> Routes<span style=color:#eceff4>,</span> Route<span style=color:#eceff4>,</span> Link <span style=color:#eceff4>}</span> from <span style=color:#a3be8c>&#34;react-router-dom&#34;</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>export</span> <span style=color:#81a1c1;font-weight:700>default</span> <span style=color:#81a1c1;font-weight:700>function</span> App<span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
@@ -442,18 +382,18 @@ The <a href=https://raw.githubusercontent.com/iocanel/quarkus-react-keycloak/mai
 </span></span><span style=display:flex><span><span style=color:#eceff4>}</span>
 </span></span></code></pre></td></tr></table></div></div><p>The code is pretty straight forward, with only exception the `PrivateRoute`. The `PrivateRoute` is custom component that encapsulates
 The authentication logic. It uses the `userService` (which is actually the `KeycloakService` implemented previously) to check if user is logged in.
-If not, then the login process starts. In the opposite case the `Outlet` is displayed.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+If not, then the login process starts. In the opposite case the `Outlet` is displayed.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#eceff4>{</span> useEffect <span style=color:#eceff4>}</span> from <span style=color:#a3be8c>&#39;react&#39;</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#eceff4>{</span> Outlet <span style=color:#eceff4>}</span> from <span style=color:#a3be8c>&#39;react-router-dom&#39;</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#eceff4>{</span> userService <span style=color:#eceff4>}</span> from <span style=color:#a3be8c>&#39;../services/UserService&#39;</span><span style=color:#eceff4>;</span>
@@ -470,127 +410,127 @@ If not, then the login process starts. In the opposite case the `Outlet` is disp
 <a class=heading-link href=#secure-frontend-backend-communication><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
 <span class=sr-only>Link to heading</span></a></h2><p>Securing things only the frontend is no good, if the backend is not.
 To secure the backend we need to two things:</p><ul><li>express which users / roles allowed to access which paths.</li><li>pass authentication token obtained by <a href=https://www.keycloak.org/>Keycloak</a> to the backend.</li></ul><p>The former is trivial as <a href=https://quarkus.io/>Quarkus</a> provides the security mechanism to support that.
-So, to get the profile information the backend, we can have a resource that allows authenticated users to grab the user info from the `SecurityIdentiy`;</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">36
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">37
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">38
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">39
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">40
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">41
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">42
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">43
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">44
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">45
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">46
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">47
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">48
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">49
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>org.acme</span><span style=color:#81a1c1>;</span>
+So, to get the profile information the backend, we can have a resource that allows authenticated users to grab the user info from the `SecurityIdentiy`;</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">45
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">46
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">47
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">48
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">49
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>org.acme</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>java.util.Set</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>java.util.Set</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.annotation.security.RolesAllowed</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.inject.Inject</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.GET</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.Path</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.Produces</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.core.MediaType</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.annotation.security.RolesAllowed</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.inject.Inject</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.GET</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.Path</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.Produces</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.ws.rs.core.MediaType</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>org.jboss.resteasy.reactive.NoCache</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>org.jboss.resteasy.reactive.NoCache</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>io.quarkus.security.identity.SecurityIdentity</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>io.quarkus.security.identity.SecurityIdentity</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#d08770>@Path</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;/api/user&#34;</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>UserResource</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span><span style=color:#d08770>@Path</span><span style=color:#eceff4>(</span><span style=color:#a3be8c>&#34;/api/user&#34;</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>UserResource</span> <span style=color:#eceff4>{</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#d08770>@Inject</span>
-</span></span><span style=display:flex><span>    SecurityIdentity identity<span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>    SecurityIdentity identity<span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    <span style=color:#d08770>@GET</span>
-</span></span><span style=display:flex><span>    <span style=color:#d08770>@Path</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;/me&#34;</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span>    <span style=color:#d08770>@Produces</span><span style=color:#81a1c1>(</span>MediaType<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>APPLICATION_JSON</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span>    <span style=color:#d08770>@RolesAllowed</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;user&#34;</span><span style=color:#81a1c1>)</span>
+</span></span><span style=display:flex><span>    <span style=color:#d08770>@Path</span><span style=color:#eceff4>(</span><span style=color:#a3be8c>&#34;/me&#34;</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span>    <span style=color:#d08770>@Produces</span><span style=color:#eceff4>(</span>MediaType<span style=color:#eceff4>.</span><span style=color:#8fbcbb>APPLICATION_JSON</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span>    <span style=color:#d08770>@RolesAllowed</span><span style=color:#eceff4>(</span><span style=color:#a3be8c>&#34;user&#34;</span><span style=color:#eceff4>)</span>
 </span></span><span style=display:flex><span>    <span style=color:#d08770>@NoCache</span>
-</span></span><span style=display:flex><span>    <span style=color:#81a1c1;font-weight:700>public</span> User <span style=color:#88c0d0>me</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>        <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#81a1c1;font-weight:700>new</span> User<span style=color:#81a1c1>(</span>identity<span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span>    <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>    <span style=color:#81a1c1;font-weight:700>public</span> User <span style=color:#88c0d0>me</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>        <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#81a1c1;font-weight:700>new</span> User<span style=color:#eceff4>(</span>identity<span style=color:#eceff4>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>static</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>User</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>static</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>User</span> <span style=color:#eceff4>{</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>final</span> String userName<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>        <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>final</span> Set<span style=color:#81a1c1>&lt;</span>String<span style=color:#81a1c1>&gt;</span> roles<span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span>        <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>final</span> String userName<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>        <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>final</span> Set<span style=color:#81a1c1>&lt;</span>String<span style=color:#81a1c1>&gt;</span> roles<span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        User<span style=color:#81a1c1>(</span>SecurityIdentity identity<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>            <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>userName</span> <span style=color:#81a1c1>=</span> identity<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>getPrincipal</span><span style=color:#81a1c1>().</span><span style=color:#8fbcbb>getName</span><span style=color:#81a1c1>();</span>
-</span></span><span style=display:flex><span>            <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>roles</span> <span style=color:#81a1c1>=</span> identity<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>getRoles</span><span style=color:#81a1c1>();</span>
-</span></span><span style=display:flex><span>        <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>        User<span style=color:#eceff4>(</span>SecurityIdentity identity<span style=color:#eceff4>)</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>            <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#eceff4>.</span><span style=color:#8fbcbb>userName</span> <span style=color:#81a1c1>=</span> identity<span style=color:#eceff4>.</span><span style=color:#8fbcbb>getPrincipal</span><span style=color:#eceff4>().</span><span style=color:#8fbcbb>getName</span><span style=color:#eceff4>();</span>
+</span></span><span style=display:flex><span>            <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#eceff4>.</span><span style=color:#8fbcbb>roles</span> <span style=color:#81a1c1>=</span> identity<span style=color:#eceff4>.</span><span style=color:#8fbcbb>getRoles</span><span style=color:#eceff4>();</span>
+</span></span><span style=display:flex><span>        <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>getUserName</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>            <span style=color:#81a1c1;font-weight:700>return</span> userName<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>        <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>        <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>getUserName</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>            <span style=color:#81a1c1;font-weight:700>return</span> userName<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>        <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#81a1c1;font-weight:700>public</span> Set<span style=color:#81a1c1>&lt;</span>String<span style=color:#81a1c1>&gt;</span> <span style=color:#88c0d0>getRoles</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>			      <span style=color:#81a1c1;font-weight:700>return</span> roles<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>		    <span style=color:#81a1c1>}</span>
-</span></span><span style=display:flex><span>    <span style=color:#81a1c1>}</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span>        <span style=color:#81a1c1;font-weight:700>public</span> Set<span style=color:#81a1c1>&lt;</span>String<span style=color:#81a1c1>&gt;</span> <span style=color:#88c0d0>getRoles</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>			      <span style=color:#81a1c1;font-weight:700>return</span> roles<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>		    <span style=color:#eceff4>}</span>
+</span></span><span style=display:flex><span>    <span style=color:#eceff4>}</span>
+</span></span><span style=display:flex><span><span style=color:#eceff4>}</span>
 </span></span></code></pre></td></tr></table></div></div><p>The other part, requires a little bit work on the frontend side of things so that http request to the backend include the `Bearer` header with
 the token as value.</p><p>For http, this blog is using <a href=https://github.com/axios/axios>axios</a>. Let&rsquo;s create a simple factory that creates an <a href=https://github.com/axios/axios>axios</a> client.
-The factory uses two callback functions:</p><ul><li>getToken: to fetch the actual token.</li><li>updateToken to update the token</li></ul><p>The factory also defines the interceptor that sets the `Bearer` and refreshes the token when needed.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+The factory uses two callback functions:</p><ul><li>getToken: to fetch the actual token.</li><li>updateToken to update the token</li></ul><p>The factory also defines the interceptor that sets the `Bearer` and refreshes the token when needed.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> axios from <span style=color:#a3be8c>&#34;axios&#34;</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>const</span> create <span style=color:#81a1c1>=</span> <span style=color:#eceff4>(</span>getToken<span style=color:#eceff4>,</span> updateToken<span style=color:#eceff4>)</span> <span style=color:#eceff4>=&gt;</span> <span style=color:#eceff4>{</span>
@@ -617,41 +557,41 @@ The factory uses two callback functions:</p><ul><li>getToken: to fetch the actua
 <span class=sr-only>Link to heading</span></a></h2><p>To demonstrate how the <a href=https://github.com/axios/axios>axios</a> client is used in action let&rsquo;s take a closer look at the profile component.
 The component when created, it uses the `AxiosFactory` to create <a href=https://github.com/axios/axios>axios</a>. It passes the token callbacks
 provided by the `UserService` shown above. Then it uses the client to fetch users and roles from the `/api/user/me`
-that we just coded in the backed.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
+that we just coded in the backed.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#eceff4>{</span> React<span style=color:#eceff4>,</span> useState<span style=color:#eceff4>,</span> useEffect <span style=color:#eceff4>}</span> from <span style=color:#a3be8c>&#39;react&#39;</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#eceff4>{</span> getToken<span style=color:#eceff4>,</span> updateToken <span style=color:#eceff4>}</span> from <span style=color:#a3be8c>&#39;./services/UserService&#39;</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> AxiosFactory from <span style=color:#a3be8c>&#39;./services/AxiosFactory&#39;</span><span style=color:#eceff4>;</span>
@@ -693,7 +633,7 @@ that we just coded in the backed.</p><div class=highlight><div style=color:#d8de
 Dev Services further simplifies integration with external services, as developers no longer have to setup services by hand, docker compose etc.
 <a href=https://www.keycloak.org/>Keycloak</a> provides a great way to deal with authentication, token etc by lifting that burden of the developers shoulder.</p></div><footer></footer></article></section></div><footer class=footer><section class=container>©
 2019 -
-2022
+2024
 Ioannis Canellos
 ·
 Powered by <a href=https://gohugo.io/>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/>Coder</a>.</section></footer></main><script src=/js/coder.min.236049395dc3682fb2719640872958e12f1f24067bb09c327b233e6290c7edac.js integrity="sha256-I2BJOV3DaC+ycZZAhylY4S8fJAZ7sJwyeyM+YpDH7aw="></script></body></html>

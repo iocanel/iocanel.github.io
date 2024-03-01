@@ -1,4 +1,5 @@
-<!doctype html><html lang=en><head><title>Wicket with Spring 3 and Hibernate on Apache Karaf · Ioannis Canellos - My Blog</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Ioannis Canellos"><meta name=description content="EDIT: Hibernate is now OSGi ready so most of those stuff are now completely outdated.
+<!doctype html><html lang=en><head><title>Wicket with Spring 3 and Hibernate on Apache Karaf · Ioannis Canellos - My Blog
+</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Ioannis Canellos"><meta name=description content="EDIT: Hibernate is now OSGi ready so most of those stuff are now completely outdated.
 The full source for this post has moved to github under my blog project on branch: wicket-spring-3-jpa2-hibernate-osgi-application-on-apache-karaf.
 Prologue Link to heading Recently I attempted to modify an existing crud web application for OSGi deployment. During the process I encountered a lot of issues such as
 Lack of OSGi bundles. Troubles wiring the tiers of the application together."><meta name=keywords content="blog,developer,personal"><meta name=twitter:card content="summary"><meta name=twitter:title content="Wicket with Spring 3 and Hibernate on Apache Karaf"><meta name=twitter:description content="EDIT: Hibernate is now OSGi ready so most of those stuff are now completely outdated.
@@ -7,11 +8,11 @@ Prologue Link to heading Recently I attempted to modify an existing crud web app
 Lack of OSGi bundles. Troubles wiring the tiers of the application together."><meta property="og:title" content="Wicket with Spring 3 and Hibernate on Apache Karaf"><meta property="og:description" content="EDIT: Hibernate is now OSGi ready so most of those stuff are now completely outdated.
 The full source for this post has moved to github under my blog project on branch: wicket-spring-3-jpa2-hibernate-osgi-application-on-apache-karaf.
 Prologue Link to heading Recently I attempted to modify an existing crud web application for OSGi deployment. During the process I encountered a lot of issues such as
-Lack of OSGi bundles. Troubles wiring the tiers of the application together."><meta property="og:type" content="article"><meta property="og:url" content="https://iocanel.github.io/2010/07/wicket-with-spring-3-and-hibernate-on-apache-karaf/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2010-07-12T00:00:00+03:00"><meta property="article:modified_time" content="2010-07-12T00:00:00+03:00"><link rel=canonical href=https://iocanel.github.io/2010/07/wicket-with-spring-3-and-hibernate-on-apache-karaf/><link rel=preload href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.c4d7e93a158eda5a65b3df343745d2092a0a1e2170feeec909b8a89443903c6a.css integrity="sha256-xNfpOhWO2lpls980N0XSCSoKHiFw/u7JCbiolEOQPGo=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/coder-dark.min.78b5fe3864945faf5207fb8fe3ab2320d49c3365def0e88ac1df0ddadc54a03c.css integrity="sha256-eLX+OGSUX69SB/uP46sjINScM2Xe8OiKwd8N2txUoDw=" crossorigin=anonymous media=screen><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5><meta name=generator content="Hugo 0.105.0"></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=/>Ioannis Canellos - My Blog</a>
-<input type=checkbox id=menu-toggle>
+Lack of OSGi bundles. Troubles wiring the tiers of the application together."><meta property="og:type" content="article"><meta property="og:url" content="https://iocanel.github.io/2010/07/wicket-with-spring-3-and-hibernate-on-apache-karaf/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2010-07-12T00:00:00+03:00"><meta property="article:modified_time" content="2010-07-12T00:00:00+03:00"><link rel=canonical href=https://iocanel.github.io/2010/07/wicket-with-spring-3-and-hibernate-on-apache-karaf/><link rel=preload href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.c4d7e93a158eda5a65b3df343745d2092a0a1e2170feeec909b8a89443903c6a.css integrity="sha256-xNfpOhWO2lpls980N0XSCSoKHiFw/u7JCbiolEOQPGo=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/coder-dark.min.78b5fe3864945faf5207fb8fe3ab2320d49c3365def0e88ac1df0ddadc54a03c.css integrity="sha256-eLX+OGSUX69SB/uP46sjINScM2Xe8OiKwd8N2txUoDw=" crossorigin=anonymous media=screen><link rel=icon type=image/png href=/images/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/images/favicon-16x16.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5><meta name=generator content="Hugo 0.123.6"></head><body class="preload-transitions colorscheme-auto"><div class=float-container><a id=dark-mode-toggle class=colorscheme-toggle><i class="fa fa-adjust fa-fw" aria-hidden=true></i></a></div><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=/>Ioannis Canellos - My Blog
+</a><input type=checkbox id=menu-toggle>
 <label class="menu-button float-right" for=menu-toggle><i class="fa fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/posts/>blog</a></li><li class=navigation-item><a class=navigation-link href=/about/>about</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title><a class=title-link href=https://iocanel.github.io/2010/07/wicket-with-spring-3-and-hibernate-on-apache-karaf/>Wicket with Spring 3 and Hibernate on Apache Karaf</a></h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fa fa-calendar" aria-hidden=true></i>
-<time datetime=2010-07-12T00:00:00+03:00>July 12, 2010</time></span>
-<span class=reading-time><i class="fa fa-clock-o" aria-hidden=true></i>
+<time datetime=2010-07-12T00:00:00+03:00>July 12, 2010
+</time></span><span class=reading-time><i class="fa fa-clock-o" aria-hidden=true></i>
 12-minute read</span></div></div></header><div><p>EDIT: Hibernate is now OSGi ready so most of those stuff are now completely outdated.</p><p>The full source for this post has moved to github under my blog project on branch: <a href=https://github.com/iocanel/blog/tree/wicket-spring-3-jpa2-hibernate-osgi-application-on-apache-karaf>wicket-spring-3-jpa2-hibernate-osgi-application-on-apache-karaf</a>.</p><h2 id=prologue>Prologue
 <a class=heading-link href=#prologue><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
 <span class=sr-only>Link to heading</span></a></h2><p>Recently I attempted to modify an existing crud web application for OSGi deployment. During the process I encountered a lot of issues such as</p><p>Lack of OSGi bundles.
@@ -25,8 +26,8 @@ Note: This demo application does not make use OSGi Enterprise Spec, since its an
 <a class=heading-link href=#environment-preparation><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
 <span class=sr-only>Link to heading</span></a></h2><p>The OSGi run-time that will be used in this post is Felix/Karaf version 1.6.0.
 This section describes the required configuration for deploying web applications.</p><p>Once, karaf is downloaded and extracted, it can be started by typing</p><p>bin/karaf
-from inside the karaf root folder.</p><p>Now, we are going to install karaf webconsole and war deployer that will allow us to deploy web applications to karaf.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+from inside the karaf root folder.</p><p>Now, we are going to install karaf webconsole and war deployer that will allow us to deploy web applications to karaf.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>features:install webconsole
 </span></span><span style=display:flex><span>features:install war
 </span></span></code></pre></td></tr></table></div></div><p>Note: In the background karaf fetches all the required bundles from maven repositories. You are going to need internet access for this. Moreover, if you are behind a proxy you will need to set up your jvm net.properties accordingly. Having the proxy configured in maven settings.xml is not enough.</p><h2 id=custom-bundles>Custom Bundles
@@ -34,12 +35,12 @@ from inside the karaf root folder.</p><p>Now, we are going to install karaf webc
 <span class=sr-only>Link to heading</span></a></h2><p>Most of the bundles required for this project are available either in public maven repositories or inside Spring Enterprise Bundle Repository. However, hibernate 3.5.x which is one of the key dependencies for this project is not available as OSGi bundle (note: earlier version of hibernate can be found in Spring EBR). More details on OSGi-fying Hibernate 3.5.x in the previous part of the guide “Creating custom Hibernate 3.5 OSGi bundles“.</p><h2 id=creating-the-application-itself>Creating the application itself
 <a class=heading-link href=#creating-the-application-itself><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
 <span class=sr-only>Link to heading</span></a></h2><p>The actual demo application will be the simplest possible wicket crud for persons (a killer application that stores/delete/updates a persons first name and last name to the database).</p><p>Database
-The create schema script of such application in mysql would look like this:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">6
+The create schema script of such application in mysql would look like this:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">6
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>CREATE</span> <span style=color:#81a1c1;font-weight:700>TABLE</span> person <span style=color:#eceff4>(</span>
 </span></span><span style=display:flex><span>    ID MEDIUMINT <span style=color:#81a1c1;font-weight:700>NOT</span> <span style=color:#81a1c1;font-weight:700>NULL</span> AUTO_INCREMENT<span style=color:#eceff4>,</span>
 </span></span><span style=display:flex><span>    FIRST_NAME <span style=color:#81a1c1>VARCHAR</span><span style=color:#eceff4>(</span><span style=color:#b48ead>40</span><span style=color:#eceff4>)</span> <span style=color:#81a1c1;font-weight:700>NOT</span> <span style=color:#81a1c1;font-weight:700>NULL</span><span style=color:#eceff4>,</span>
@@ -47,391 +48,391 @@ The create schema script of such application in mysql would look like this:</p><
 </span></span><span style=display:flex><span>    <span style=color:#81a1c1;font-weight:700>PRIMARY</span> <span style=color:#81a1c1;font-weight:700>KEY</span> <span style=color:#eceff4>(</span>ID<span style=color:#eceff4>)</span>
 </span></span><span style=display:flex><span><span style=color:#eceff4>);</span>
 </span></span></code></pre></td></tr></table></div></div><p>Database Tier
-For the database tier we are going to create a simple bundle that will contain the entity, the dao interface and the dao implementation. The bundle will contain the necessary persistence descriptor for JPA 2.0 with hibernate as persistence provider. Finally it will use spring to create the data source, entity manager factory & JPA transaction manager. This bundle will export the dao as a service to the OSGi Registry using Spring dynamic modules.</p><p>The Person entity for the example can look like:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">36
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">37
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">38
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">39
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">40
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">41
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">42
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">43
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">44
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">45
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">46
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">47
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">48
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">49
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">50
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">51
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">52
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">53
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">54
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">55
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">56
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">57
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">58
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">59
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">60
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">61
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">62
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">63
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">64
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">65
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">66
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">67
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">68
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">69
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">70
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">71
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">72
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">73
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">74
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">75
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">76
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">77
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">78
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">79
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">80
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">81
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">82
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">83
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">84
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">85
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">86
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">87
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">88
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">89
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">90
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">91
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">92
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">93
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">94
+For the database tier we are going to create a simple bundle that will contain the entity, the dao interface and the dao implementation. The bundle will contain the necessary persistence descriptor for JPA 2.0 with hibernate as persistence provider. Finally it will use spring to create the data source, entity manager factory & JPA transaction manager. This bundle will export the dao as a service to the OSGi Registry using Spring dynamic modules.</p><p>The Person entity for the example can look like:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">45
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">46
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">47
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">48
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">49
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">50
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">51
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">52
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">53
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">54
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">55
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">56
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">57
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">58
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">59
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">60
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">61
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">62
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">63
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">64
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">65
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">66
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">67
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">68
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">69
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">70
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">71
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">72
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">73
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">74
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">75
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">76
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">77
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">78
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">79
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">80
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">81
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">82
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">83
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">84
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">85
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">86
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">87
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">88
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">89
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">90
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">91
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">92
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">93
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">94
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>net.iocanel.database.entities</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>net.iocanel.database.entities</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>java.io.Serializable</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Basic</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Column</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Entity</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.GeneratedValue</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.GenerationType</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Id</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.NamedQueries</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.NamedQuery</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Table</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>java.io.Serializable</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Basic</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Column</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Entity</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.GeneratedValue</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.GenerationType</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Id</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.NamedQueries</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.NamedQuery</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Table</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#616e87;font-style:italic>/**
 </span></span></span><span style=display:flex><span><span style=color:#616e87;font-style:italic> *
 </span></span></span><span style=display:flex><span><span style=color:#616e87;font-style:italic> * @author iocanel
 </span></span></span><span style=display:flex><span><span style=color:#616e87;font-style:italic> */</span>
 </span></span><span style=display:flex><span><span style=color:#d08770>@Entity</span>
-</span></span><span style=display:flex><span><span style=color:#d08770>@Table</span><span style=color:#81a1c1>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;Person&#34;</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span><span style=color:#d08770>@NamedQueries</span><span style=color:#81a1c1>({</span>
-</span></span><span style=display:flex><span> <span style=color:#d08770>@NamedQuery</span><span style=color:#81a1c1>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;Person.findAll&#34;</span><span style=color:#81a1c1>,</span> query <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;SELECT p FROM Person p&#34;</span><span style=color:#81a1c1>),</span>
-</span></span><span style=display:flex><span> <span style=color:#d08770>@NamedQuery</span><span style=color:#81a1c1>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;Person.findById&#34;</span><span style=color:#81a1c1>,</span> query <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;SELECT p FROM Person p WHERE p.id = :id&#34;</span><span style=color:#81a1c1>),</span>
-</span></span><span style=display:flex><span> <span style=color:#d08770>@NamedQuery</span><span style=color:#81a1c1>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;Person.findByFirstName&#34;</span><span style=color:#81a1c1>,</span> query <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;SELECT p FROM Person p WHERE p.firstName = :firstName&#34;</span><span style=color:#81a1c1>),</span>
-</span></span><span style=display:flex><span> <span style=color:#d08770>@NamedQuery</span><span style=color:#81a1c1>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;Person.findByLastName&#34;</span><span style=color:#81a1c1>,</span> query <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;SELECT p FROM Person p WHERE p.lastName = :lastName&#34;</span><span style=color:#81a1c1>)})</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>Person</span> <span style=color:#81a1c1;font-weight:700>implements</span> Serializable <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span><span style=color:#d08770>@Table</span><span style=color:#eceff4>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;Person&#34;</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span><span style=color:#d08770>@NamedQueries</span><span style=color:#eceff4>({</span>
+</span></span><span style=display:flex><span> <span style=color:#d08770>@NamedQuery</span><span style=color:#eceff4>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;Person.findAll&#34;</span><span style=color:#eceff4>,</span> query <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;SELECT p FROM Person p&#34;</span><span style=color:#eceff4>),</span>
+</span></span><span style=display:flex><span> <span style=color:#d08770>@NamedQuery</span><span style=color:#eceff4>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;Person.findById&#34;</span><span style=color:#eceff4>,</span> query <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;SELECT p FROM Person p WHERE p.id = :id&#34;</span><span style=color:#eceff4>),</span>
+</span></span><span style=display:flex><span> <span style=color:#d08770>@NamedQuery</span><span style=color:#eceff4>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;Person.findByFirstName&#34;</span><span style=color:#eceff4>,</span> query <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;SELECT p FROM Person p WHERE p.firstName = :firstName&#34;</span><span style=color:#eceff4>),</span>
+</span></span><span style=display:flex><span> <span style=color:#d08770>@NamedQuery</span><span style=color:#eceff4>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;Person.findByLastName&#34;</span><span style=color:#eceff4>,</span> query <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;SELECT p FROM Person p WHERE p.lastName = :lastName&#34;</span><span style=color:#eceff4>)})</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>Person</span> <span style=color:#81a1c1;font-weight:700>implements</span> Serializable <span style=color:#eceff4>{</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>static</span> <span style=color:#81a1c1;font-weight:700>final</span> <span style=color:#81a1c1>long</span> serialVersionUID <span style=color:#81a1c1>=</span> 1L<span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>private</span> <span style=color:#81a1c1;font-weight:700>static</span> <span style=color:#81a1c1;font-weight:700>final</span> <span style=color:#81a1c1>long</span> serialVersionUID <span style=color:#81a1c1>=</span> 1L<span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span> <span style=color:#d08770>@Id</span>
-</span></span><span style=display:flex><span> <span style=color:#d08770>@GeneratedValue</span><span style=color:#81a1c1>(</span>strategy <span style=color:#81a1c1>=</span> GenerationType<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>AUTO</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span> <span style=color:#d08770>@Basic</span><span style=color:#81a1c1>(</span>optional <span style=color:#81a1c1>=</span> <span style=color:#81a1c1;font-weight:700>false</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span> <span style=color:#d08770>@Column</span><span style=color:#81a1c1>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;ID&#34;</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>private</span> Integer id<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#d08770>@Column</span><span style=color:#81a1c1>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;FIRST_NAME&#34;</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>private</span> String firstName<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#d08770>@Column</span><span style=color:#81a1c1>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;LAST_NAME&#34;</span><span style=color:#81a1c1>)</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>private</span> String lastName<span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span> <span style=color:#d08770>@GeneratedValue</span><span style=color:#eceff4>(</span>strategy <span style=color:#81a1c1>=</span> GenerationType<span style=color:#eceff4>.</span><span style=color:#8fbcbb>AUTO</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span> <span style=color:#d08770>@Basic</span><span style=color:#eceff4>(</span>optional <span style=color:#81a1c1>=</span> <span style=color:#81a1c1;font-weight:700>false</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span> <span style=color:#d08770>@Column</span><span style=color:#eceff4>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;ID&#34;</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>private</span> Integer id<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#d08770>@Column</span><span style=color:#eceff4>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;FIRST_NAME&#34;</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>private</span> String firstName<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#d08770>@Column</span><span style=color:#eceff4>(</span>name <span style=color:#81a1c1>=</span> <span style=color:#a3be8c>&#34;LAST_NAME&#34;</span><span style=color:#eceff4>)</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>private</span> String lastName<span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#88c0d0>Person</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#88c0d0>Person</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#88c0d0>Person</span><span style=color:#81a1c1>(</span>Integer id<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>id</span> <span style=color:#81a1c1>=</span> id<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#88c0d0>Person</span><span style=color:#eceff4>(</span>Integer id<span style=color:#eceff4>)</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#eceff4>.</span><span style=color:#8fbcbb>id</span> <span style=color:#81a1c1>=</span> id<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> Integer <span style=color:#88c0d0>getId</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> id<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> Integer <span style=color:#88c0d0>getId</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> id<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>setId</span><span style=color:#81a1c1>(</span>Integer id<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>id</span> <span style=color:#81a1c1>=</span> id<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>setId</span><span style=color:#eceff4>(</span>Integer id<span style=color:#eceff4>)</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#eceff4>.</span><span style=color:#8fbcbb>id</span> <span style=color:#81a1c1>=</span> id<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>getFirstName</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> firstName<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>getFirstName</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> firstName<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>setFirstName</span><span style=color:#81a1c1>(</span>String firstName<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>firstName</span> <span style=color:#81a1c1>=</span> firstName<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>setFirstName</span><span style=color:#eceff4>(</span>String firstName<span style=color:#eceff4>)</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#eceff4>.</span><span style=color:#8fbcbb>firstName</span> <span style=color:#81a1c1>=</span> firstName<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>getLastName</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> lastName<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>getLastName</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> lastName<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>setLastName</span><span style=color:#81a1c1>(</span>String lastName<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>lastName</span> <span style=color:#81a1c1>=</span> lastName<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#d08770>@Override</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>int</span> <span style=color:#88c0d0>hashCode</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1>int</span> hash <span style=color:#81a1c1>=</span> 0<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>  hash <span style=color:#81a1c1>+=</span> <span style=color:#81a1c1>(</span>id <span style=color:#81a1c1>!=</span> <span style=color:#81a1c1;font-weight:700>null</span> <span style=color:#81a1c1>?</span> id<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>hashCode</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>:</span> 0<span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> hash<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>setLastName</span><span style=color:#eceff4>(</span>String lastName<span style=color:#eceff4>)</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>this</span><span style=color:#eceff4>.</span><span style=color:#8fbcbb>lastName</span> <span style=color:#81a1c1>=</span> lastName<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span> <span style=color:#d08770>@Override</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>boolean</span> <span style=color:#88c0d0>equals</span><span style=color:#81a1c1>(</span>Object object<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#616e87;font-style:italic>// TODO: Warning - this method won&#39;t work in the case the id fields are not set
-</span></span></span><span style=display:flex><span><span style=color:#616e87;font-style:italic></span>  <span style=color:#81a1c1;font-weight:700>if</span> <span style=color:#81a1c1>(!(</span>object <span style=color:#81a1c1;font-weight:700>instanceof</span> Person<span style=color:#81a1c1>))</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>   <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#81a1c1;font-weight:700>false</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1>}</span>
-</span></span><span style=display:flex><span>  Person other <span style=color:#81a1c1>=</span> <span style=color:#81a1c1>(</span>Person<span style=color:#81a1c1>)</span> object<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>if</span> <span style=color:#81a1c1>((</span><span style=color:#81a1c1;font-weight:700>this</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>id</span> <span style=color:#81a1c1>==</span> <span style=color:#81a1c1;font-weight:700>null</span> <span style=color:#81a1c1>&amp;&amp;</span> other<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>id</span> <span style=color:#81a1c1>!=</span> <span style=color:#81a1c1;font-weight:700>null</span><span style=color:#81a1c1>)</span> <span style=color:#81a1c1>||</span> <span style=color:#81a1c1>(</span><span style=color:#81a1c1;font-weight:700>this</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>id</span> <span style=color:#81a1c1>!=</span> <span style=color:#81a1c1;font-weight:700>null</span> <span style=color:#81a1c1>&amp;&amp;</span> <span style=color:#81a1c1>!</span><span style=color:#81a1c1;font-weight:700>this</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>id</span><span style=color:#81a1c1>.</span><span style=color:#8fbcbb>equals</span><span style=color:#81a1c1>(</span>other<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>id</span><span style=color:#81a1c1>)))</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>   <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#81a1c1;font-weight:700>false</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#81a1c1;font-weight:700>true</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>int</span> <span style=color:#88c0d0>hashCode</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1>int</span> hash <span style=color:#81a1c1>=</span> 0<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>  hash <span style=color:#81a1c1>+=</span> <span style=color:#eceff4>(</span>id <span style=color:#81a1c1>!=</span> <span style=color:#81a1c1;font-weight:700>null</span> <span style=color:#81a1c1>?</span> id<span style=color:#eceff4>.</span><span style=color:#8fbcbb>hashCode</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>:</span> 0<span style=color:#eceff4>);</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> hash<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span> <span style=color:#d08770>@Override</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>toString</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#a3be8c>&#34;net.iocanel.database.entities.Person[id=&#34;</span> <span style=color:#81a1c1>+</span> id <span style=color:#81a1c1>+</span> <span style=color:#a3be8c>&#34;]&#34;</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1>}</span>
-</span></span></code></pre></td></tr></table></div></div><p>For this entity we will create a dao interface, through which the rest of the bundles in the container can track/lookup the dao service (the actual implementation).</p><p>We want the dao service to provide simple crud operations such as, create, delete, find & findAll, so the dao interface can be something like:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">36
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">37
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">38
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">39
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">40
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">41
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">42
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">43
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">44
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">45
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">46
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">47
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">48
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">49
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">50
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">51
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">52
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">53
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">54
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">55
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">56
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">57
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">58
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">59
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">60
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">61
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">62
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">63
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">64
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">65
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">66
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">67
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">68
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">69
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">70
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">71
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">72
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">73
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">74
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">75
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">76
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">77
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">78
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">79
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">80
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">81
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>boolean</span> <span style=color:#88c0d0>equals</span><span style=color:#eceff4>(</span>Object object<span style=color:#eceff4>)</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#616e87;font-style:italic>// TODO: Warning - this method won&#39;t work in the case the id fields are not set</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>if</span> <span style=color:#eceff4>(</span><span style=color:#81a1c1>!</span><span style=color:#eceff4>(</span>object <span style=color:#81a1c1;font-weight:700>instanceof</span> Person<span style=color:#eceff4>))</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>   <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#81a1c1;font-weight:700>false</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>  <span style=color:#eceff4>}</span>
+</span></span><span style=display:flex><span>  Person other <span style=color:#81a1c1>=</span> <span style=color:#eceff4>(</span>Person<span style=color:#eceff4>)</span> object<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>if</span> <span style=color:#eceff4>((</span><span style=color:#81a1c1;font-weight:700>this</span><span style=color:#eceff4>.</span><span style=color:#8fbcbb>id</span> <span style=color:#81a1c1>==</span> <span style=color:#81a1c1;font-weight:700>null</span> <span style=color:#81a1c1>&amp;&amp;</span> other<span style=color:#eceff4>.</span><span style=color:#8fbcbb>id</span> <span style=color:#81a1c1>!=</span> <span style=color:#81a1c1;font-weight:700>null</span><span style=color:#eceff4>)</span> <span style=color:#81a1c1>||</span> <span style=color:#eceff4>(</span><span style=color:#81a1c1;font-weight:700>this</span><span style=color:#eceff4>.</span><span style=color:#8fbcbb>id</span> <span style=color:#81a1c1>!=</span> <span style=color:#81a1c1;font-weight:700>null</span> <span style=color:#81a1c1>&amp;&amp;</span> <span style=color:#81a1c1>!</span><span style=color:#81a1c1;font-weight:700>this</span><span style=color:#eceff4>.</span><span style=color:#8fbcbb>id</span><span style=color:#eceff4>.</span><span style=color:#8fbcbb>equals</span><span style=color:#eceff4>(</span>other<span style=color:#eceff4>.</span><span style=color:#8fbcbb>id</span><span style=color:#eceff4>)))</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>   <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#81a1c1;font-weight:700>false</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span>  <span style=color:#eceff4>}</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#81a1c1;font-weight:700>true</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> <span style=color:#d08770>@Override</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> String <span style=color:#88c0d0>toString</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#a3be8c>&#34;net.iocanel.database.entities.Person[id=&#34;</span> <span style=color:#81a1c1>+</span> id <span style=color:#81a1c1>+</span> <span style=color:#a3be8c>&#34;]&#34;</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
+</span></span><span style=display:flex><span><span style=color:#eceff4>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>For this entity we will create a dao interface, through which the rest of the bundles in the container can track/lookup the dao service (the actual implementation).</p><p>We want the dao service to provide simple crud operations such as, create, delete, find & findAll, so the dao interface can be something like:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">45
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">46
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">47
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">48
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">49
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">50
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">51
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">52
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">53
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">54
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">55
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">56
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">57
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">58
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">59
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">60
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">61
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">62
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">63
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">64
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">65
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">66
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">67
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">68
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">69
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">70
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">71
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">72
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">73
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">74
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">75
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">76
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">77
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">78
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">79
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">80
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">81
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>net.iocanel.database.dao</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>net.iocanel.database.dao</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>java.util.List</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>net.iocanel.database.entities.Person</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>java.util.List</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>net.iocanel.database.entities.Person</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#616e87;font-style:italic>/**
 </span></span></span><span style=display:flex><span><span style=color:#616e87;font-style:italic> *
 </span></span></span><span style=display:flex><span><span style=color:#616e87;font-style:italic> * @author iocanel
 </span></span></span><span style=display:flex><span><span style=color:#616e87;font-style:italic> */</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>interface</span> <span style=color:#8fbcbb>PersonDAO</span> <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>interface</span> <span style=color:#8fbcbb>PersonDAO</span> <span style=color:#eceff4>{</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>create</span><span style=color:#81a1c1>(</span>Person person<span style=color:#81a1c1>)</span> <span style=color:#81a1c1;font-weight:700>throws</span> Exception<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>edit</span><span style=color:#81a1c1>(</span>Person person<span style=color:#81a1c1>)</span> <span style=color:#81a1c1;font-weight:700>throws</span> Exception<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>destroy</span><span style=color:#81a1c1>(</span>Integer id<span style=color:#81a1c1>)</span> <span style=color:#81a1c1;font-weight:700>throws</span> Exception<span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> Person <span style=color:#88c0d0>findPerson</span><span style=color:#81a1c1>(</span>Integer id<span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> List <span style=color:#88c0d0>findAllPersons</span><span style=color:#81a1c1>();</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1>}</span>
-</span></span><span style=display:flex><span>The actual jpa implementation of the dao will obtain the EntityManager via <span style=color:#88c0d0>Spring</span> <span style=color:#81a1c1>(</span>it will be injected by Spring<span style=color:#81a1c1>)</span> and <span style=color:#81a1c1;font-weight:700>for</span> transaction demarcation will use Spring<span style=color:#bf616a>’</span>s Transactional annotation<span style=color:#81a1c1>:</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>create</span><span style=color:#eceff4>(</span>Person person<span style=color:#eceff4>)</span> <span style=color:#81a1c1;font-weight:700>throws</span> Exception<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>edit</span><span style=color:#eceff4>(</span>Person person<span style=color:#eceff4>)</span> <span style=color:#81a1c1;font-weight:700>throws</span> Exception<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>destroy</span><span style=color:#eceff4>(</span>Integer id<span style=color:#eceff4>)</span> <span style=color:#81a1c1;font-weight:700>throws</span> Exception<span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> Person <span style=color:#88c0d0>findPerson</span><span style=color:#eceff4>(</span>Integer id<span style=color:#eceff4>);</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> List <span style=color:#88c0d0>findAllPersons</span><span style=color:#eceff4>();</span>
+</span></span><span style=display:flex><span><span style=color:#eceff4>}</span>
+</span></span><span style=display:flex><span>The actual jpa implementation of the dao will obtain the EntityManager via <span style=color:#88c0d0>Spring</span> <span style=color:#eceff4>(</span>it will be injected by Spring<span style=color:#eceff4>)</span> and <span style=color:#81a1c1;font-weight:700>for</span> transaction demarcation will use Spring<span style=color:#bf616a>’</span>s Transactional annotation<span style=color:#eceff4>:</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>net.iocanel.database.dao</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>package</span> <span style=color:#8fbcbb>net.iocanel.database.dao</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>java.util.List</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.EntityManager</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Query</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.PersistenceContext</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>net.iocanel.database.entities.Person</span><span style=color:#81a1c1>;</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>org.springframework.transaction.annotation.Transactional</span><span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>java.util.List</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.EntityManager</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.Query</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>javax.persistence.PersistenceContext</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>net.iocanel.database.entities.Person</span><span style=color:#eceff4>;</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>import</span> <span style=color:#8fbcbb>org.springframework.transaction.annotation.Transactional</span><span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#616e87;font-style:italic>/**
 </span></span></span><span style=display:flex><span><span style=color:#616e87;font-style:italic> *
 </span></span></span><span style=display:flex><span><span style=color:#616e87;font-style:italic> * @author iocanel
 </span></span></span><span style=display:flex><span><span style=color:#616e87;font-style:italic> */</span>
 </span></span><span style=display:flex><span><span style=color:#d08770>@Transactional</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>PersonJpaDAO</span> <span style=color:#81a1c1;font-weight:700>implements</span> PersonDAO <span style=color:#81a1c1>{</span>
+</span></span><span style=display:flex><span><span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1;font-weight:700>class</span> <span style=color:#8fbcbb>PersonJpaDAO</span> <span style=color:#81a1c1;font-weight:700>implements</span> PersonDAO <span style=color:#eceff4>{</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span> <span style=color:#d08770>@PersistenceContext</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>private</span> EntityManager entityManager<span style=color:#81a1c1>;</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>private</span> EntityManager entityManager<span style=color:#eceff4>;</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>create</span><span style=color:#81a1c1>(</span>Person person<span style=color:#81a1c1>)</span> <span style=color:#81a1c1;font-weight:700>throws</span> Exception <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  entityManager<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>persist</span><span style=color:#81a1c1>(</span>person<span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span>  entityManager<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>flush</span><span style=color:#81a1c1>();</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>create</span><span style=color:#eceff4>(</span>Person person<span style=color:#eceff4>)</span> <span style=color:#81a1c1;font-weight:700>throws</span> Exception <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  entityManager<span style=color:#eceff4>.</span><span style=color:#8fbcbb>persist</span><span style=color:#eceff4>(</span>person<span style=color:#eceff4>);</span>
+</span></span><span style=display:flex><span>  entityManager<span style=color:#eceff4>.</span><span style=color:#8fbcbb>flush</span><span style=color:#eceff4>();</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>edit</span><span style=color:#81a1c1>(</span>Person person<span style=color:#81a1c1>)</span> <span style=color:#81a1c1;font-weight:700>throws</span> Exception <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  entityManager<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>merge</span><span style=color:#81a1c1>(</span>person<span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span>  entityManager<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>flush</span><span style=color:#81a1c1>();</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>edit</span><span style=color:#eceff4>(</span>Person person<span style=color:#eceff4>)</span> <span style=color:#81a1c1;font-weight:700>throws</span> Exception <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  entityManager<span style=color:#eceff4>.</span><span style=color:#8fbcbb>merge</span><span style=color:#eceff4>(</span>person<span style=color:#eceff4>);</span>
+</span></span><span style=display:flex><span>  entityManager<span style=color:#eceff4>.</span><span style=color:#8fbcbb>flush</span><span style=color:#eceff4>();</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>destroy</span><span style=color:#81a1c1>(</span>Integer id<span style=color:#81a1c1>)</span> <span style=color:#81a1c1;font-weight:700>throws</span> Exception <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  entityManager<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>remove</span><span style=color:#81a1c1>(</span>findPerson<span style=color:#81a1c1>(</span>id<span style=color:#81a1c1>));</span>
-</span></span><span style=display:flex><span>  entityManager<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>flush</span><span style=color:#81a1c1>();</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>void</span> <span style=color:#88c0d0>destroy</span><span style=color:#eceff4>(</span>Integer id<span style=color:#eceff4>)</span> <span style=color:#81a1c1;font-weight:700>throws</span> Exception <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  entityManager<span style=color:#eceff4>.</span><span style=color:#8fbcbb>remove</span><span style=color:#eceff4>(</span>findPerson<span style=color:#eceff4>(</span>id<span style=color:#eceff4>));</span>
+</span></span><span style=display:flex><span>  entityManager<span style=color:#eceff4>.</span><span style=color:#8fbcbb>flush</span><span style=color:#eceff4>();</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> List <span style=color:#88c0d0>findPersonEntities</span><span style=color:#81a1c1>(</span><span style=color:#81a1c1>int</span> maxResults<span style=color:#81a1c1>,</span> <span style=color:#81a1c1>int</span> firstResult<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> findPersonEntities<span style=color:#81a1c1>(</span><span style=color:#81a1c1;font-weight:700>false</span><span style=color:#81a1c1>,</span> maxResults<span style=color:#81a1c1>,</span> firstResult<span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> List <span style=color:#88c0d0>findPersonEntities</span><span style=color:#eceff4>(</span><span style=color:#81a1c1>int</span> maxResults<span style=color:#eceff4>,</span> <span style=color:#81a1c1>int</span> firstResult<span style=color:#eceff4>)</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> findPersonEntities<span style=color:#eceff4>(</span><span style=color:#81a1c1;font-weight:700>false</span><span style=color:#eceff4>,</span> maxResults<span style=color:#eceff4>,</span> firstResult<span style=color:#eceff4>);</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>private</span> List <span style=color:#88c0d0>findPersonEntities</span><span style=color:#81a1c1>(</span><span style=color:#81a1c1>boolean</span> all<span style=color:#81a1c1>,</span> <span style=color:#81a1c1>int</span> maxResults<span style=color:#81a1c1>,</span> <span style=color:#81a1c1>int</span> firstResult<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  Query q <span style=color:#81a1c1>=</span> entityManager<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>createQuery</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;select object(o) from Person as o&#34;</span><span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>if</span> <span style=color:#81a1c1>(!</span>all<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>   q<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>setMaxResults</span><span style=color:#81a1c1>(</span>maxResults<span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span>   q<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>setFirstResult</span><span style=color:#81a1c1>(</span>firstResult<span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> q<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>getResultList</span><span style=color:#81a1c1>();</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>private</span> List <span style=color:#88c0d0>findPersonEntities</span><span style=color:#eceff4>(</span><span style=color:#81a1c1>boolean</span> all<span style=color:#eceff4>,</span> <span style=color:#81a1c1>int</span> maxResults<span style=color:#eceff4>,</span> <span style=color:#81a1c1>int</span> firstResult<span style=color:#eceff4>)</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  Query q <span style=color:#81a1c1>=</span> entityManager<span style=color:#eceff4>.</span><span style=color:#8fbcbb>createQuery</span><span style=color:#eceff4>(</span><span style=color:#a3be8c>&#34;select object(o) from Person as o&#34;</span><span style=color:#eceff4>);</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>if</span> <span style=color:#eceff4>(</span><span style=color:#81a1c1>!</span>all<span style=color:#eceff4>)</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>   q<span style=color:#eceff4>.</span><span style=color:#8fbcbb>setMaxResults</span><span style=color:#eceff4>(</span>maxResults<span style=color:#eceff4>);</span>
+</span></span><span style=display:flex><span>   q<span style=color:#eceff4>.</span><span style=color:#8fbcbb>setFirstResult</span><span style=color:#eceff4>(</span>firstResult<span style=color:#eceff4>);</span>
+</span></span><span style=display:flex><span>  <span style=color:#eceff4>}</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> q<span style=color:#eceff4>.</span><span style=color:#8fbcbb>getResultList</span><span style=color:#eceff4>();</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> Person <span style=color:#88c0d0>findPerson</span><span style=color:#81a1c1>(</span>Integer id<span style=color:#81a1c1>)</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> entityManager<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>find</span><span style=color:#81a1c1>(</span>Person<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>class</span><span style=color:#81a1c1>,</span> id<span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> Person <span style=color:#88c0d0>findPerson</span><span style=color:#eceff4>(</span>Integer id<span style=color:#eceff4>)</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> entityManager<span style=color:#eceff4>.</span><span style=color:#8fbcbb>find</span><span style=color:#eceff4>(</span>Person<span style=color:#eceff4>.</span><span style=color:#8fbcbb>class</span><span style=color:#eceff4>,</span> id<span style=color:#eceff4>);</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>int</span> <span style=color:#88c0d0>getPersonCount</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  Query q <span style=color:#81a1c1>=</span> entityManager<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>createQuery</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;select count(o) from Person as o&#34;</span><span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#81a1c1>((</span>Long<span style=color:#81a1c1>)</span> q<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>getSingleResult</span><span style=color:#81a1c1>()).</span><span style=color:#8fbcbb>intValue</span><span style=color:#81a1c1>();</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> <span style=color:#81a1c1>int</span> <span style=color:#88c0d0>getPersonCount</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  Query q <span style=color:#81a1c1>=</span> entityManager<span style=color:#eceff4>.</span><span style=color:#8fbcbb>createQuery</span><span style=color:#eceff4>(</span><span style=color:#a3be8c>&#34;select count(o) from Person as o&#34;</span><span style=color:#eceff4>);</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> <span style=color:#eceff4>((</span>Long<span style=color:#eceff4>)</span> q<span style=color:#eceff4>.</span><span style=color:#8fbcbb>getSingleResult</span><span style=color:#eceff4>()).</span><span style=color:#8fbcbb>intValue</span><span style=color:#eceff4>();</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> List <span style=color:#88c0d0>findAllPersons</span><span style=color:#81a1c1>()</span> <span style=color:#81a1c1>{</span>
-</span></span><span style=display:flex><span>  Query q <span style=color:#81a1c1>=</span> entityManager<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>createNamedQuery</span><span style=color:#81a1c1>(</span><span style=color:#a3be8c>&#34;Person.findAll&#34;</span><span style=color:#81a1c1>);</span>
-</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> q<span style=color:#81a1c1>.</span><span style=color:#8fbcbb>getResultList</span><span style=color:#81a1c1>();</span>
-</span></span><span style=display:flex><span> <span style=color:#81a1c1>}</span>
-</span></span><span style=display:flex><span><span style=color:#81a1c1>}</span>
-</span></span></code></pre></td></tr></table></div></div><p>For the EntityManager injection and Spring Transactions, we need need a spring context. Since we are going to use Spring Dynamic Modules, the spring context needs to be placed under META-INF/spring/.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
+</span></span><span style=display:flex><span> <span style=color:#81a1c1;font-weight:700>public</span> List <span style=color:#88c0d0>findAllPersons</span><span style=color:#eceff4>()</span> <span style=color:#eceff4>{</span>
+</span></span><span style=display:flex><span>  Query q <span style=color:#81a1c1>=</span> entityManager<span style=color:#eceff4>.</span><span style=color:#8fbcbb>createNamedQuery</span><span style=color:#eceff4>(</span><span style=color:#a3be8c>&#34;Person.findAll&#34;</span><span style=color:#eceff4>);</span>
+</span></span><span style=display:flex><span>  <span style=color:#81a1c1;font-weight:700>return</span> q<span style=color:#eceff4>.</span><span style=color:#8fbcbb>getResultList</span><span style=color:#eceff4>();</span>
+</span></span><span style=display:flex><span> <span style=color:#eceff4>}</span>
+</span></span><span style=display:flex><span><span style=color:#eceff4>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>For the EntityManager injection and Spring Transactions, we need need a spring context. Since we are going to use Spring Dynamic Modules, the spring context needs to be placed under META-INF/spring/.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#81a1c1>&lt;beans</span> <span style=color:#8fbcbb>xmlns:tx=</span><span style=color:#a3be8c>&#34;http://www.springframework.org/schema/tx&#34;</span>
 </span></span><span style=display:flex><span> <span style=color:#8fbcbb>xmlns:xsi=</span><span style=color:#a3be8c>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
 </span></span><span style=display:flex><span> <span style=color:#8fbcbb>xmlns=</span><span style=color:#a3be8c>&#34;http://www.springframework.org/schema/beans&#34;</span>
@@ -467,26 +468,26 @@ For the database tier we are going to create a simple bundle that will contain t
 </span></span><span style=display:flex><span><span style=color:#81a1c1>&lt;tx:annotation-driven</span> <span style=color:#8fbcbb>mode=</span><span style=color:#a3be8c>&#34;proxy&#34;</span> <span style=color:#bf616a>proxy-target-</span><span style=color:#81a1c1>&gt;&lt;/tx:annotation-driven&gt;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#81a1c1>&lt;/beans&gt;</span>
-</span></span></code></pre></td></tr></table></div></div><p>For the creation of the EntityManagerFactory Spring will need a persistence.xml file located under META-INF:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span></span></code></pre></td></tr></table></div></div><p>For the creation of the EntityManagerFactory Spring will need a persistence.xml file located under META-INF:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#81a1c1>&lt;persistence</span> <span style=color:#8fbcbb>version=</span><span style=color:#a3be8c>&#34;2.0&#34;</span> <span style=color:#8fbcbb>xmlns:xsi=</span><span style=color:#a3be8c>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> <span style=color:#8fbcbb>xmlns=</span><span style=color:#a3be8c>&#34;http://java.sun.com/xml/ns/persistence&#34;</span> <span style=color:#8fbcbb>xsi:schemalocation=</span><span style=color:#a3be8c>&#34;http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd&#34;</span><span style=color:#81a1c1>&gt;</span>
 </span></span><span style=display:flex><span>  <span style=color:#81a1c1>&lt;persistence-unit</span> <span style=color:#8fbcbb>name=</span><span style=color:#a3be8c>&#34;wicket-osgi-pu&#34;</span> <span style=color:#8fbcbb>transaction-type=</span><span style=color:#a3be8c>&#34;RESOURCE_LOCAL&#34;</span><span style=color:#81a1c1>&gt;</span>
 </span></span><span style=display:flex><span>    <span style=color:#81a1c1>&lt;provider&gt;</span>org.hibernate.ejb.HibernatePersistence<span style=color:#81a1c1>&lt;/provider&gt;</span>
@@ -509,14 +510,14 @@ For the database tier we are going to create a simple bundle that will contain t
 </span></span><span style=display:flex><span><span style=color:#81a1c1>&lt;/persistence&gt;</span>
 </span></span></code></pre></td></tr></table></div></div><p>So far in the database tier we did what we would do in a typical application. Now we will add OSGi flavor to our module.</p><h2 id=creating-the-dao-osgi-service>Creating the DAO OSGi Service
 <a class=heading-link href=#creating-the-dao-osgi-service><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>As mentioned above for the creation of the dao service we will use spring dynamic modules. So all we need is to add a descriptor under META-INF/spring that will instruct Spring’s OSGi exporter to export bean personDAO as OSGi service:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">8
+<span class=sr-only>Link to heading</span></a></h2><p>As mentioned above for the creation of the dao service we will use spring dynamic modules. So all we need is to add a descriptor under META-INF/spring that will instruct Spring’s OSGi exporter to export bean personDAO as OSGi service:</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">8
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#81a1c1>&lt;beans</span> <span style=color:#8fbcbb>xmlns:osgi=</span><span style=color:#a3be8c>&#34;http://www.springframework.org/schema/osgi&#34;</span>
 </span></span><span style=display:flex><span>        <span style=color:#8fbcbb>xmlns:xsi=</span><span style=color:#a3be8c>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
 </span></span><span style=display:flex><span>        <span style=color:#8fbcbb>xmlns=</span><span style=color:#a3be8c>&#34;http://www.springframework.org/schema/beans&#34;</span>
@@ -528,74 +529,74 @@ For the database tier we are going to create a simple bundle that will contain t
 </span></span></code></pre></td></tr></table></div></div><p>Finally, we need to perform a small hack. In the previous part of this guide, we created an OSGi fragment for Hibernate Validator. This fragment is attached on the validation api host, so that the validation api can find the classes of hibernate validator. However, we still need to instruct the validation api, to look for Hibernate Validator classes. In an non-OSGi world the validation api will lookup in the classpath for the following file META-INF/services/javax.validation.spi.ValidationProvider and read the actual validation provider class name from this file.</p><p>Passing the Validation Provider to Validation API
 In the OSGi world the validation api, will delegate that call to the calling bundle (in our case the database tier bundle) so we are going to make sure that it finds it. How we are going to do so? We are going to copy it from Hibernate Validator and add it in our bundle. This approach might not seem that elegant, however it has two great advantages:</p><p>Its simple
 It works
-If you are aware of more elegant alternative feel free to communicate them.</p><p>The final obstacle is creating the bundle itself.The bundle will be created using maven-bundle-plugin. As maven dependencies it will contain only whatever it requires for the compile scope and its run-time dependencies(hibernate,spring,jpa spec, cglib etc) will be declared as OSGi Import-Packages.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">36
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">37
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">38
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">39
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">40
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">41
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">42
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">43
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">44
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">45
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">46
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">47
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">48
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">49
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">50
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">51
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">52
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">53
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">54
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">55
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">56
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">57
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">58
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">59
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">60
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">61
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">62
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">63
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">64
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">65
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">66
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">67
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">68
+If you are aware of more elegant alternative feel free to communicate them.</p><p>The final obstacle is creating the bundle itself.The bundle will be created using maven-bundle-plugin. As maven dependencies it will contain only whatever it requires for the compile scope and its run-time dependencies(hibernate,spring,jpa spec, cglib etc) will be declared as OSGi Import-Packages.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">45
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">46
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">47
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">48
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">49
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">50
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">51
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">52
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">53
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">54
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">55
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">56
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">57
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">58
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">59
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">60
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">61
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">62
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">63
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">64
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">65
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">66
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">67
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">68
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#81a1c1>&lt;properties&gt;</span>
 </span></span><span style=display:flex><span>  <span style=color:#81a1c1>&lt;export</span> <span style=color:#8fbcbb>.packages=</span><span style=color:#a3be8c>&#34;&#34;</span><span style=color:#81a1c1>&gt;</span>net.iocanel.*<span style=color:#81a1c1>&lt;/export&gt;</span>
 </span></span><span style=display:flex><span>  <span style=color:#81a1c1>&lt;import</span> <span style=color:#8fbcbb>.packages=</span><span style=color:#a3be8c>&#34;&#34;</span><span style=color:#81a1c1>&gt;</span>
@@ -666,32 +667,32 @@ If you are aware of more elegant alternative feel free to communicate them.</p><
 </span></span><span style=display:flex><span><span style=color:#81a1c1>&lt;/build&gt;</span>
 </span></span></code></pre></td></tr></table></div></div><h2 id=presentation-web-tier>Presentation/Web Tier
 <a class=heading-link href=#presentation-web-tier><i class="fa fa-link" aria-hidden=true title="Link to heading"></i>
-<span class=sr-only>Link to heading</span></a></h2><p>For the presentation tier we are going to be a Wicket OSGi application. This application will be integrated with Spring using @SpringBean annotation (more details on this on Wicket/Spring Wiki).</p><p>Since we are interested in taking advantage of Spring Dynamic Modules, we are going to instruct to load its context from OsgiBundleXmlWebApplicationContext inside the web.xml.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
+<span class=sr-only>Link to heading</span></a></h2><p>For the presentation tier we are going to be a Wicket OSGi application. This application will be integrated with Spring using @SpringBean annotation (more details on this on Wicket/Spring Wiki).</p><p>Since we are interested in taking advantage of Spring Dynamic Modules, we are going to instruct to load its context from OsgiBundleXmlWebApplicationContext inside the web.xml.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">26
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#81a1c1>&lt;web-app</span> <span style=color:#8fbcbb>version=</span><span style=color:#a3be8c>&#34;2.5&#34;</span> <span style=color:#8fbcbb>xmlns:xsi=</span><span style=color:#a3be8c>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> <span style=color:#8fbcbb>xmlns=</span><span style=color:#a3be8c>&#34;http://java.sun.com/xml/ns/j2ee&#34;</span> <span style=color:#8fbcbb>xsi:schemalocation=</span><span style=color:#a3be8c>&#34;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&#34;</span><span style=color:#81a1c1>&gt;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span> <span style=color:#81a1c1>&lt;display-name&gt;</span>web-tier<span style=color:#81a1c1>&lt;/display-name&gt;</span>
@@ -720,15 +721,15 @@ If you are aware of more elegant alternative feel free to communicate them.</p><
 </span></span><span style=display:flex><span><span style=color:#81a1c1>&lt;/web-app&gt;</span>
 </span></span></code></pre></td></tr></table></div></div><p>The Spring context file (/WEB-INF/applicationContext.xml)that will be loaded needs to define two simple things:</p><p>The Wicket Application Object.
 The PersonDAO OSGi service.
-The PersonDAO service will be looked up using Spring Dynamic Modules. Inside the wicket application the PersonDAO service will be injected as if it was a normal spring bean using the @SpringBean annotation.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">5
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">6
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">7
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">8
-</span><span style="white-space:pre;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">9
+The PersonDAO service will be looked up using Spring Dynamic Modules. Inside the wicket application the PersonDAO service will be injected as if it was a normal spring bean using the @SpringBean annotation.</p><div class=highlight><div style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#6c6f74">9
 </span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#81a1c1>&lt;beans</span> <span style=color:#8fbcbb>xmlns:osgi=</span><span style=color:#a3be8c>&#34;http://www.springframework.org/schema/osgi&#34;</span> <span style=color:#8fbcbb>xmlns:xsi=</span><span style=color:#a3be8c>&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> <span style=color:#8fbcbb>xmlns=</span><span style=color:#a3be8c>&#34;http://www.springframework.org/schema/beans&#34;</span> <span style=color:#8fbcbb>xsi:schemalocation=</span><span style=color:#a3be8c>&#34;http://www.springframework.org/schema/beans
 </span></span></span><span style=display:flex><span><span style=color:#a3be8c>    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 </span></span></span><span style=display:flex><span><span style=color:#a3be8c>    http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi-1.2.xsd&#34;</span><span style=color:#81a1c1>&gt;</span>
@@ -749,7 +750,7 @@ The List Component that will be used is PropertyListView, and the model attached
 Once my schedule allows, I will blog on how to add JTA transactions on the example above, so stay tuned(The Hibernate bundle is JTA ready, however we need a JTA transaction manager bundle).
 Feel free to send comments or suggestions.</p></div><footer></footer></article></section></div><footer class=footer><section class=container>©
 2019 -
-2022
+2024
 Ioannis Canellos
 ·
 Powered by <a href=https://gohugo.io/>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/>Coder</a>.</section></footer></main><script src=/js/coder.min.236049395dc3682fb2719640872958e12f1f24067bb09c327b233e6290c7edac.js integrity="sha256-I2BJOV3DaC+ycZZAhylY4S8fJAZ7sJwyeyM+YpDH7aw="></script></body></html>
