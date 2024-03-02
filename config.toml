@@ -1,6 +1,6 @@
 baseURL = 'https://iocanel.github.io'
 languageCode = 'en-us'
-title = 'Ioannis Canellos - My Blog'
+title = 'Ioannis Canellos'
 theme = "hugo-coder"
 
 paginate = 20
@@ -42,6 +42,12 @@ pygmentscodefencesguesssyntax = true
   icon = "fa fa-linkedin fa-2x"
   weight = 3
   url = "https://linkedin.com/in/iocanel/"
+[[params.social]]
+  name = "Youtube"
+  icon = "fa fa-youtube fa-2x"
+  weight = 3
+  url = "https://www.youtube.com/channel/UCDshZNBXJuU2aZYrmzZfkhg"
+
 
 # Menu links
 [[menu.main]]
