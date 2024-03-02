@@ -4,6 +4,8 @@ author = ["Ioannis Canellos"]
 description = "A quick look at sdkman"
 date = 2018-10-16T15:57:00+03:00
 draft = false
+categories = ["tools"]
+tags = ["java", "sdkman"]
 +++
 
 ## Prologue {#prologue}

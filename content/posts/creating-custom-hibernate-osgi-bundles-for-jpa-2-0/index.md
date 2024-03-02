@@ -3,6 +3,8 @@ title = "Creating custom Hibernate OSGI bundles for JPA 2.0"
 author = ["Ioannis Canellos"]
 date = 2010-07-10T00:00:00+03:00
 draft = false
+categories = ["development"]
+tags = ["java", "osgi", "hibernate"]
 +++
 
 ****EDIT****: I am more than happy that this post is now completely obsolete. Hibernate is now OSGi ready, Yay!

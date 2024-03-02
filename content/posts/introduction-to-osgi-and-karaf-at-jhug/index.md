@@ -3,6 +3,8 @@ title = "Introduction to OSGi and Karaf at JHUG"
 author = ["Ioannis Canellos"]
 date = 2011-04-19T00:00:00+03:00
 draft = false
+categories = ["development", "presentations"]
+tags = ["java", "osgi", "karaf"]
 +++
 
 {{< figure src="event.jpg" >}}

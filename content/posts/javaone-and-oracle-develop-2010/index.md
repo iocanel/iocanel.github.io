@@ -3,6 +3,8 @@ title = "JavaOne and Oracle Develop 2010"
 author = ["Ioannis Canellos"]
 date = 2010-09-25T00:00:00+03:00
 draft = false
+categories = ["personal"]
+tags = ["java", "javaone"]
 +++
 
 I just returned home from ****Java ONE**** and ****Oracle Develop**** 2010 (which was also my first ONE) and I thought that it would be a good idea to take 5 minutes and share the experience.

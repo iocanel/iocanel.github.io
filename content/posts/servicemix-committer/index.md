@@ -3,6 +3,8 @@ title = "ServiceMix committer"
 author = ["Ioannis Canellos"]
 date = 2010-12-27T00:00:00+02:00
 draft = false
+catgories = ["personal"]
+tags = ["servicemix"]
 +++
 
 I am currently in the middle of my Xmas vacation and I was just about to download a movie for tonight.

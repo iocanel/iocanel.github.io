@@ -3,6 +3,8 @@ title = "Apache Karaf committer"
 author = ["Ioannis Canellos"]
 date = 2010-08-30T00:00:00+03:00
 draft = false
+categories = ["personal"]
+tags = ["java", "osgi", "karaf"]
 +++
 
 1 week after my vacation and still suffering from “post vacation depression”, this Monday seemed like a nightmare.

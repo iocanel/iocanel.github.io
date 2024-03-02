@@ -55,8 +55,12 @@ pygmentscodefencesguesssyntax = true
   weight = 1
   url  = "posts/"
 [[menu.main]]
-  name = "about"
+  name = "dotfiles"
   weight = 2
+  url  = "dotfiles/"
+[[menu.main]]
+  name = "about"
+  weight = 3
   url  = "about/"
 [markup]
   [markup.highlight]
@@ -75,3 +79,7 @@ pygmentscodefencesguesssyntax = true
     tabWidth = 4  
     pygmentsUseClasses = true
     pygmentsCodefences = true
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"

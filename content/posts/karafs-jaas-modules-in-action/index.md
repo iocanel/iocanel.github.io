@@ -1,8 +1,10 @@
 +++
-title = "Creating custom Hibernate OSGI bundles for JPA 2.0"
+title = "Karaf JAAS modules in action"
 author = ["Ioannis Canellos"]
 date = 2010-09-25T00:00:00+03:00
 draft = false
+categories = ["development"]
+tags = ["java", "osgi", "jaas", "security"]
 +++
 
 ## Prologue {#prologue}

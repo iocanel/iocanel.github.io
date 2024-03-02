@@ -14,7 +14,10 @@ blogger_internal:
   - /feeds/1786615818482917324/posts/default/6140819168619875137
 categories:
   - Hints
-
+tags:
+  - java
+  - servicemix
+  - spring
 ---
 <span style="font-size: x-large;">Prologue</span>  
 This is the first from a series of posts that demonstrate how to extend ServiceMix management using Spring&#8217;s jmx and aop features. The version of SerivceMix that is going to be used will be 3.3.3-SNAPSHOT but I&#8217;ve been using this technique since 3.3 and it will probably can be applied to 4.x.

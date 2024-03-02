@@ -3,6 +3,8 @@ title = "My JavaOne talk about Cellar"
 author = ["Ioannis Canellos"]
 date = 2011-10-10T00:00:00+03:00
 draft = false
+categories = ["personal", "conference", "presentation" ]
+tags = ["java", "javaone", "osgi", "karaf"]
 +++
 
 ## Prologue {#prologue}

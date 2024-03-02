@@ -4,6 +4,8 @@ author = ["Ioannis Canellos"]
 description = "How to create Quarkus powered react applications that use Keycloak via DevServices"
 date = 2022-10-17T14:36:00+03:00
 draft = false
+categories = ["development"]
+tags = ["quarkus", "quinoa", "keycloak", "react"]
 +++
 
 ## Introduction {#introduction}

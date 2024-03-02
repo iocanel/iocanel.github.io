@@ -4,6 +4,8 @@ author = ["Ioannis Canellos"]
 description = "Use your computer skills to maximize the efficiency of your jiu jistsu studying"
 date = 2021-08-11T22:46:00+03:00
 draft = false
+categories = ["hobbies"]
+tags = ["jiu jitsu"]
 +++
 
 {{< figure src="hackers-guide-to-jiu-jitsu.png" >}}

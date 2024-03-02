@@ -4,6 +4,8 @@ author = ["Ioannis Canellos"]
 description = "Some tips on how to use sdkman in github actions"
 date = 2021-09-20T09:20:00+03:00
 draft = false
+categories = ["devops"]
+tags = ["sdkman", "github"]
 +++
 
 ## Introduction {#introduction}

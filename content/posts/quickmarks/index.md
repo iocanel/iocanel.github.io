@@ -4,6 +4,8 @@ author = ["Ioannis Canellos"]
 description = "Create an emacs snippet to easily create org links using quickmarks"
 date = 2018-09-05T18:52:00+03:00
 draft = false
+categories = ["hints"]
+tags = ["emacs", "org-mode"]
 +++
 
 ## Overview {#overview}

@@ -3,6 +3,8 @@ title = "Wicket with Spring 3 and Hibernate on Apache Karaf"
 author = ["Ioannis Canellos"]
 date = 2010-07-12T00:00:00+03:00
 draft = false
+categories = ["development"]
+tags = ["java", "osgi", "karaf", "wicket", "spring"]
 +++
 
 EDIT: Hibernate is now OSGi ready so most of those stuff are now completely outdated.

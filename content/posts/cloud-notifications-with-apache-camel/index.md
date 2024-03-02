@@ -3,6 +3,8 @@ title = "Cloud notifications with Apache Camel and jclouds"
 author = ["Ioannis Canellos"]
 date = 2011-11-05T00:00:00+02:00
 draft = false
+categories = ["hints"]
+tags = ["java", "camel", "jcoulds"]
 +++
 
 ## Prologue {#prologue}

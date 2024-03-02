@@ -3,6 +3,8 @@ title = "Jenkins setups for Kubernetes and Docker Workflow"
 author = ["Ioannis Canellos"]
 date = 2018-02-28T22:24:00+02:00
 draft = false
+categories = ["devops"]
+tags = ["jenkins", "kubernetes", "docker"]
 +++
 
 ## Intro {#intro}

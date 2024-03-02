@@ -4,6 +4,8 @@ author = ["Ioannis Canellos"]
 description = "A quick walkthrough on how to use Quarkus with the Service Binding Operator"
 date = 2021-11-29T17:56:00+02:00
 draft = false
+categories = ["development"]
+tags = ["java", "quarkus", "kubernetes"]
 +++
 
 ## Introduction {#introduction}

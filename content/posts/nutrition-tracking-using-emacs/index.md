@@ -3,6 +3,8 @@ title = "Nutrition tracking using Emacs"
 author = ["Ioannis Canellos"]
 date = 2020-04-03T18:39:00+03:00
 draft = false
+categories = ["hints"]
+tags = ["emacs", "org-mode"]
 +++
 
 This is not a blog post. This is my Emacs powered nutrition tracker!

@@ -3,6 +3,8 @@ title = "Language Server Protocol, Java and Emacs"
 author = ["Ioannis Canellos"]
 date = 2018-06-20T19:00:00+03:00
 draft = false
+categories = ["hints"]
+tags = ["java", "lsp", "emacs"]
 +++
 
 ## Prologue {#prologue}

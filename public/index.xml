@@ -1,20 +1,299 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ioannis Canellos - My Blog</title>
-    <link>https://iocanel.github.io/</link>
-    <description>Recent content on Ioannis Canellos - My Blog</description>
+    <title>Ioannis Canellos</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Ioannis Canellos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Oct 2022 21:25:56 +0300</lastBuildDate><atom:link href="https://iocanel.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Oct 2022 14:36:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title></title>
-      <link>https://iocanel.github.io/posts/hello-world/</link>
-      <pubDate>Tue, 18 Oct 2022 21:25:56 +0300</pubDate>
-      
-      <guid>https://iocanel.github.io/posts/hello-world/</guid>
-      <description>Hello World!</description>
+      <title>Quarkus React with Quinoa and Keycloak</title>
+      <link>http://localhost:1313/2022/10/quarkus-react-with-quinoa-and-keycloak/</link>
+      <pubDate>Mon, 17 Oct 2022 14:36:00 +0300</pubDate>
+      <guid>http://localhost:1313/2022/10/quarkus-react-with-quinoa-and-keycloak/</guid>
+      <description>Introduction Link to heading This year I decided to put some personal time in learning reactjs. While I enjoy using Javascript for the frontend, I&amp;rsquo;d say that it&amp;rsquo;s not the language of choice for me for backend use. I don&amp;rsquo;t have anything against nodejs, but I prefer use java frameworks, which is the focus of my day job. So, I wanted to combine reactjs with Quarkus. A combination that just became more fun with the Quinoa.</description>
     </item>
-    
+    <item>
+      <title>Hackers guide to Jiu Jitsu: Flowcharts</title>
+      <link>http://localhost:1313/2022/01/hackers-guide-to-jiu-jitsu-flowcharts/</link>
+      <pubDate>Tue, 11 Jan 2022 23:56:00 +0200</pubDate>
+      <guid>http://localhost:1313/2022/01/hackers-guide-to-jiu-jitsu-flowcharts/</guid>
+      <description>Intro Link to heading I am a 40+ software engineer and recreational Jiu Jitsu practitioner, struggling with vast amount of information related to the sport. I decided to make use of my `computer` skills to aid me in the process of taming this new skill.&#xA;In this post I am going to discuss about flowcharts and more specifically about:&#xA;why bother with flowcharts tools for creating flowcharts integrating flowcharts with with wiki What is a flowchart ?</description>
+    </item>
+    <item>
+      <title>Using Quarkus with the Service Binding Operator</title>
+      <link>http://localhost:1313/2021/11/using-quarkus-with-the-service-binding-operator/</link>
+      <pubDate>Mon, 29 Nov 2021 17:56:00 +0200</pubDate>
+      <guid>http://localhost:1313/2021/11/using-quarkus-with-the-service-binding-operator/</guid>
+      <description>Introduction Link to heading Kubernetes is around for almost 7 years now! Ever since the beggining there have been efforts to make consuming / binding to services simpler. And while discovering the actual service is not so much of an issue (if you employ a set of conventions), getting the credentials etc is slightly trickier.&#xA;The Service Catalog has been an effort that promised to simplify provisioning and binding to services, but it seems that it has lost its momentum.</description>
+    </item>
+    <item>
+      <title>Using sdkman in github actions</title>
+      <link>http://localhost:1313/2021/09/using-sdkman-in-github-actions/</link>
+      <pubDate>Mon, 20 Sep 2021 09:20:00 +0300</pubDate>
+      <guid>http://localhost:1313/2021/09/using-sdkman-in-github-actions/</guid>
+      <description>Introduction Link to heading I was experimenting with some Github Actions that needed to make use of Mandrel so, I thought that I should use sdkman. I run into some issues though and I thought I should document the experience&#xA;The main issue I encountered, is that no matter how I mixed sdkamn into the mix, my steps acted like it was not&#xA;The sdkamn action Link to heading It seems that there is a Github Action for sdkman available, which should allow you to manage any `candidate`.</description>
+    </item>
+    <item>
+      <title>Wordpress: Notes on syntax highlighting</title>
+      <link>http://localhost:1313/2021/09/wordpress-notes-on-syntax-highlighting/</link>
+      <pubDate>Wed, 01 Sep 2021 12:38:00 +0300</pubDate>
+      <guid>http://localhost:1313/2021/09/wordpress-notes-on-syntax-highlighting/</guid>
+      <description>Prologue Link to heading These are just some personal notes, that I&amp;rsquo;ll surely forget unless I write them down.&#xA;The problem Link to heading As I am bloging for over a decade now and most of the time I am sharing code, I needed of a decent way to highlight my code and make it available to users. In the beginning I was using blogger but later on I migrated to wordpress.</description>
+    </item>
+    <item>
+      <title>Hackers guide to Jiu Jitsu: Markdown Wiki</title>
+      <link>http://localhost:1313/2021/08/hackers-guide-to-jiu-jitsu-markdown-wiki/</link>
+      <pubDate>Mon, 30 Aug 2021 21:48:00 +0300</pubDate>
+      <guid>http://localhost:1313/2021/08/hackers-guide-to-jiu-jitsu-markdown-wiki/</guid>
+      <description>Intro Link to heading I am a 40+ software engineer and recreational Jiu Jitsu practitioner, struggling with vast amount of information related to the sport. I decided to make use of my `computer` skills to aid me in the process of taming this new skill.&#xA;In this section I am going to discuss why and how markdown is the ideal format for using for your notes. I am also going to conver how to use markdown in order to maintain wiki/second brain for your Jiu Jitsu notes.</description>
+    </item>
+    <item>
+      <title>Hackers guide to Jiu Jitsu: mplayer</title>
+      <link>http://localhost:1313/2021/08/hackers-guide-to-jiu-jitsu-mplayer/</link>
+      <pubDate>Mon, 30 Aug 2021 21:48:00 +0300</pubDate>
+      <guid>http://localhost:1313/2021/08/hackers-guide-to-jiu-jitsu-mplayer/</guid>
+      <description>Intro Link to heading I am a 40+ software engineer and recreational Jiu Jitsu practitioner, struggling with vast amount of information related to the sport. I decided to make use of my `computer` skills to aid me in the process of taming this new skill.&#xA;This post is going to demonstrate how to use mplayer for watching Jiu Jitsu instructionals, in order to:&#xA;Capture notes Create bookmarks Create animated gifs demonstrating techniques This post will cover the fundamentals and will be the base for future posts that will demonstrate integrations with ohter tools.</description>
+    </item>
+    <item>
+      <title>Hackers guide to Jiu Jitsu: ffmpeg</title>
+      <link>http://localhost:1313/2021/08/hackers-guide-to-jiu-jitsu-ffmpeg/</link>
+      <pubDate>Wed, 11 Aug 2021 23:20:00 +0300</pubDate>
+      <guid>http://localhost:1313/2021/08/hackers-guide-to-jiu-jitsu-ffmpeg/</guid>
+      <description>Intro Link to heading I am a 40+ software engineer and recreational Jiu Jitsu practitioner, struggling with vast amount of information related to the sport. I decided to make use of my `computer` skills to aid me in the process of taming this new skill.&#xA;This post is going to demonstrate how to use ffmpeg in order to:&#xA;Split long insturctions into logical chapters Capture screenshots Create animated gifs demonstrating techniques This post will cover the fundamentals and will be the base for future posts that will demonstrate integrations with ohter tools.</description>
+    </item>
+    <item>
+      <title>Hackers guide to Jiu Jitsu</title>
+      <link>http://localhost:1313/2021/08/hackers-guide-to-jiu-jitsu/</link>
+      <pubDate>Wed, 11 Aug 2021 22:46:00 +0300</pubDate>
+      <guid>http://localhost:1313/2021/08/hackers-guide-to-jiu-jitsu/</guid>
+      <description>Intro Link to heading I am a 40+ software engineer and recreational Jiu Jitsu practitioner, strugglying with vast amount of information related to the sport. I decided to make use of my `computer` skills to aid me in the process of taming this new skill.&#xA;This is the first post in a series of posts, documenting the process.&#xA;Who is this series of posts for ? Link to heading Jiu Jitsu practitioners with decent computer skills</description>
+    </item>
+    <item>
+      <title>Sundrio: A framework for generating code that no one wants to write</title>
+      <link>http://localhost:1313/2021/08/sundrio-a-framework-for-generating-code-that-no-one-wants-to-write/</link>
+      <pubDate>Thu, 05 Aug 2021 09:19:00 +0300</pubDate>
+      <guid>http://localhost:1313/2021/08/sundrio-a-framework-for-generating-code-that-no-one-wants-to-write/</guid>
+      <description>Intro Link to heading I used to be pretty vocal about things I work on. I used to write blogs, give conference talks or occasionally create short vlog kind of videos. If there is one topic I&amp;rsquo;ve completely missed, that is sundrio.&#xA;So, what is sundrio ?&#xA;sundrio is a code generation toolkit for generating code that no one wants to write by hand and everyone enjoys using. Besides the code generation frameworks, it also comes with modules (they are actually framework applications) for generating things like:</description>
+    </item>
+    <item>
+      <title>Nutrition tracking using Emacs</title>
+      <link>http://localhost:1313/2020/04/nutrition-tracking-using-emacs/</link>
+      <pubDate>Fri, 03 Apr 2020 18:39:00 +0300</pubDate>
+      <guid>http://localhost:1313/2020/04/nutrition-tracking-using-emacs/</guid>
+      <description>This is not a blog post. This is my Emacs powered nutrition tracker!&#xA;No, I mean it!&#xA;It&amp;rsquo;s the one file that contains all the code, templates and data of my tracker, exported in html.&#xA;Keep reading, to see how you can harness the power of emacs and org mode to track your nutrition and even generate cool graphs like:&#xA;For quick demo you can check this short Youtube demo: Nutrition tracking using Emacs.</description>
+    </item>
+    <item>
+      <title>Introducing Ap4K</title>
+      <link>http://localhost:1313/2019/01/introducing-ap4k/</link>
+      <pubDate>Mon, 07 Jan 2019 17:39:00 +0200</pubDate>
+      <guid>http://localhost:1313/2019/01/introducing-ap4k/</guid>
+      <description>Prologue Link to heading ap4k is a collection of java annotations and processors for generating, customizing and testing kubernetes and openshift manifests.&#xA;The idea of using java annotations for customizing kubernetes and openshift manifests is not something entirely new. In 2015 fabric8 provided an artifact called `kubernetes-generator` (not to be confused with other generators under the fabric8 umbrella) that allowed developers to hook into the compilation process code that customized these manifests.</description>
+    </item>
+    <item>
+      <title>Micronaut: Introduction</title>
+      <link>http://localhost:1313/2018/10/micronaut-introduction/</link>
+      <pubDate>Thu, 25 Oct 2018 14:39:00 +0300</pubDate>
+      <guid>http://localhost:1313/2018/10/micronaut-introduction/</guid>
+      <description>Prologue Link to heading As I am approaching my 40s its becoming harder and harder to get really excited with a new framework. There are of course some exception to this rule and micronaut is such an exception. I won&amp;rsquo;t get into details here, but in many ways I feel that micronaut is a framework I would like to have written myself&amp;hellip;&#xA;So, this post is going to be a first look at micronaut.</description>
+    </item>
+    <item>
+      <title>A quick look at sdkman</title>
+      <link>http://localhost:1313/2018/10/a-quick-look-at-sdkman/</link>
+      <pubDate>Tue, 16 Oct 2018 15:57:00 +0300</pubDate>
+      <guid>http://localhost:1313/2018/10/a-quick-look-at-sdkman/</guid>
+      <description>Prologue Link to heading I recently came across micronaut one of the many java micro-frameworks that gain a lot of interest lately. This particular framework was being installed locally using a tool that I haven&amp;rsquo;t come accross before: sdkman.&#xA;This will be a really short post about sdkman.&#xA;What is sdkman? Link to heading Even if you only use a computer for playing games, sooner or later you are going to have to manage multiple versions of the same piece of software.</description>
+    </item>
+    <item>
+      <title>Service Catalog: Connector</title>
+      <link>http://localhost:1313/2018/09/service-catalog-connector/</link>
+      <pubDate>Thu, 13 Sep 2018 09:50:00 +0300</pubDate>
+      <guid>http://localhost:1313/2018/09/service-catalog-connector/</guid>
+      <description>Introduction Link to heading This is the second post in my series about the service catalog. If you haven&amp;rsquo;t done already please read the first post: service catalog: introduction.&#xA;In this second post I&amp;rsquo;ll create from scratch a spring boot application that exposes a JPA crud via rest. This application will use a service catalog managed microsoft sql server database and I will demonstrate how you can automagically connect to it using the service catalog connector.</description>
+    </item>
+    <item>
+      <title>Service Catalog: Introduction</title>
+      <link>http://localhost:1313/2018/09/service-catalog-introduction/</link>
+      <pubDate>Wed, 12 Sep 2018 12:22:00 +0300</pubDate>
+      <guid>http://localhost:1313/2018/09/service-catalog-introduction/</guid>
+      <description>Overview Link to heading This is the first of a series of posts around the service catalog. The end goal is to demonstrate how the service catalog can simplify building apps on kubernetes and openshift.&#xA;The first part will cover:&#xA;why how to install how to use The target environment will be openshift 3.10 on Linux using `oc cluster up` for development purposes.&#xA;Introduction Link to heading Working with kubernetes since its early days, there are countless of times where I had to go into creating manifests for the services my application is using.</description>
+    </item>
+    <item>
+      <title>Quickmarks</title>
+      <link>http://localhost:1313/2018/09/quickmarks/</link>
+      <pubDate>Wed, 05 Sep 2018 18:52:00 +0300</pubDate>
+      <guid>http://localhost:1313/2018/09/quickmarks/</guid>
+      <description>Overview Link to heading This is a small post that describes how I made authoring markdown, org-mode etc easier by using snippets that help me handle links like a pro.&#xA;Prologue Link to heading I am a heavy user of org-mode. I use it for taking notes, writing blogs, presentations and so on. As a software developer I often use markdown too. In both cases at some point I have to deal with links.</description>
+    </item>
+    <item>
+      <title>Reusing shell libraries</title>
+      <link>http://localhost:1313/2018/07/reusing-shell-libraries/</link>
+      <pubDate>Sun, 08 Jul 2018 21:58:00 +0300</pubDate>
+      <guid>http://localhost:1313/2018/07/reusing-shell-libraries/</guid>
+      <description>Prologue Link to heading Every now then I see on social media people sharing the same old story: &amp;ldquo;Using shell scripting to workaround the limitations of their DevOps tools&amp;rdquo;. I&amp;rsquo;ve done it, my colleagues are doing it and most likely you have done it yourself.&#xA;So it seems that shell scripting is used to do the dirty work, yet its often considered by many the last resort. If you search on the web about popular &amp;lsquo;DevOps&amp;rsquo; tools and skills, you&amp;rsquo;ll probably find:</description>
+    </item>
+    <item>
+      <title>Language Server Protocol, Java and Emacs</title>
+      <link>http://localhost:1313/2018/06/language-server-protocol-java-and-emacs/</link>
+      <pubDate>Wed, 20 Jun 2018 19:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2018/06/language-server-protocol-java-and-emacs/</guid>
+      <description>Prologue Link to heading Lately I keep hearing about &amp;ldquo;how much software development has changed over the last half of the decade&amp;rdquo;. This usually refers to the adoption of containers, cloud etc. I would like to focus on an other factor of the change and that is the plethora of development related systems and services.&#xA;So its typical for a team to have:&#xA;version control code review systems code analysis systems project management issue trackers continuous integration chat / messaging Add email to that and you realize that most of development related tasks now days take place in the browser.</description>
+    </item>
+    <item>
+      <title>Jenkins setups for Kubernetes and Docker Workflow</title>
+      <link>http://localhost:1313/2018/02/jenkins-setups-for-kubernetes-and-docker-workflow/</link>
+      <pubDate>Wed, 28 Feb 2018 22:24:00 +0200</pubDate>
+      <guid>http://localhost:1313/2018/02/jenkins-setups-for-kubernetes-and-docker-workflow/</guid>
+      <description>Intro Link to heading During the summer I had the chance to play a little bit with Jenkins inside Kubernetes. More specifically I wanted to see what’s the best way to get the Docker Workflow Plugin running. So, the idea was to have a Pod running Jenkins and use it to run builds that are defined using Docker Workflow Plugin. After a lot of reading and a lot more experimenting I found out that there are many ways of doing this, with different pros and different cons each.</description>
+    </item>
+    <item>
+      <title>Using init containers to handle Openshift’s arbitrary user ids</title>
+      <link>http://localhost:1313/2017/09/using-init-containers-to-handle-openshifts-arbitrary-user-ids/</link>
+      <pubDate>Fri, 29 Sep 2017 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2017/09/using-init-containers-to-handle-openshifts-arbitrary-user-ids/</guid>
+      <description>intro Link to heading openshift takes security seriously. Sometimes more seriously than I’d like (mostly cause I am lazy). One such example is the fact that containers run using arbitrary users. This is done as an extra measure to control damages, should a process somehow escapes its container boundaries.&#xA;But how does it affect users?&#xA;the problem Link to heading Users need to follow certain guidelines when creating container images.</description>
+    </item>
+    <item>
+      <title>Cloud notifications with Apache Camel and jclouds</title>
+      <link>http://localhost:1313/2011/11/cloud-notifications-with-apache-camel-and-jclouds/</link>
+      <pubDate>Sat, 05 Nov 2011 00:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/2011/11/cloud-notifications-with-apache-camel-and-jclouds/</guid>
+      <description>Prologue Link to heading Yesterday I was having a talk with Adrian Cole and during our talk he had an unpleasant surprise. He found out that he forgot a node running on his Amazon EC2 for a couple of days and that it would cost him a several bucks.&#xA;This morning I was thinking about his problem and I was thinking of ways that would help you avoid situations like this.</description>
+    </item>
+    <item>
+      <title>My JavaOne talk about Cellar</title>
+      <link>http://localhost:1313/2011/10/my-javaone-talk-about-cellar/</link>
+      <pubDate>Mon, 10 Oct 2011 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2011/10/my-javaone-talk-about-cellar/</guid>
+      <description>Prologue Link to heading I am currently returning home from JavaOne 2011. I am at the airport of Munich waiting for my connecting flight to Athens. Once again the flight my flight is delayed and its a great chance to blog a bit about JavaOne.&#xA;Apache Karaf Cellar at JavaOne 2011 Link to heading I had the chance to make a BOF about Karaf Cellar last Tuesday night. Even though the presentation was really late (20:30) and there were a lot of parties going on at this time (actually I was at the Jboss party right before my presentation) there were quite a few people that attended.</description>
+    </item>
+    <item>
+      <title>Apache Karaf Cellar</title>
+      <link>http://localhost:1313/2011/05/apache-karaf-cellar/</link>
+      <pubDate>Sat, 07 May 2011 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2011/05/apache-karaf-cellar/</guid>
+      <description>Prologue Link to heading In some previous blog post, I designed and implemented Cellar (a small clustering engine for Apache Karaf powered by Hazelcast). Since then Cellar grew in features and eventually was accepted inside Karaf as a subproject.&#xA;This post will provide a brief description of Cellar as it is today.&#xA;Cellar Overview Link to heading Cellar is designed so that it can provide Karaf the following high level features</description>
+    </item>
+    <item>
+      <title>jclouds &amp; OSGi</title>
+      <link>http://localhost:1313/2011/05/jclouds-osgi/</link>
+      <pubDate>Sat, 07 May 2011 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2011/05/jclouds-osgi/</guid>
+      <description>OSGi in the clouds Link to heading The last couple of years OSGi and Cloud Computing are two buzz words, that you don’t see go hand in hand that often. JClouds is going to change that, since 1.0.0 release is OSGi ready and it also provide direct integration with Apache Karaf.&#xA;jclouds in the Karaf Link to heading The last couple of weeks I have been working with the jclouds team in order to improve the OSGification of jclouds and also to provide integration with Apache Karaf.</description>
+    </item>
+    <item>
+      <title>Introduction to OSGi and Karaf at JHUG</title>
+      <link>http://localhost:1313/2011/04/introduction-to-osgi-and-karaf-at-jhug/</link>
+      <pubDate>Tue, 19 Apr 2011 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2011/04/introduction-to-osgi-and-karaf-at-jhug/</guid>
+      <description>Presented on OSGi and Apache Karaf on Java Hellenic User Group.&#xA;It was a great event with very interesting presentations. The full list of presentations can be found here.&#xA;Regarding my presentation, I was a bit nervous at first, since I hadn’t practiced my “presentation” skills for a while, but things got better as time went by. I’ve had the chance to meet a lot of interesting people and discuss about OSGi, Apache Karaf &amp;amp; Apache ServiceMix.</description>
+    </item>
+    <item>
+      <title>Karaf clustering using Hazelcast</title>
+      <link>http://localhost:1313/2011/03/karaf-clustering-using-hazelcast/</link>
+      <pubDate>Fri, 11 Mar 2011 00:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/2011/03/karaf-clustering-using-hazelcast/</guid>
+      <description>EDIT: The project “cellar” has been upgraded with a lot new features, which are not described by this post. A new post will be added soon.&#xA;Prologue Link to heading I have been playing a lot with Hazelcast lately, especially pairing it with Karaf. If you haven’t done already you can read my previous post on using Hazelcast on Karaf.&#xA;In this post I am going to take things one step further and use Hazelcast to build a simple clustering engine on Karaf.</description>
+    </item>
+    <item>
+      <title>Hazelcast on Karaf</title>
+      <link>http://localhost:1313/2011/02/hazelcast-on-karaf/</link>
+      <pubDate>Mon, 28 Feb 2011 00:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/2011/02/hazelcast-on-karaf/</guid>
+      <description>Prologue Link to heading The last months Hazelcast caught my attention. I first saw the JIRA of the camel-hazelcast component, then I read about it, I run some examples and eventually I fell in love with it.&#xA;If you are not already familiar with it, Hazelcast is an opensource clustering platform, which provdies a lot of features such as:&#xA;Auto discovery Distributed Collection Transactions Data Partitioning You can visit the Hazelcast Documentation for more information.</description>
+    </item>
+    <item>
+      <title>ServiceMix committer</title>
+      <link>http://localhost:1313/2010/12/servicemix-committer/</link>
+      <pubDate>Mon, 27 Dec 2010 00:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/2010/12/servicemix-committer/</guid>
+      <description>I am currently in the middle of my Xmas vacation and I was just about to download a movie for tonight. While downloading, I checked my emails, which I haven’t really checked since Christmas Eve.&#xA;An invitation to join the Apache ServiceMix project as a committer was waiting for me on the top of my Inbox.&#xA;Of course I accepted the invitation and I immediately started blogging about it… That’s a great ending for 2010 but its also a serious indication that I am going to need a time trasplant for 2011!</description>
+    </item>
+    <item>
+      <title>JavaOne and Oracle Develop 2010</title>
+      <link>http://localhost:1313/2010/09/javaone-and-oracle-develop-2010/</link>
+      <pubDate>Sat, 25 Sep 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2010/09/javaone-and-oracle-develop-2010/</guid>
+      <description>I just returned home from Java ONE and Oracle Develop 2010 (which was also my first ONE) and I thought that it would be a good idea to take 5 minutes and share the experience.&#xA;Intro Link to heading The city of San Francisco was awesome and I couldn’t find any other place in the world that could be best for the job. The weather, the size and the facilities where exactly what such event required.</description>
+    </item>
+    <item>
+      <title>Karaf JAAS modules in action</title>
+      <link>http://localhost:1313/2010/09/karaf-jaas-modules-in-action/</link>
+      <pubDate>Sat, 25 Sep 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2010/09/karaf-jaas-modules-in-action/</guid>
+      <description>Prologue Link to heading Karaf 2.1.0 has been just released! Among other new features, it includes a major revamp in the JAAS module support:&#xA;Encryption support Database Login Module Role Policies This post will use all 3 features, in order to create a secured Wicket application on Karaf, using Karaf’s JAAS modules and Wicket’s auth-roles module.&#xA;Introduction Link to heading The application that we are going to build is a simple wicket application.</description>
+    </item>
+    <item>
+      <title>Apache Karaf committer</title>
+      <link>http://localhost:1313/2010/08/apache-karaf-committer/</link>
+      <pubDate>Mon, 30 Aug 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2010/08/apache-karaf-committer/</guid>
+      <description>1 week after my vacation and still suffering from “post vacation depression”, this Monday seemed like a nightmare.&#xA;I went to the office and I was feeling the urge to go get my self a huge Carafe of coffee (cups have long been proven inefficient), when an icoming email draw my attention.&#xA;It was an invitation to join Apache Karaf team as a committer.&#xA;This is the first open source project I join and I’m very thrilled (if not overreacting) about it and that’s why I decided to blog about it.</description>
+    </item>
+    <item>
+      <title>Wicket with Spring 3 and Hibernate on Apache Karaf</title>
+      <link>http://localhost:1313/2010/07/wicket-with-spring-3-and-hibernate-on-apache-karaf/</link>
+      <pubDate>Mon, 12 Jul 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2010/07/wicket-with-spring-3-and-hibernate-on-apache-karaf/</guid>
+      <description>EDIT: Hibernate is now OSGi ready so most of those stuff are now completely outdated.&#xA;The full source for this post has moved to github under my blog project on branch: wicket-spring-3-jpa2-hibernate-osgi-application-on-apache-karaf.&#xA;Prologue Link to heading Recently I attempted to modify an existing crud web application for OSGi deployment. During the process I encountered a lot of issues such as&#xA;Lack of OSGi bundles. Troubles wiring the tiers of the application together.</description>
+    </item>
+    <item>
+      <title>Creating custom Hibernate OSGI bundles for JPA 2.0</title>
+      <link>http://localhost:1313/2010/07/creating-custom-hibernate-osgi-bundles-for-jpa-2.0/</link>
+      <pubDate>Sat, 10 Jul 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2010/07/creating-custom-hibernate-osgi-bundles-for-jpa-2.0/</guid>
+      <description>EDIT: I am more than happy that this post is now completely obsolete. Hibernate is now OSGi ready, Yay!&#xA;Prologue Link to heading I was trying to migrate an application that uses JPA 2.0 / Hibernate to OSGi. I found out that hibernate does not provide OSGi bundles. There are some Hibernate bundles provided in the Spring Enterprise Bundle repository, however they are none available for Hibernate 3.5.x which implements JPA 2.</description>
+    </item>
+    <item>
+      <title>Spring AOP and Refleciton pitfalls</title>
+      <link>http://localhost:1313/2010/06/spring-aop-and-refleciton-pitfalls/</link>
+      <pubDate>Sat, 05 Jun 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2010/06/spring-aop-and-refleciton-pitfalls/</guid>
+      <description>Prologue Link to heading This post intents to point out some pitfalls when using spring aop and reflection on the same objects. Moreover, it provides some examples of these pitfalls when combining ServiceMix &amp;amp; Camel with Spring JPA/Hibernate.&#xA;The two most common uses of aspect oriented programming with spring are:&#xA;Security Transation Handling I found myself having issues when applying those 2 on beans that are accessed using reflection (not in all cases) and below I am going to dig into those issues.</description>
+    </item>
+    <item>
+      <title>Extending ServiceMix management features using Spring - Part 1</title>
+      <link>http://localhost:1313/2010/05/extending-servicemix-management-features-using-spring-part-1/</link>
+      <pubDate>Sat, 15 May 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2010/05/extending-servicemix-management-features-using-spring-part-1/</guid>
+      <description>Prologue Link to heading This is the first from a series of posts that demonstrate how to extend ServiceMix management using Spring’s jmx and aop features. The version of SerivceMix that is going to be used will be 3.3.3-SNAPSHOT but I’ve been using this technique since 3.3 and it will probably can be applied to 4.x.&#xA;Problem Link to heading One of the most common problems I had with servicemix was that even the most simple changes in the configuration (e.</description>
+    </item>
+    <item>
+      <title>Extending ServiceMix management features using Spring - Part 2</title>
+      <link>http://localhost:1313/2010/05/extending-servicemix-management-features-using-spring-part-2/</link>
+      <pubDate>Sat, 15 May 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2010/05/extending-servicemix-management-features-using-spring-part-2/</guid>
+      <description>In the previous post Extend ServiceMix Management features using Spring – Part 1 I demonstrated a very simple technique that allows you to expose endpoint lifecycle operations via jmx. Now I am going to take it one step further and expose the endpoint configuration via jmx.&#xA;If you haven’t done already please catch up by reading Part 1.&#xA;Part II: Modifying the configuration of a live endpoint Link to heading I am going to use the wsdl-first servicemix sample as modified in the previous post and expose the property locationURI of the HttpEndpoint to jmx using Spring’s @ManagedAttribute annotation.</description>
+    </item>
+    <item>
+      <title>Extending ServiceMix management features using Spring - Part 3</title>
+      <link>http://localhost:1313/2010/05/extending-servicemix-management-features-using-spring-part-3/</link>
+      <pubDate>Sat, 15 May 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/2010/05/extending-servicemix-management-features-using-spring-part-3/</guid>
+      <description>In the previous post Extend ServiceMix Management features using Spring – Part 2 I demonstrated how to use spring to gain control over endpoint lifecycle and configuration via jmx. You might wonder till now “what happens to those custom changes if I have to redeploy the assembly, restart servicemix or even worse restart the server?”. The short answer is that these changes are lost. The long answer is in this blog post, which explains how to persist those changes and how to make the endpoint reload them each time it starts.</description>
+    </item>
+    <item>
+      <title>Extend ServiceMix Management features using Spring – Part 1</title>
+      <link>http://localhost:1313/2010/05/extend-servicemix-management-features-using-spring-part-1/</link>
+      <pubDate>Thu, 13 May 2010 17:14:00 +0000</pubDate>
+      <guid>http://localhost:1313/2010/05/extend-servicemix-management-features-using-spring-part-1/</guid>
+      <description>Prologue&#xA;This is the first from a series of posts that demonstrate how to extend ServiceMix management using Spring’s jmx and aop features. The version of SerivceMix that is going to be used will be 3.3.3-SNAPSHOT but I’ve been using this technique since 3.3 and it will probably can be applied to 4.x.&#xA;Problem&#xA;One of the most common problems I had with servicemix was that even the most simple changes in the configuration _(e.</description>
+    </item>
+    <item>
+      <title>Ioannis Canellos</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>Senior Principal Software Engineer Link to heading Ioannis has almost two decades of experience as Java developer 13 of which are as full time OpenSource developer. He is a member of the Apache Software Foundation, with contribution to numerous projects as a committer and PMC member. He is currently working as a Senior Principal Software Engineer at Red Hat as part of Quarkus team, where he spends most of his time implementing tools and frameworks related to Kubernetes, Openshift, and Quarkus.</description>
+    </item>
+    <item>
+      <title>My dotfiles</title>
+      <link>http://localhost:1313/dotfiles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/dotfiles/</guid>
+      <description> Dotfiles Link to heading My dotfiles repository. For managing of my dotfiles I am using stow Includes:&#xA;alacritty zsh tmux and more Neovim Link to heading My neovim configuration repository. Wirtten in lua, based on lazy.vim. The sturcutre of the plugin is the one proposed by Lazy Vim Stater.&#xA;Emacs Link to heading My emacs configuration repository. The pillars of this build are the following:&#xA;elpaca general.el eglot vertico consult marginalia </description>
+    </item>
   </channel>
 </rss>

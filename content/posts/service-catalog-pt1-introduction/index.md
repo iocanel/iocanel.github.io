@@ -4,6 +4,8 @@ author = ["Ioannis Canellos"]
 description = "An introduction to the service catalog"
 date = 2018-09-12T12:22:00+03:00
 draft = false
+categories = ["devops"]
+tags = ["kubernetes", "svcat"]
 +++
 
 ## Overview {#overview}

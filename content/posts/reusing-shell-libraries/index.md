@@ -3,6 +3,8 @@ title = "Reusing shell libraries"
 author = ["Ioannis Canellos"]
 date = 2018-07-08T21:58:00+03:00
 draft = false
+categories = ["hints"]
+tags = ["shell"]
 +++
 
 ## Prologue {#prologue}

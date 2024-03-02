@@ -4,6 +4,8 @@ author = ["Ioannis Canellos"]
 description = "How to create a wiki to host your BJJ notes and media"
 date = 2021-08-30T21:48:00+03:00
 draft = false
+categories = ["hobbies"]
+tags = ["jiu jitsu"]
 +++
 
 {{< figure src="hackers-guide-to-jiu-jitsu.png" >}}

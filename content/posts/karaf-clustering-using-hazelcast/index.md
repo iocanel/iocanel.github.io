@@ -3,6 +3,8 @@ title = "Karaf clustering using Hazelcast"
 author = ["Ioannis Canellos"]
 date = 2011-03-11T00:00:00+02:00
 draft = false
+categories = ["development"]
+tags = ["java", "osgi", "karaf", "hazecast"]
 +++
 
 ****EDIT****: The project “cellar” has been upgraded with a lot new features, which are not described by this post. A new post will be added soon.

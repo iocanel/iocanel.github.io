@@ -4,6 +4,8 @@ author = ["Ioannis Canellos"]
 description = "Short introduction to sundrio"
 date = 2021-08-05T09:19:00+03:00
 draft = false
+categories = ["development"]
+tags = ["sundrio"]
 +++
 
 ## Intro {#intro}

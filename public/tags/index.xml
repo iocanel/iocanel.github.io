@@ -1,10 +1,264 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Ioannis Canellos - My Blog</title>
-    <link>https://iocanel.github.io/tags/</link>
-    <description>Recent content in Tags on Ioannis Canellos - My Blog</description>
+    <title>Tags on Ioannis Canellos</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on Ioannis Canellos</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://iocanel.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Mon, 17 Oct 2022 14:36:00 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Keycloak</title>
+      <link>http://localhost:1313/tags/keycloak/</link>
+      <pubDate>Mon, 17 Oct 2022 14:36:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/keycloak/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Quarkus</title>
+      <link>http://localhost:1313/tags/quarkus/</link>
+      <pubDate>Mon, 17 Oct 2022 14:36:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/quarkus/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Quinoa</title>
+      <link>http://localhost:1313/tags/quinoa/</link>
+      <pubDate>Mon, 17 Oct 2022 14:36:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/quinoa/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>React</title>
+      <link>http://localhost:1313/tags/react/</link>
+      <pubDate>Mon, 17 Oct 2022 14:36:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/react/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java</title>
+      <link>http://localhost:1313/tags/java/</link>
+      <pubDate>Mon, 29 Nov 2021 17:56:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>http://localhost:1313/tags/kubernetes/</link>
+      <pubDate>Mon, 29 Nov 2021 17:56:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Github</title>
+      <link>http://localhost:1313/tags/github/</link>
+      <pubDate>Mon, 20 Sep 2021 09:20:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/github/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sdkman</title>
+      <link>http://localhost:1313/tags/sdkman/</link>
+      <pubDate>Mon, 20 Sep 2021 09:20:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/sdkman/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Wordpress</title>
+      <link>http://localhost:1313/tags/wordpress/</link>
+      <pubDate>Wed, 01 Sep 2021 12:38:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/wordpress/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Jiu Jitsu</title>
+      <link>http://localhost:1313/tags/jiu-jitsu/</link>
+      <pubDate>Mon, 30 Aug 2021 21:48:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/jiu-jitsu/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ffmpeg</title>
+      <link>http://localhost:1313/tags/ffmpeg/</link>
+      <pubDate>Wed, 11 Aug 2021 23:20:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/ffmpeg/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sundrio</title>
+      <link>http://localhost:1313/tags/sundrio/</link>
+      <pubDate>Thu, 05 Aug 2021 09:19:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/sundrio/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Emacs</title>
+      <link>http://localhost:1313/tags/emacs/</link>
+      <pubDate>Fri, 03 Apr 2020 18:39:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/emacs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Org-Mode</title>
+      <link>http://localhost:1313/tags/org-mode/</link>
+      <pubDate>Fri, 03 Apr 2020 18:39:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/org-mode/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dekorate</title>
+      <link>http://localhost:1313/tags/dekorate/</link>
+      <pubDate>Mon, 07 Jan 2019 17:39:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/dekorate/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Openshift</title>
+      <link>http://localhost:1313/tags/openshift/</link>
+      <pubDate>Mon, 07 Jan 2019 17:39:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/openshift/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Micronaut</title>
+      <link>http://localhost:1313/tags/micronaut/</link>
+      <pubDate>Thu, 25 Oct 2018 14:39:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/micronaut/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Spring</title>
+      <link>http://localhost:1313/tags/spring/</link>
+      <pubDate>Thu, 13 Sep 2018 09:50:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/spring/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Svcat</title>
+      <link>http://localhost:1313/tags/svcat/</link>
+      <pubDate>Thu, 13 Sep 2018 09:50:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/svcat/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shell</title>
+      <link>http://localhost:1313/tags/shell/</link>
+      <pubDate>Sun, 08 Jul 2018 21:58:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/shell/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lsp</title>
+      <link>http://localhost:1313/tags/lsp/</link>
+      <pubDate>Wed, 20 Jun 2018 19:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/lsp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>http://localhost:1313/tags/docker/</link>
+      <pubDate>Wed, 28 Feb 2018 22:24:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Jenkins</title>
+      <link>http://localhost:1313/tags/jenkins/</link>
+      <pubDate>Wed, 28 Feb 2018 22:24:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Camel</title>
+      <link>http://localhost:1313/tags/camel/</link>
+      <pubDate>Sat, 05 Nov 2011 00:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/camel/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Jcoulds</title>
+      <link>http://localhost:1313/tags/jcoulds/</link>
+      <pubDate>Sat, 05 Nov 2011 00:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/jcoulds/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Javaone</title>
+      <link>http://localhost:1313/tags/javaone/</link>
+      <pubDate>Mon, 10 Oct 2011 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/javaone/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Karaf</title>
+      <link>http://localhost:1313/tags/karaf/</link>
+      <pubDate>Mon, 10 Oct 2011 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/karaf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Osgi</title>
+      <link>http://localhost:1313/tags/osgi/</link>
+      <pubDate>Mon, 10 Oct 2011 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/osgi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hazecast</title>
+      <link>http://localhost:1313/tags/hazecast/</link>
+      <pubDate>Fri, 11 Mar 2011 00:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/hazecast/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hazelcast</title>
+      <link>http://localhost:1313/tags/hazelcast/</link>
+      <pubDate>Mon, 28 Feb 2011 00:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/hazelcast/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Servicemix</title>
+      <link>http://localhost:1313/tags/servicemix/</link>
+      <pubDate>Mon, 27 Dec 2010 00:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/tags/servicemix/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Jaas</title>
+      <link>http://localhost:1313/tags/jaas/</link>
+      <pubDate>Sat, 25 Sep 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/jaas/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security</title>
+      <link>http://localhost:1313/tags/security/</link>
+      <pubDate>Sat, 25 Sep 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Wicket</title>
+      <link>http://localhost:1313/tags/wicket/</link>
+      <pubDate>Mon, 12 Jul 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/wicket/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hibernate</title>
+      <link>http://localhost:1313/tags/hibernate/</link>
+      <pubDate>Sat, 10 Jul 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/hibernate/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Aop</title>
+      <link>http://localhost:1313/tags/aop/</link>
+      <pubDate>Sat, 05 Jun 2010 00:00:00 +0300</pubDate>
+      <guid>http://localhost:1313/tags/aop/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

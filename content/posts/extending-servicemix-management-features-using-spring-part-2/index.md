@@ -3,6 +3,8 @@ title = "Extending ServiceMix management features using Spring - Part 2"
 author = ["Ioannis Canellos"]
 date = 2010-05-15T00:00:00+03:00
 draft = false
+categories = ["hints"]
+tags = ["java", "servicemix", "spring"]
 +++
 
 In the previous post [Extend ServiceMix Management features using Spring – Part 1](http://iocanel.com/2010/05/extend-servicemix-management-features-using-spring-part-1/) I demonstrated a very simple technique that allows you to expose endpoint lifecycle operations via jmx. Now I am going to take it one step further and expose the endpoint configuration via jmx.

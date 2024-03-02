@@ -4,6 +4,8 @@ author = ["Ioannis Canellos"]
 description = "ffmpeg hacks for jiu jitsu instructionals"
 date = 2021-08-11T23:20:00+03:00
 draft = false
+categories = ["hobbies"]
+tags = ["jiu jitsu", "ffmpeg"]
 +++
 
 {{< figure src="hackers-guide-to-jiu-jitsu.png" >}}

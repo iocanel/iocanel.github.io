@@ -4,6 +4,8 @@ author = ["Ioannis Canellos"]
 description = "An introduction post for Ap4k"
 date = 2019-01-07T17:39:00+02:00
 draft = false
+categories = ["development"]
+tags = ["java", "kubernetes", "openshift", "dekorate"]
 +++
 
 ## Prologue {#prologue}

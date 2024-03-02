@@ -4,6 +4,7 @@ author = ["Ioannis Canellos"]
 description = "Tools for creating flowcharts for your bjj instructionals and notes"
 date = 2022-01-11T23:56:00+02:00
 draft = false
+categories = ["hobbies"]
 +++
 
 {{< figure src="./hackers-guide-to-jiu-jitsu.png" >}}

@@ -4,6 +4,8 @@ author = ["Ioannis Canellos"]
 description = "Some personal notes on how to configure syntax highlighting for wordpress"
 date = 2021-09-01T12:38:00+03:00
 draft = false
+categories = ["hints"]
+tags = ["wordpress"]
 +++
 
 ## Prologue {#prologue}

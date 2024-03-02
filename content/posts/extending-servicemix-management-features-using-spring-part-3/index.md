@@ -3,6 +3,8 @@ title = "Extending ServiceMix management features using Spring - Part 3"
 author = ["Ioannis Canellos"]
 date = 2010-05-15T00:00:00+03:00
 draft = false
+categories = ["hints"]
+tags = ["java", "servicemix", "spring"]
 +++
 
 In the previous post [Extend ServiceMix Management features using Spring – Part 2](http://iocanel.com/2010/05/extend-servicemix-management-features-using-spring-part-2/) I demonstrated  how to use spring to gain control over endpoint lifecycle and configuration via jmx. You might wonder till now “what happens to those custom changes if I have to redeploy the assembly, restart servicemix or even worse restart the server?”. The short answer is that these changes are lost. The long answer is in this blog post, which explains how to persist those changes and how to make the endpoint reload them each time it starts.

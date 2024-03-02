@@ -4,6 +4,8 @@ author = ["Ioannis Canellos"]
 description = "Introduction to micronaut"
 date = 2018-10-25T14:39:00+03:00
 draft = false
+categories = ["development"]
+tags = ["java", "micronaut"]
 +++
 
 ## Prologue {#prologue}
