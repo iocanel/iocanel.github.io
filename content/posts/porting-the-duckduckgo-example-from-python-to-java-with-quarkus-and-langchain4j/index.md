@@ -1,6 +1,7 @@
 +++
 title = "Porting the DuckDuckGo example from Python to Java with Quarkus and Langchain4j"
 author = ["Ioannis Canellos"]
+date = 2025-02-14T00:00:00+02:00
 draft = false
 categories = ["development"]
 tags = ["java", "quarkus", "langchain4j", "ai"] 
