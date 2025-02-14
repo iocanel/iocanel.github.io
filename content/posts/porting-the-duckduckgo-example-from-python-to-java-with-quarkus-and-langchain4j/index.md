@@ -18,7 +18,10 @@ to make sure that I was comparing apples to apples.
 
 This post is a step by step guide on how to port the DuckDuckGo example from Python to Java with Quarkus and Langchain4j.
 
-A video of me porting the example to Quarkus and Langchain4j can be found at: [Porting the DuckDuckGo example from Python to Java with Quarkus and Langchain4j](https://www.youtube.com/watch?v=wewg9Waw8es).
+A video of me porting the example to Quarkus and Langchain4j can be found at: 
+
+{{< youtube wewg9Waw8es >}}
+[Porting the DuckDuckGo example from Python to Java with Quarkus and Langchain4j](https://www.youtube.com/watch?v=wewg9Waw8es).
 
 
 ## The original example {#the-original-example}
