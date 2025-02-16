@@ -20,7 +20,9 @@ Each time I needed to insert a new food, I had to do an internet search to find 
 Recently, I discovered [gptel](https://github.com/karthink/gptel) which allows Emacs users to easily integrate with ChatGPT or other LLMs. So, I couldn't resist the opportunity to use it to smarten up nutrition tracker by integrating it with LLMs so that it can fetch nutritional information for me.
 The goal is to retain the previously used templates, but add a post processing mechanism that will kick in when a new food entry is captured but is missing the nuttritional information.
 
-A video walkthrough that walks through the this post can be found here: <https://youtu.be/Kvl5XKppwrk>
+A video walkthrough that walks through the this post can be found here:
+
+{{< youtube Kvl5XKppwrk >}}
 
 
 ### Creating a function to get nutritional information from ChatGPT {#creating-a-function-to-get-nutritional-information-from-chatgpt}
