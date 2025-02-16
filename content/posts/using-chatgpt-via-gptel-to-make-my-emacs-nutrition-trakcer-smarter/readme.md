@@ -7,7 +7,7 @@ categories = ["emacs"]
 tags = ["emacs", "chatgpt", "gptel", "ai", "nutrition tracker"]
 +++
 
-## Using ChatGPT via gptel to make my Emacs nutrition tracker smarter (#using-chatgpt-via-gptel-to-make-my-emacs-nutrition-tracker-smarter}
+## Using ChatGPT via gptel to make my Emacs nutrition tracker smarter {#using-chatgpt-via-gptel-to-make-my-emacs-nutrition-tracker-smarter}
 
 
 
