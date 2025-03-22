@@ -19,9 +19,12 @@ This post describes the steps I took in order to create an MCP from scratch, res
 
 I also recorded my journey starting from scatch with almost zero knowledge on the topic and using the Quarkus Blog as a guide:
 
--   [First video (exploratory take)](https://www.youtube.com/watch?v=dEtPUwI9B3A)
--   [Second video (refined and shorter version)](https://www.youtube.com/watch?v=BusK-9Z9Le8)
-
+### Full version
+This is me having no idea what I am doing and spending 1.5 hours trying to figure it out.
+- {{< youtube  dEtPUwI9B3A>}}
+### Shorter version
+A reshoot of the first video, so that I can come up with something shorter.
+- {{< youtube  BusK-9Z9Le8>}}
 
 ## What is MCP? {#what-is-mcp}
 
