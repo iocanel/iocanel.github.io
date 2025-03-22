@@ -28,7 +28,7 @@ A reshoot of the first video, so that I can come up with something shorter.
 
 ## What is MCP? {#what-is-mcp}
 
-MCP stands for **Model Command Protocol**. It’s the protocol that tools like [Goose](https://github.com/block/goose), an interactive AI shell, use to talk to plugins.
+MCP stands for **Model Context Protocol**. It’s the protocol that tools like [Goose](https://github.com/block/goose), an interactive AI shell, use to talk to plugins.
 
 The idea is simple:
 
