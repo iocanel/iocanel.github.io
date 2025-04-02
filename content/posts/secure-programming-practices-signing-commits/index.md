@@ -1,5 +1,6 @@
 +++
 author = ["Ioannis Canellos"]
+title = "Secure programming practices - Signed commits"
 date = 2025-04-02
 draft = false
 categories = ["development"]
