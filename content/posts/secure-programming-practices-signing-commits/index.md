@@ -2,6 +2,8 @@
 author = ["Ioannis Canellos"]
 date = 2025-04-02
 draft = false
+categories = ["development"]
+tags = ["security", "git", "gpg", "ssh"] 
 +++
 
 ## Signing Git Commits {#signing-git-commits}
