@@ -42,7 +42,7 @@ This is often encountered in [BPMN](https://en.wikipedia.org/wiki/Business_Proce
 workflows. The diagram below shows a simplified workflow for a loan approval
 process that consists of multiple automated steps and a human approval step.
 
-{{< figure src="/ox-hugo/workflow-automation.png" >}}
+{{< figure src="workflow-automation.png" >}}
 
 
 #### Control Flow and Dependencies {#control-flow-and-dependencies}
@@ -58,7 +58,7 @@ of activities executed without human orchestration. A workflow also defines:
 The diagram below shows these concepts in a simplified back-office workflow
 for processing pending orders.
 
-{{< figure src="/ox-hugo/workflow-control-flow.png" >}}
+{{< figure src="workflow-control-flow.png" >}}
 
 Let's examine these concepts in more detail:
 
