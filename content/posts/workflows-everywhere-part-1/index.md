@@ -122,45 +122,69 @@ this problems, we need to consider the non functional requirements
 
 So what are the non-functional requirements applicable to workflows?
 
-
 #### Performance {#performance}
 
 The ability to execute workflows within acceptable time limits, ensuring
 that activities are completed efficiently.
+Performance metrics include:
+
+-   Workflow startup time
+-   Activity execution latency
+-   Task scheduling efficiency
+-   Resource utilization
 
 
 #### Scalability {#scalability}
 
-The ability to handle increased load both in terms of concurrent events
-size of data to process and activities to execute.
+The system should be capable of:
+
+-   Handling an increasing number of concurrent workflows
+-   Managing workflows that include a large number of steps
+-   Processing high-volume input/output data
 
 
 #### Reliability and Availability {#reliability-and-availability}
 
 The ability to execute workflows without downtime, even in the face of failures.
+For example, a workflow shoud be executed even if some of the workers are down.
 
 
 #### Durability and Persistence {#durability-and-persistence}
 
-The ability to persist workflow state and history, ensuring that workflows
-can resume after failures or restarts.
+The ability to persist workflow state and history, so that:
+
+-   Progress is not lost on restart or failure
+-   Execution history is available for audits or rollbacks
+-   Long-running or paused workflows can resume correctly
 
 
 #### Observability {#observability}
 
 The ability to monitor workflow execution, track progress, and debug issues.
+Developers and operators should have access to:
+
+-   Workflow status and execution paths
+-   Logs, metrics, and traces for each workflow instance
+-   Alerts for failures or anomalies
 
 
 #### Consistency {#consistency}
 
 The ability to ensure that workflows execute in a predictable manner.
+For example workflows should provide:
+
+-   Idempotent behavior for retries
+-   Correct ordering of dependent tasks
+-   Data consistency guarantees (e.g., eventual or strong consistency)
 
 
 #### Usability {#usability}
 
-The ability to define workflows in a way that is understandable and maintainable
-by users.
-
+The ability to define workflows in a way that is easy, understandable and maintainable
+by users:
+Clear and declarative workflow syntax or visual tools
+Versioning and rollback support
+Low-code or no-code options for business users
 
 ## The need for workflow engines {#the-need-for-workflow-engines}
 
