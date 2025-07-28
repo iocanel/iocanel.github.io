@@ -9,7 +9,7 @@ draft = false
 
 Workflows are everywhere. From CI/CD pipelines, all system / data integration to business process automation.
 It wouldn't be too far-fetched to say that even modern software build tools
-like make, maven or npm are used to define workflows.
+like make, maven or npm are in their own way workflow engines.
 
 There are countless tools out there that help people define,
 execute and monitor workflows varying from simple no-code tools to complex
@@ -23,6 +23,9 @@ agents, workflows provide a structured way to manage these interactions.
 
 ## What is a workflow? {#what-is-a-workflow}
 
+A [Workflow](https://en.wikipedia.org/wiki/Workflow) is a chain reaction: one task triggers the next, transforming data or documents until a goal is met.
+
+A more traditional definition is:
 A [Workflow](https://en.wikipedia.org/wiki/Workflow) is a repeatable, orchestrated sequence of activities/steps that
 transforms inputs into desired outputs by passing documents, data, or work
 items between processing entities—humans, services, or agents—under a defined
@@ -194,5 +197,7 @@ aspects of a workflow. I hope it makes clear that implementing quality workflows
 This is why we need workflow engines, systems that provide the necessary infrastructure to satisfy the
 functional and non-functional requirements of workflows.
 
-This is the first post of a series that will explore the world of workflow engines.
+This is the first post of a series that explores the world of workflow engines.
+In the upcoming posts, we’ll explore popular workflow engines, their core architectures, and how well they address the functional and non-functional requirements discussed above.
+
 Stay tuned!
