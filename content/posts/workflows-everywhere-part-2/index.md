@@ -11,7 +11,8 @@ In my previous post [Workflows everywhere pt. 1](https://iocanel.com/2025/07/wor
 functional and non-functional requirements. The post concluded with the realization that in many
 case we need workflow engines to power our workflows.
 
-This post will define what a workflow engine is and list some of the most popular engines by category.
+This post defines what a workflow engine is and lists some of the most popular engines by category.
+Or at least that was the original intention, but there is a twist.
 
 
 ## What Is a Workflow Engine? {#what-is-a-workflow-engine}
