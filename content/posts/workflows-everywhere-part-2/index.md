@@ -55,7 +55,7 @@ it would be useful if it was something that could be easily updated as new engin
 I begun to entertain the idea of creating an interactive web application that would help me experiment and visualize different categorizations.
 As soon as I got the first draft it was pretty clear to me that this is something that could be useful to others as well.
 
-{{< figure src="/ox-hugo/screenshot.png" >}}
+{{< figure src="screenshot.png" >}}
 
 To try it out, at: <https://iocanel.com/workflow-engines>.
 The actual code for the application can be found at: <https://github.com/iocanel/workflow-engines>
