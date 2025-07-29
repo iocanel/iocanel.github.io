@@ -34,17 +34,33 @@ Operational is also an interesting way to categorize engines and let's not forge
 For example a teleological categorization (purpose based) could introduce categories like:
 
 -   Business Process Management (BPM) engines
+    -   [Camunda (Zeebe)](https://camunda.com)
+    -   [Flowable](https://flowable.com)
 -   Data Processing engines
+    -   [Apache Airflow](https://airflow.apache.org)
+    -   [Luigi](https://github.com/spotify/luigi)
 -   Machine Learning (ML) engines
+    -   [Kubeflow Pipelines](https://www.kubeflow.org/docs/components/pipelines/)
 -   Microservices orchestration engines
+    -   [Temporal](https://temporal.io)
+    -   [Camunda (Zeebe)](https://camunda.com)
 -   CI/CD engines
+    -   [Tekton](https://tekton.dev)
+    -   [Argo Workflows](https://argoproj.github.io/workflows)
 
 While an architectural categorization could introduce categories like:
 
 -   Log based engines
+    -   [Temporal](https://temporal.io)
+    -   [Camunda (Zeebe)](https://camunda.com)
 -   State machine based engines
+    -   [Flowable](https://flowable.com)
+    -   [Activiti](https://www.activiti.org)
 -   DAG based engines
+    -   [Apache Airflow](https://airflow.apache.org)
+    -   [Dagster](https://dagster.io)
 -   Code flows
+    -   [Apache Camel](https://camel.apache.org)
 
 Given the large number of workflow engines available today, it is not practical to list them all statically using different categorizations.
 What would be more practical is to use an interactive approach for exploring multidimensional categorizations of workflow engines. Additionally,
