@@ -200,4 +200,4 @@ functional and non-functional requirements of workflows.
 This is the first post of a series that explores the world of workflow engines.
 In the upcoming posts, we’ll explore popular workflow engines, their core architectures, and how well they address the functional and non-functional requirements discussed above.
 
-Stay tuned!
+The second part of the series is available at: [Workflows everywhere pt. 2](https://iocanel.com/2025/07/workflows-everywhere-pt.-2/).
