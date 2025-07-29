@@ -8,7 +8,7 @@ draft = false
 ## Introduction {#introduction}
 
 In my previous post [Workflows everywhere pt. 1](https://iocanel.com/2025/07/workflows-everywhere-pt.-1/) I tried to define [workflows](https://en.wikipedia.org/wiki/Workflow) and enumerate their
-functional and non-functional requirements. The post conluded with the realization that in many
+functional and non-functional requirements. The post concluded with the realization that in many
 case we need workflow engines to power our workflows.
 
 This post will define what a workflow engine is and list some of the most popular engines by category.
@@ -45,7 +45,7 @@ While an architectural categorization could introduce categories like:
 -   DAG based engines
 -   Code flows
 
-Given the large number of workflow engines available today, it is not practical to list them all statically using diferent categorizations.
+Given the large number of workflow engines available today, it is not practical to list them all statically using different categorizations.
 What would be more practical is to use an interactive approach for exploring multidimensional categorizations of workflow engines. Additionally,
 it would be useful if it was something that could be easily updated as new engines are released or existing ones evolve.
 
@@ -61,11 +61,11 @@ To try it out, at: <https://iocanel.com/workflow-engines>.
 The actual code for the application can be found at: <https://github.com/iocanel/workflow-engines>
 
 I expect the content of the application to evolve over time, as new engines are released or existing ones evolve.
-The categoization is likely to change as well, let's collaborate and keep it up to date!
+The categorization is likely to change as well, let's collaborate and keep it up to date!
 
 
 ## Next steps {#next-steps}
 
-I inted to start visiting some of the engines listed in the application and write more detailed posts about them.
+I intend to start visiting some of the engines listed in the application and write more detailed posts about them.
 Most likely, I will start with the ones that I have not used in the past or maybe the ones that I could connect to
 my day job, but I am open to suggestions.
