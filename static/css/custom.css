@@ -1,0 +1,33 @@
+img.avatar-user {
+  border-radius: 50% !important;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
+
+.border-top.color-border-secondary a svg,
+.border-top.color-border-secondary a img.avatar {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.border-top.color-border-secondary a svg {
+  fill: black;
+}
+
+.border-top.color-border-secondary a svg path {
+  fill: black;
+}
+
+.border-top.color-border-secondary a img.avatar {
+  filter: brightness(0);
+  border-radius: 0;
+}
+
+[data-color-mode="dark"] .border-top.color-border-secondary a svg,
+[data-color-mode="dark"] .border-top.color-border-secondary a svg path {
+  fill: white;
+}
+
+[data-color-mode="dark"] .border-top.color-border-secondary a img.avatar {
+  filter: brightness(0) invert(1);
+}
