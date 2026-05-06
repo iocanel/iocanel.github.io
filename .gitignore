@@ -1,0 +1,5 @@
+public/
+public.old/
+.hugo_build.lock
+.quarkus/
+resources/_gen/
