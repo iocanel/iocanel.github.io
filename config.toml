@@ -1,4 +1,4 @@
-baseURL = 'https://iocanel.github.io'
+baseURL = 'https://iocanel.com'
 languageCode = 'en-us'
 title = 'Ioannis Canellos'
 theme = "hugo-coder"
@@ -62,6 +62,10 @@ pygmentscodefencesguesssyntax = true
   name = "about"
   weight = 3
   url  = "about/"
+[[menu.main]]
+  name = "cv"
+  weight = 4
+  url  = "cv/"
 [markup]
   [markup.highlight]
     anchorLineNos = false
