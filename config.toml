@@ -1,85 +1,69 @@
 baseURL = 'https://iocanel.com'
 languageCode = 'en-us'
 title = 'Ioannis Canellos'
-theme = "hugo-coder"
+theme = "github-style"
 
-paginate = 20
+[pagination]
+  pagerSize = 20
 
-pygmentsstyle = "bw"
-pygmentscodefences = true
-pygmentscodefencesguesssyntax = true
-
+pygmentsCodeFences = true
+pygmentsUseClasses = true
 
 [params]
   author = "Ioannis Canellos"
-  info = "Software Engineer"
-  description = "Ioannis Canellos personal website"
-  keywords = "blog,developer,personal"
-  avatarurl = "images/avatar.jpg"
-  #gravatar = "iocanel@gmail.com"
+  description = "Software Engineer | Open Source Leader | Cloud-Native Expert"
+  github = "iocanel"
+  twitter = "iocanel"
+  linkedin = "iocanel"
+  youtube = "https://www.youtube.com/channel/UCDshZNBXJuU2aZYrmzZfkhg"
+  email = "iocanel@gmail.com"
+  url = "https://iocanel.com"
+  avatar = "/images/avatar.png"
+  headerIcon = "/images/avatar.png"
+  location = "Greece"
+  rss = false
+  lastmod = true
+  enableSearch = true
+  custom_css = ["css/custom.css"]
 
-  since = 2019
-  enableTwemoji = true
-  colorScheme = "auto"
-  hidecolorschemetoggle = false
+[[params.nav]]
+  title = "Blog"
+  href = "/post/"
+[[params.nav]]
+  title = "Portfolio"
+  href = "/portfolio/"
+[[params.nav]]
+  title = "Presentations"
+  href = "/presentations/"
+[[params.nav]]
+  title = "About"
+  href = "/about/"
 
 [permalinks]
-  posts = '/:year/:month/:title/'
+  post = '/:year/:month/:title/'
 
-# Social links
-[[params.social]]
-  name = "Github"
-  icon = "fa fa-github fa-2x"
-  weight = 1
-  url = "https://github.com/iocanel/"
-[[params.social]]
-  name = "Twitter"
-  icon = "fa fa-twitter fa-2x"
-  weight = 2
-  url = "https://twitter.com/iocanel/"
-[[params.social]]
-  name = "LinkedIn"
-  icon = "fa fa-linkedin fa-2x"
-  weight = 3
-  url = "https://linkedin.com/in/iocanel/"
-[[params.social]]
-  name = "Youtube"
-  icon = "fa fa-youtube fa-2x"
-  weight = 3
-  url = "https://www.youtube.com/channel/UCDshZNBXJuU2aZYrmzZfkhg"
-
-
-# Menu links
-[[menu.main]]
-  name = "blog"
-  weight = 1
-  url  = "posts/"
-[[menu.main]]
-  name = "portfolio"
-  weight = 2
-  url  = "portfolio/"
-[[menu.main]]
-  name = "about"
-  weight = 3
-  url  = "about/"
 [markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
   [markup.highlight]
-    anchorLineNos = false
     codeFences = true
     guessSyntax = true
-    hl_Lines = ''
-    hl_inline = false
-    lineAnchors = ''
-    lineNoStart = 1
     lineNos = true
-    lineNumbersInTable = true
-    noClasses = true
-    noHl = false
     style = 'nord'
-    tabWidth = 4  
-    pygmentsUseClasses = true
-    pygmentsCodefences = true
+    tabWidth = 4
 
 [taxonomies]
   category = "categories"
   tag = "tags"
+
+[outputs]
+  home = ["html", "json"]
+
+[outputFormats.json]
+  mediaType = "application/json"
+  baseName = "index"
+  isPlainText = false
+
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":default"]
