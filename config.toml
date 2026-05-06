@@ -62,10 +62,6 @@ pygmentscodefencesguesssyntax = true
   name = "about"
   weight = 3
   url  = "about/"
-[[menu.main]]
-  name = "cv"
-  weight = 4
-  url  = "cv/"
 [markup]
   [markup.highlight]
     anchorLineNos = false
