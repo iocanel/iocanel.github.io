@@ -2,6 +2,8 @@
 title: "Presentations"
 ---
 
+A collection of talks and presentations at conferences and meetups.
+
 ## Conferences
 
 | Year | Event | Topic |
