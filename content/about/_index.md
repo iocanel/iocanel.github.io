@@ -1,5 +1,5 @@
 ---
-title: "Ioannis Canellos"
+title: "About me"
 ---
 
 ## Head of Software Engineering
