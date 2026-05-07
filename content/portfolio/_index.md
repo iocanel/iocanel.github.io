@@ -2,11 +2,21 @@
 title: "Portfolio"
 ---
 
-A collection of personal projects, created projects, and contributions.
+# Portfolio
+
+A collection of personal projects, created projects and contributions.
+
+## Table of contents
+
+- [Created Projects](#created-projects)
+- [Personal Fun Projects and Utilities](#personal-fun-projects-and-utilities)
+- [Configuration Projects](#configuration-projects)
+- [Developer Tools / Editor Plugins](#developer-tools--editor-plugins)
+- [Committer](#committer)
 
 ## Created Projects
 
-Open source projects I created or co-created.
+Open source projects I created or co-created. Most of them revolve around Kubernetes, cloud native development and developer experience, with emphasis in generation of code and/or configuration. Dedicated to helping software engineers spend time on the things that matter and without the indecency of boilerplate.
 
 | Project | Description | Language | Notes |
 |---------|-------------|----------|-------|
@@ -22,7 +32,7 @@ Open source projects I created or co-created.
 
 ## Personal Fun Projects and Utilities
 
-Small tools and utilities for everyday use.
+Small tools and utilities born out of curiosity or everyday needs. Some useful, some just fun to build.
 
 | Project | Description | Language | Notes |
 |---------|-------------|----------|-------|
@@ -34,7 +44,9 @@ Small tools and utilities for everyday use.
 
 ## Configuration Projects
 
-Personal configuration files for development environment and workstation setup.
+Dotfiles and system configurations. I run NixOS and split my time between Emacs and Neovim.
+
+The purpose of sharing these is two fold. If I don't share I will eventually lose them. Sharing helps me keep track of things and adds an incentive to keep them clean and maintainable (to the degree that's possible for configurations that evolve for over a decade). The other reason is that hopefully they help others with problems I've encountered and solved myself.
 
 | Project | Description | Language | Notes |
 |---------|-------------|----------|-------|
@@ -43,7 +55,11 @@ Personal configuration files for development environment and workstation setup.
 | [nixos.d](https://github.com/iocanel/nixos.d) | NixOS configuration for my workstation | Nix | |
 | [dotfiles](https://github.com/iocanel/dotfiles) | Shell configuration and dotfiles | Shell | |
 
+... and yes, I use both neovim and emacs. Always pick the best tool for the job!
+
 ## Developer Tools / Editor Plugins
+
+Plugins and extensions that scratch my own itch, mostly for Emacs.
 
 ### Emacs Plugins
 
@@ -56,7 +72,7 @@ See [iocanel/emacs-plugins](https://github.com/iocanel/emacs-plugins) for the fu
 | [quickmarks.el](https://github.com/iocanel/quickmarks.el) | Emacs plugin for managing named bookmarks and images with org-mode integration |
 | [imgflip.el](https://github.com/iocanel/imgflip.el) | Imgflip API client for Emacs Lisp |
 
-## Contributions
+## Committer
 
 Projects where I have/had committer status.
 
@@ -66,12 +82,15 @@ Projects where I have/had committer status.
 | [apache/camel](https://github.com/apache/camel) | Open source integration framework for consuming or producing data | Java | 6100+ stars |
 | [jenkinsci/kubernetes-plugin](https://github.com/jenkinsci/kubernetes-plugin) | Jenkins plugin to run dynamic agents in a Kubernetes/Docker environment | Java | 2300+ stars |
 | [apache/karaf](https://github.com/apache/karaf) | Apache Karaf, the enterprise modulith runtime | Java | 700+ stars |
+| [apache/curator](https://github.com/apache/curator) | Java client library for Apache ZooKeeper | Java | |
+| [apache/gora](https://github.com/apache/gora) | In memory data model and persistence for big data | Java | |
 | [apache/jclouds](https://github.com/apache/jclouds) | The Java Multi-Cloud Toolkit | Java | 210+ stars, retired |
 | [apache/servicemix](https://github.com/apache/servicemix) | Apache ServiceMix | Java | 160+ stars |
+| [jboss-fuse](https://github.com/jboss-fuse) | JBoss Fuse integration platform | Java | |
 
 ### Small Contributions
 
-Projects I have contributed to.
+Projects I like and have sporadically contributed to a pull request or two.
 
 | Project | Description | Language | Notes |
 |---------|-------------|----------|-------|
