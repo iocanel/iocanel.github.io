@@ -13,3 +13,5 @@ Along the way I've created [Spring Cloud Kubernetes](https://github.com/spring-c
 I enjoy writing and speaking about the same things I love building, whatever gets me professionally excited at the time.
 
 When I'm not coding, you'll find me on the mats training Brazilian Jiu-Jitsu. I love that it combines the mental with the physical and that your personality goes into your game, making it as unique as a fingerprint. It's an ever changing sport so vast that no two people play it the same way.
+
+If you'd like to see more, check out my [blog](/post/), [portfolio](/portfolio/) or [presentations](/presentations/).
