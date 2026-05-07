@@ -41,11 +41,12 @@ Conference talks ranging from deep dives into specific technologies to broader t
 
 Hands on sessions where attendees get to build something from scratch.
 
-| Year | Event | Topic | Video |
-|------|-------|-------|-------|
-| 2024 | [OpenConf Hackathon](https://github.com/iocanel/presentations/blob/master/2024-openconf-hackathon-quakrus-langchain4j) | Quarkus LangChain4J | |
-| 2019 | [Java Days Sofia](https://github.com/iocanel/presentations/blob/master/2019-java2days-sofia-quarkus-workshop) | Quarkus Workshop | |
-| 2019 | [Voxxed Athens](https://github.com/iocanel/presentations/blob/master/2019-voxxed-athens-quarkus-deep-dive) | Get your hands dirty with Quarkus | |
+| Year | Event | Topic | Video | Notes |
+|------|-------|-------|-------|-------|
+| 2025 | [Devoxx Greece](https://devoxx.gr/) | Quarkus LangChain4J | [![Video](https://img.youtube.com/vi/BqKwYYkiZVc/mqdefault.jpg)](https://www.youtube.com/watch?v=BqKwYYkiZVc) | Recorded walkthrough, not from the actual event |
+| 2024 | [OpenConf Hackathon](https://github.com/iocanel/presentations/blob/master/2024-openconf-hackathon-quakrus-langchain4j) | Quarkus LangChain4J | [![Video](https://img.youtube.com/vi/BqKwYYkiZVc/mqdefault.jpg)](https://www.youtube.com/watch?v=BqKwYYkiZVc) | Recorded walkthrough, not from the actual event |
+| 2019 | [Java Days Sofia](https://github.com/iocanel/presentations/blob/master/2019-java2days-sofia-quarkus-workshop) | Quarkus Workshop | | |
+| 2019 | [Voxxed Athens](https://github.com/iocanel/presentations/blob/master/2019-voxxed-athens-quarkus-deep-dive) | Get your hands dirty with Quarkus | | |
 
 ## Podcasts and Livestreams
 
@@ -53,6 +54,7 @@ Appearances on podcasts and livestream shows.
 
 | Year | Event | Topic | Video |
 |------|-------|-------|-------|
+| 2023 | [Quarkus Insights](https://quarkus.io/insights/) | 1000 ways to deploy Quarkus | [![Video](https://img.youtube.com/vi/82NjJ7gDzv0/mqdefault.jpg)](https://www.youtube.com/watch?v=82NjJ7gDzv0) |
 | 2023 | [Quarkus Insights](https://github.com/iocanel/presentations/blob/master/2023-quarkus-insights-quarkus-cli-jbang) | Quarkus CLI & JBang | [![Video](https://img.youtube.com/vi/iskDa-i82RU/mqdefault.jpg)](https://www.youtube.com/watch?v=iskDa-i82RU) |
 | 2020 | [DevNation Live](https://github.com/iocanel/presentations/blob/master/2020-devnation-quarkus-from-developer-joy-to-kubernetes-nirvana) | Quarkus: from developer joy to Kubernetes nirvana | [![Video](https://img.youtube.com/vi/PkhyvHE1PTQ/mqdefault.jpg)](https://www.youtube.com/watch?v=PkhyvHE1PTQ) |
 
@@ -62,7 +64,7 @@ Talks at local meetups, user groups and universities.
 
 | Year | Event | Topic | Video |
 |------|-------|-------|-------|
-| 2024 | [Kariera Codeweek](https://github.com/iocanel/presentations/blob/master/2024-kariera-codeweek-introduction-to-backstage) | Introduction to Backstage | |
+| 2024 | [Kariera Codeweek](https://github.com/iocanel/presentations/blob/master/2024-kariera-codeweek-introduction-to-backstage) | Introduction to Backstage | [![Video](https://img.youtube.com/vi/WKuiPPWIDG0/mqdefault.jpg)](https://www.youtube.com/watch?v=WKuiPPWIDG0) |
 | 2024 | [Vodafone](https://github.com/iocanel/presentations/blob/master/2024-vodafone-introduction-to-backstage) | Introduction to Backstage | |
 | 2023 | [AUEB](https://github.com/iocanel/presentations/blob/master/2023-aueb-intro-to-quarkus) | Intro to Quarkus | |
 | 2020 | [JHUG](https://github.com/iocanel/presentations/blob/master/2020-jhug-emacs-for-java-developers) | Emacs for Java Developers | |
