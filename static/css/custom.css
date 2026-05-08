@@ -87,7 +87,7 @@ img.avatar-user {
   max-height: 200px;
   opacity: 0;
   transform: scale(0);
-  animation: intro-zoom 2.5s ease-out forwards;
+  animation: intro-zoom 3s ease-out forwards;
 }
 
 @keyframes intro-zoom {
@@ -95,15 +95,15 @@ img.avatar-user {
     opacity: 0;
     transform: scale(0);
   }
-  20% {
+  33% {
     opacity: 1;
     transform: scale(2.5);
   }
-  40% {
+  45% {
     opacity: 1;
     transform: scale(2.5);
   }
-  70% {
+  80% {
     opacity: 0;
     transform: scale(20);
   }

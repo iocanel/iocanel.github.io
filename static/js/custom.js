@@ -36,5 +36,5 @@ document.addEventListener("DOMContentLoaded", function () {
       box.style.minHeight = "";
       if (textMono) textMono.style.display = "";
     });
-  }, 1200);
+  }, 2400);
 });
