@@ -2,10 +2,14 @@
 title: ""
 ---
 
-## Hello World!
+## Hello World
 
-This is my blog as it evolved from the [blogspot.com](https://iocanel.blogspot.com) days in 2010, to wordpress and now to using hugo. The initial need for blogging stemmed from a will to share really cool but niche stuff I was doing at work, that would possibly be immensely helpful to the very few people that were using a similar tech stack as me.
+### Episode III: The Attack of the Agents
 
-Over the years my consistency in writing varies, but after 16 years of blogging even with variable consistency I've managed to write quite a few posts that highlight critical points in my journey as a software engineer. Lately, I've enhanced this blog with a [portfolio](/portfolio/) and [presentations](/presentations/) sections, so that one can see projects and talks I've done over that period.
+Disturbance and turmoil in the blogosphere. AI tools and agents have conquered the quest for information, snippets and cool geeky programming stuff.
 
-Hello world, have fun!
+Yet in a remote corner of the internet, a lone developer maintains a blog, a beacon of handcrafted knowledge forged through [16 years](https://iocanel.blogspot.com) of open source battles, from the blogspot era, to wordpress and now to markdown and hugo.
+
+Armed with a [portfolio](/portfolio/) of projects and a history of [presentations](/presentations/) across the galaxy, he fights to preserve the ancient art of sharing niche, hard won wisdom with the few who seek it.
+
+May the source be with you!
