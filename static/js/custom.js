@@ -25,19 +25,16 @@ document.addEventListener("DOMContentLoaded", function () {
   intro.appendChild(img);
   box.appendChild(intro);
 
-  // After the zoom animation, start the crawl
-  img.addEventListener("animationend", function () {
-    intro.classList.add("fade-out");
-    setTimeout(function () {
-      intro.remove();
-      article.style.display = "";
-      box.classList.add("crawl-active");
+  // Start crawl as soon as logo fades out (70% of 2.5s = 1.75s)
+  setTimeout(function () {
+    intro.remove();
+    article.style.display = "";
+    box.classList.add("crawl-active");
 
-      article.addEventListener("animationend", function () {
-        box.classList.remove("crawl-active");
-        box.style.minHeight = "";
-        if (textMono) textMono.style.display = "";
-      });
-    }, 200);
-  });
+    article.addEventListener("animationend", function () {
+      box.classList.remove("crawl-active");
+      box.style.minHeight = "";
+      if (textMono) textMono.style.display = "";
+    });
+  }, 1750);
 });

@@ -74,7 +74,7 @@ img.avatar-user {
   justify-content: center;
   z-index: 10;
   opacity: 1;
-  transition: opacity 1s ease;
+  transition: opacity 0.3s ease;
   border-radius: 6px;
 }
 
@@ -102,6 +102,10 @@ img.avatar-user {
   40% {
     opacity: 1;
     transform: scale(2.5);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(20);
   }
   100% {
     opacity: 0;
@@ -163,7 +167,7 @@ img.avatar-user {
 
 @keyframes crawl {
   0% {
-    transform: rotateX(50deg) translateY(60%);
+    transform: rotateX(50deg) translateY(10%);
     opacity: 1;
   }
   95% {
