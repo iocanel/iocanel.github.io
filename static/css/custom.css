@@ -167,14 +167,14 @@ img.avatar-user {
 
 @keyframes crawl {
   0% {
-    transform: rotateX(50deg) translateY(10%);
+    transform: rotateX(60deg) translateY(0%);
     opacity: 1;
   }
   95% {
     opacity: 1;
   }
   100% {
-    transform: rotateX(50deg) translateY(-150%);
+    transform: rotateX(60deg) translateY(-150%);
     opacity: 0;
   }
 }
