@@ -2,6 +2,9 @@
 title: "Portfolio"
 ---
 
+<div class="presentations-intro">
+<div class="presentations-toc">
+
 # Portfolio
 
 A collection of personal projects, created projects and contributions.
@@ -13,6 +16,12 @@ A collection of personal projects, created projects and contributions.
 - [Configuration Projects](#configuration-projects)
 - [Developer Tools / Editor Plugins](#developer-tools--editor-plugins)
 - [Committer](#committer)
+
+</div>
+<div class="presentations-image">
+  <img src="/images/portfolio.png" alt="Portfolio" />
+</div>
+</div>
 
 ## Created Projects
 

@@ -35,3 +35,36 @@ img.avatar-user {
 [data-color-mode="dark"] .border-top.color-border-secondary a img.avatar {
   filter: brightness(0) invert(1);
 }
+
+.presentations-intro {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.presentations-toc {
+  flex: 1 1 auto;
+}
+
+.presentations-image {
+  flex: 0 0 320px;
+}
+
+.presentations-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .presentations-intro {
+    flex-direction: column !important;
+  }
+
+  .presentations-image {
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
+}

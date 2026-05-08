@@ -2,6 +2,9 @@
 title: "Presentations"
 ---
 
+<div class="presentations-intro">
+<div class="presentations-toc">
+
 # Presentations
 
 A collection of talks, workshops and appearances spanning over a decade of conferences, meetups and podcasts.
@@ -13,6 +16,12 @@ A collection of talks, workshops and appearances spanning over a decade of confe
 - [Podcasts and Livestreams](#podcasts-and-livestreams)
 - [Meetups and Guest Talks](#meetups-and-guest-talks)
 - [Internal](#internal)
+
+</div>
+<div class="presentations-image">
+  <img src="/images/presentations.png" alt="Presentations" />
+</div>
+</div>
 
 ## Conferences
 
