@@ -138,13 +138,19 @@ img.avatar-user {
 .position-relative > .Box.mt-4.crawl-active article.markdown-body h2 {
   color: black;
   border: none;
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
+}
+
+.position-relative > .Box.mt-4.crawl-active article.markdown-body h3 {
+  color: black;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .position-relative > .Box.mt-4.crawl-active article.markdown-body p {
   color: black;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   line-height: 1.8;
   max-width: 600px;
   margin: 0 auto 1.5rem;
