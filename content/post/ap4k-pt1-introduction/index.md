@@ -3,10 +3,10 @@ title = "Introducing Ap4K"
 author = ["Ioannis Canellos"]
 description = "An introduction post for Ap4k"
 date = 2019-01-07T17:39:00+02:00
-draft = false
 aliases = ["/2019/01/ap4k-pt1-introdcution/"]
-categories = ["development"]
 tags = ["java", "kubernetes", "openshift", "dekorate"]
+categories = ["development"]
+draft = false
 +++
 
 ## Prologue {#prologue}
@@ -34,12 +34,12 @@ And that is the rationale behind [ap4k](https://github.com/ap4k/ap4k).
 To trigger the generation of [kubernetes](https://kubernetes.io) manifests during compilation, one needs to add the \`@KubernetesApplication\` annotation on top of the main class:
 
 ```java
-  import io.ap4k.kubernetes.annoation.KubernetesApplication;
+import io.ap4k.kubernetes.annoation.KubernetesApplication;
 
-  @KuberentesApplication
-  public class Main {
-      //your code here
-  }
+@KuberentesApplication
+public class Main {
+    //your code here
+}
 ```
 
 Once the compilation is done the following files are expected to be generated relative to the class output directory:
@@ -62,24 +62,24 @@ The same functionality could be provided by any scaffolding tool, or even templa
 Customization to the manifests can be done using the \`@KubernetesApplication\`, for example to add a label:
 
 ```java
-  import io.ap4k.kubernetes.annoation.KubernetesApplication;
+import io.ap4k.kubernetes.annoation.KubernetesApplication;
 
-  @KuberentesApplication(labels=@Label(key="foo", value="bar"))
-  public class Main {
-      //your code here
-  }
+@KuberentesApplication(labels=@Label(key="foo", value="bar"))
+public class Main {
+    //your code here
+}
 ```
 
 Or to expose a port:
 
 ```java
-  import io.ap4k.kubernetes.annoation.KubernetesApplication;
-  import io.ap4k.kubernetes.annoation.Port;
+import io.ap4k.kubernetes.annoation.KubernetesApplication;
+import io.ap4k.kubernetes.annoation.Port;
 
-  @KuberentesApplication(port=Port(name="http", containerPort=8181))
-  public class Main {
-      //your code here
-  }
+@KuberentesApplication(port=Port(name="http", containerPort=8181))
+public class Main {
+    //your code here
+}
 ```
 
 The addition of a port will result in having the container decorated with a \`containerPort\` and the manifest including a \`Service\` resource pointing to the defined port.
@@ -110,12 +110,12 @@ The more these extensions were used, the more apparent it became that they shoul
 This extension provides the \`@KubernetesIntegrationTest\` annotation. The presence of this annotation in a test class triggers the extension.
 
 ```java
-  import io.ap4k.testing.annotation.KubernetesIntegrationTest;
+import io.ap4k.testing.annotation.KubernetesIntegrationTest;
 
-  @KubernetesIntegrationTest
-  public class ExampleIT {
-      //test code goes here
-  }
+@KubernetesIntegrationTest
+public class ExampleIT {
+    //test code goes here
+}
 ```
 
 This alone is enough to at least test that the generated manifests can be successfully applied to the point were the application starts and becomes ready.
@@ -124,47 +124,47 @@ Of course, users would also want to perform integration tests on the actual appl
 Here's an example that uses the application pod to perform port forwarding:
 
 ```java
-  import io.ap4k.deps.kubernetes.api.model.Pod;
-  import io.ap4k.deps.kubernetes.client.KubernetesClient;
-  import io.ap4k.deps.kubernetes.client.LocalPortForward;
-  import io.ap4k.deps.okhttp3.OkHttpClient;
-  import io.ap4k.deps.okhttp3.Request;
-  import io.ap4k.deps.okhttp3.Response;
-  import io.ap4k.testing.annotation.Inject;
-  import io.ap4k.testing.annotation.KubernetesIntegrationTest;
-  import io.ap4k.testing.annotation.Named;
-  import org.junit.jupiter.api.Assertions;
-  import org.junit.jupiter.api.Test;
+import io.ap4k.deps.kubernetes.api.model.Pod;
+import io.ap4k.deps.kubernetes.client.KubernetesClient;
+import io.ap4k.deps.kubernetes.client.LocalPortForward;
+import io.ap4k.deps.okhttp3.OkHttpClient;
+import io.ap4k.deps.okhttp3.Request;
+import io.ap4k.deps.okhttp3.Response;
+import io.ap4k.testing.annotation.Inject;
+import io.ap4k.testing.annotation.KubernetesIntegrationTest;
+import io.ap4k.testing.annotation.Named;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-  import java.net.URL;
+import java.net.URL;
 
-  import static org.junit.jupiter.api.Assertions.assertEquals;
-  import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-  @KubernetesIntegrationTest
-  public class SpringBootOnKubernetesIT {
+@KubernetesIntegrationTest
+public class SpringBootOnKubernetesIT {
 
-    @Inject
-    private KubernetesClient client;
+  @Inject
+  private KubernetesClient client;
 
 
-    @Inject
-    Pod pod;
+  @Inject
+  Pod pod;
 
-    @Test
-    public void shouldRespondWithHelloWorld() throws Exception {
-      Assertions.assertNotNull(client);
-      try (LocalPortForward p = client.pods().withName(pod.getMetadata().getName()).portForward(8080)) {
-        assertTrue(p.isAlive());
-        URL url = new URL("http://localhost:"+p.getLocalPort()+"/");
+  @Test
+  public void shouldRespondWithHelloWorld() throws Exception {
+    Assertions.assertNotNull(client);
+    try (LocalPortForward p = client.pods().withName(pod.getMetadata().getName()).portForward(8080)) {
+      assertTrue(p.isAlive());
+      URL url = new URL("http://localhost:"+p.getLocalPort()+"/");
 
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().get().url(url).build();
-        Response response = client.newCall(request).execute();
-        assertEquals(response.body().string(), "Hello world");
-      }
+      OkHttpClient client = new OkHttpClient();
+      Request request = new Request.Builder().get().url(url).build();
+      Response response = client.newCall(request).execute();
+      assertEquals(response.body().string(), "Hello world");
     }
   }
+}
 ```
 
 This is also demonstrated in: [spring boot on kubernetes example](https://github.com/ap4k/ap4k/tree/master/examples/spring-boot-on-kubernetes-example).
