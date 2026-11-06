@@ -25,7 +25,6 @@ pygmentsUseClasses = true
   lastmod = true
   enableSearch = true
   custom_css = ["css/custom.css"]
-  custom_js = ["js/custom.js"]
 
 [[params.nav]]
   title = "Blog"
