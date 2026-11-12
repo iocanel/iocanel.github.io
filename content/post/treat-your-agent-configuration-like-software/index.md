@@ -9,155 +9,128 @@ draft = false
 
 ## Prologue {#prologue}
 
-I wrote an MCP server to talk to my issue tracker. The point was to give the assistant a clean, typed way in, instead of leaving it to improvise.
+I wrote an MCP server to talk to a service. The point was to give the assistant a clean, typed way in, instead of leaving it to improvise.
 
-Most of the time it used it. Some of the time it shelled out to `curl` against the same API. Occasionally it went looking for a local CLI tool instead. Same task, three different routes.
+Most of the time it was invoked. Sometimes it resorted to `curl` against the service's API. Occasionally it went looking for a local CLI tool instead. Same task, three different routes.
 
 Another case where Claude does its own thing. My context files say where things live on my machine, specifically so nothing has to be looked up. And yet Claude often runs `find` across my home directory, hunting for a path that was sitting in the file it had just loaded.
 
-Neither is catastrophic, it is just a waste of time and tokens. The job still gets done, which is what makes these insidious: the output looks fine, so you only notice if you happen to be watching the tool calls.
+Neither is catastrophic. Both just waste time and tokens. The job still gets done, which is what makes these insidious: the output looks fine, so you only notice if you happen to be watching the tool calls.
 
-And my configuration changes almost daily. A rule here, a new skill there, a file moved. It has no compiler, no type checker, and no runtime error when it stops working, so I have been breaking things without noticing.
+Now my configuration changes almost daily. A rule here, a new skill there, a file moved. It has no compiler, no type checker, and no runtime error when it stops working, so I have been breaking things without noticing.
 
 At some point the conclusion was obvious. This is a software project. It has source files, behaviour, and regressions. It should have tests.
 
 
 ## What I actually want to test {#what-i-actually-want-to-test}
 
-To be clear about the target: I am **not** testing the model. I am testing **my configuration**. The model is a constant. My configuration is the variable, and it changes every day. Three questions:
+To be clear about the target: I am **not** testing the model. I am testing **my configuration**. The model is not what I am iterating on. My configuration is, and it changes every day. Three questions:
 
 -   **Recall.** Is a fact from my context files actually retrieved, without going and looking for it?
 -   **Routing.** When a task matches a skill or an MCP server I built, does that thing get used, or does the assistant improvise with `curl` and `find`?
 -   **Restrictions.** Do my hard prohibitions hold, including when a request is phrased in a way that invites breaking them?
 
 
-### Why "did it get the right answer" is not enough {#why-did-it-get-the-right-answer-is-not-enough}
-
-The subtlety is in recall. Consider two answers to "where does my Home Manager config live?":
-
--   `~/.dotfiles/home-manager/.config/home-manager/home.nix`
--   `~/.dotfiles/home-manager/.config/home-manager/home.nix`
-
-Identical text. Except the first came straight out of context, and the second came after a `find` across my home directory, because the assistant did not know and went looking.
-
-Both look like a pass. Only one is. If it had to search, my configuration failed and the model quietly covered for it.
-
-So the test cannot only check the answer. It has to check **how the answer was arrived at**. Routing is the same logic inverted: there I do not want zero tools, I want a **specific** one.
-
-
-## Is it just me? {#is-it-just-me}
-
-Before building anything I wanted to know whether this is a real thing or just me holding it wrong. It is real, and the research is not encouraging.
-
-[IHEval](https://arxiv.org/abs/2502.08745) tested what happens when the system prompt, the user and the history disagree. The best open model managed 48% on conflicting instructions. They also tried the obvious fix, stating the priority order explicitly, and it did not measurably help. Writing "these rules are mandatory" into your file is not a mechanism. It is a wish. Elsewhere the pattern holds: [AGENTIF](https://arxiv.org/abs/2505.16944) put frontier models under 30% on conditional constraints, and Chroma's [context rot](https://www.trychroma.com/research/context-rot) found all 18 models tested degrade as input grows, and not smoothly. A `CLAUDE.md` that works at 200 lines can stop working at 400, with nothing to signal the change.
-
-So: unreliable, degrading invisibly, and the intuitive fix does not work. A decent case for tests rather than vigilance.
-
-
 ## What is already out there {#what-is-already-out-there}
 
 The obvious next step was to find an existing tool. There is a healthy ecosystem here and I did not want to write another one.
 
-The most common answer is promptfoo, a general-purpose testing framework for LLMs, and it is genuinely good. It even has a native Claude Code provider that exposes every tool call, which is most of what I need. But that provider goes through the API, so it bills API credits on top of my subscription, and I am not paying twice to test my own configuration. The rest (DeepEval, Inspect AI, Ragas) grade **answer quality**, which is a different question from whether my file loaded.
+The most common answer is [promptfoo](https://www.promptfoo.dev), a general-purpose testing framework for LLMs, and it is genuinely good. It even has a native Claude Code provider that exposes every tool call, which is most of what I need. But that provider goes through the API, so it bills API credits instead of using my subscription. I later found a way to build a provider that uses the subscription, but that is a subject for a future post.
 
-Then a second thing surprised me. **None of them supports real boolean composition in assertions.** They all model assertions as a flat list that is implicitly ANDed, with scores aggregated numerically. promptfoo has negation as a `not-` prefix and approximates OR with a ratio threshold. I checked its type definitions to be sure. If you want "either this path or that path, and definitely not the wrong one", you drop into JavaScript, and at that point the YAML is decoration.
+DeepEval and Ragas grade **answer quality**, which is a different question from whether my file loaded. Inspect AI can drive agents, Claude Code included, but that means rebuilding my environment inside a general eval framework. I wanted something smaller: my real configuration, on my subscription, in a few lines of YAML.
 
-So I wrote my own: a small tool over `claude -p`, which runs headless against my normal session and costs me nothing extra.
-
-The purpose of this post is not to advertise my work, after all I did not even write the code. The purpose is to highlight that the agent configuration should be treated like any other software project, with version control, tests and the rest. I happen to use Claude Code, so that is what the examples show, but nothing here is specific to it. Swap in opencode, Cursor, or whatever you run, and the problem is the same: instruction files you cannot verify, and tools you cannot prove got used. Do not get fooled by the use of natural language. You are still programming, using a broader language that runs on a non-deterministic machine. Use your software engineering skills wisely.
+This post is not about the tool. Agent configuration is software, and it deserves version control, tests and the rest. I use Claude Code, so that is what the examples show, but nothing here is specific to it. Swap in [OpenCode](https://opencode.ai), [Codex](https://github.com/openai/codex) or [Antigravity](https://antigravity.google), and the problem is the same: instruction files you cannot verify, and tools you cannot prove got used. Do not get fooled by the natural language. You are still programming, in a broader language, on a non-deterministic machine.
 
 
-## Enter: cctest {#enter-cctest}
+## The testing tool {#the-testing-tool}
 
-The result is [cctest](https://github.com/iocanel/cctest). It is small on purpose, and it does one thing: run prompts against your real configuration and assert on what came back, including **how** it came back.
+I wanted the tests to follow the given/when/then pattern and be written in a readable YAML DSL. So I built a simple tool called [cctest](https://github.com/iocanel/cctest). It runs `claude -p` headless against my normal session, so it costs nothing extra. It is small on purpose, and it does one thing: run prompts against your real configuration and assert on what came back, including **how** it came back.
 
-A test looks like this.
+Here is a test checking that the music library path is answered without touching any tools:
 
 ```yaml
-- name: home-manager config path
+- name: music library path
   given:
-    project: ~
-  when: where does my home-manager config live?
+    project: "~"
+  when: where does my music live?
   then:
-    - contains: ~/.dotfiles/home-manager/.config/home-manager/home.nix
+    - contains: ~/Documents/Music
     - none:
-        - contains: ~/.nixos/home.nix
+        - contains: ~/Music
     - no_tools
 ```
 
-Given, when, then. The part of `given` that matters most is which directory the session runs in, because that determines which instruction files load.
+The part of `given` that matters most is which directory the session runs in, because that determines which instruction files load.
 
 `no_tools` is the one doing the real work: the test fails if the assistant touched a single tool, even when the answer is correct.
 
-For routing, the assertions point the other way.
+For routing, we can assert that a specific skill or MCP server was used. Asking for my open Jira tasks must go through the Jira MCP server:
 
 ```yaml
-- name: org-mcp is used for inbox capture
+- name: jira tasks go through the jira server
   given:
     tools: all
-    disallow: [Bash, Edit, Write]
-  when: add "renew car insurance" to my inbox
+  when: what are my open jira tasks?
   then:
-    - mcp_used: org-mcp
+    - mcp_used: jira
 ```
 
-Tools are enabled here, because the question is which one gets chosen. The `disallow` line removes the escape hatches so the test cannot pass through a shell command or a direct edit. There is a version without it too, which is the more honest question: when the shortcut **is** available, does the proper tool still win? For my email skill it does.
+And for restrictions, the assertion is that something never happened.
 
-The phrasing of `when` matters more than anything else here. Write "use the email skill to find that invoice" and you have only proved that a skill runs when you name it. What is under test is the **description**, not the body: does the way I naturally ask still match the way I described when the skill applies? That is the part that silently rots.
-
-One trap. Do not run these under `--permission-mode plan` thinking it is a safe way to watch routing. Plan mode changes routing, so the skill is not selected at all and the model goes straight to `Bash`.
+```yaml
+- name: acme.com sources are never read directly
+  given:
+    tools: all
+  when: how many TODO comments are there in the acme checkout?
+  then:
+    - none:
+        - tool_used: {Read: {path: ~/workspace/acme.com/**}}
+        - tool_used: {Grep: {path: ~/workspace/acme.com/**}}
+```
 
 
 ### The grammar {#the-grammar}
 
 Assertions form a small tree: leaves for text (`contains`, `matches`, `similar`), for behaviour (`no_tools`, `tool_used`, `skill_used`, `mcp_used`), and for registration (`skill_available`, `mcp_available`), composed with `all`, `any` and `none`. A bare list means AND, so the common case stays short.
 
-Only one design note is worth the space. `none` is deliberately not called `not`, because `not: [a, b]` reads as "not (a and b)", which is satisfied when only one matches, and that is never what anyone means. MongoDB shipped a separate `$nor` for this exact reason and Elasticsearch has `must_not`. When two independent systems converge on the same workaround, copy it rather than rediscover it.
+`none` is deliberately not called `not`, because `not: [a, b]` reads as "not (a and b)", which passes when only one matches. That is never what anyone means.
 
 
 ## A brief demo {#a-brief-demo}
 
-Fair question at this point: does it catch anything, or is it 28 green checks that would stay green no matter what I broke? A suite that has never failed is indistinguishable from one that cannot fail. So I broke it on purpose, putting back the original wrong Home Manager section that points at `~/.nixos/home.nix`.
+Fair question at this point: does it catch anything, or is it 28 green checks that would stay green no matter what I broke? So I broke it on purpose, editing my context file so the music section points at `~/Music` instead.
 
 ```text
-FAIL [0/3] home-manager config path
-  XX all (3/4 failed)
-    XX contains '~/.dotfiles/home-manager/.config/home-manager/home.nix' (not found)
+FAIL [0/3] music library path
+  XX all (2/3 failed)
+    XX contains '~/Documents/Music' (not found)
     XX none (1 of 1 matched but must not)
-      OK  contains '~/.nixos/home.nix'
-    XX any (all 2 branches failed)
-      XX none (1 of 1 matched but must not)
-        OK  contains 'home-manager switch'
-      XX matches "(no|not|isn't|there's no)..." (no match)
+      OK  contains '~/Music'
     OK  no_tools
 ```
 
-Zero out of three runs, and the tree showing exactly which branch broke. Restore the file and it goes back to three out of three, with the neighbouring NixOS and dotfiles tests green throughout.
+Zero out of three runs, and the tree showing exactly which branch broke. Restore the file and it goes back to three out of three, with the neighbouring tests green throughout.
 
-Look at the last line though. `no_tools` **passed**. It still answered straight from context, without checking anything. It was not confused. It was certain, and certain of the wrong thing. And it did not even give the wrong path plainly. It said **"Two spots"** and listed both, hedging its way around the contradiction I had just introduced. Which is worse than being wrong, because it reads as thorough.
+Look at the last line though. `no_tools` **passed**. It still answered straight from context, without checking anything. It was not confused. It was certain, and certain of the wrong thing.
 
 
 ## The parts that bit me {#the-parts-that-bit-me}
 
 Three things I got wrong, all worth knowing before you build something similar.
 
-**My assertions were the bug, not my config.** Every red test during development was my own fault. I wrote "must not contain `home-manager switch`", forgetting that a correct answer mentions it in order to rule it out: "runs as a NixOS module, so there is no `home-manager switch`". So assert on stable anchors. Paths, commands, identifiers. Things with exactly one correct surface form.
+**My assertions were the bug, not my config.** Every red test during development was my own fault. I wrote "must not contain `curl`", forgetting that a correct answer mentions it in order to rule it out: "I used the jira tool rather than calling the API with `curl`". So assert on stable anchors. Paths, commands, identifiers. Things with exactly one correct surface form.
 
-**A test result is not a boolean.** I ran the suite five times and got three passes and two failures on identical input. Output is not deterministic even at temperature zero, and there is no seed parameter. The cause is better than I expected: GPU kernels produce slightly different numbers depending on batch size, and batch size depends on server load. Your output depends on other people's traffic. So there are three outcomes rather than two, and `UNSTABLE` warns instead of failing the build. A flaky test that blocks CI just teaches you to ignore CI.
+**A test result is not a boolean.** I ran the suite five times and got three passes and two failures on identical input. Output is not deterministic even at temperature zero, and there is no seed parameter. That is why cctest runs each case several times, which is where the 0/3 in the demo comes from. What it does not have yet is a pass threshold per case. A restriction should fail on a single violation, while a recall test might tolerate one miss out of five. Again, something to explore in a future post.
 
-**A negative assertion can be trivially true.** I have a rule that a certain work repository is never read directly, only through scripts. The test asserts no `Read` or `Grep` touched that path, and it passed. It would also have passed in a session where nothing happened at all. It needed a positive assertion next to it, checking the repository really was accessed, by script. A test that cannot fail is worse than no test.
+**A negative assertion can be trivially true.** I have a rule that a client repository under `~/workspace/acme.com` is never read directly, only through scripts, because reading it would violate their policy. The test asserts that no `Read` or `Grep` touched that path, and it passed. It would also have passed in a session where nothing happened at all. It needed a positive assertion next to it, checking the repository really was accessed, by script. A test that cannot fail is worse than no test.
 
 
 ## Where it stands {#where-it-stands}
 
-Twenty-eight tests across recall, routing and restrictions, running in a few minutes whenever I touch the always-on layer. The only real regression it has caught so far is the one I planted myself.
+Twenty-eight tests across recall, routing and restrictions, running in a few minutes whenever I touch the configuration. The only real regression it has caught so far is the one I planted myself.
 
-And there is a structural gap. Every one of those tests asks a direct question, which is the easy case. The rules that actually get dropped are dropped **mid-task**, on the tenth command of a debugging session, when the rule has to survive being in the middle of something else. Testing that needs prior turns, which I do not have yet, so the bottom of my suite is a commented-out list of things I know I am not checking.
+There is a gap. Every test asks a direct question, which is the easy case. Rules usually get dropped **mid-task**, on the tenth command of a debugging session. Testing that needs prior turns, which I do not have yet.
 
-So the claim is narrow. My servers get used and my context files get read instead of rediscovered, and I can prove both. That is not the same as the rules holding under load.
+Still, it is more than I had. Before this, every claim about my configuration was a guess. Now it is **knowable**.
 
-Narrow is still more than I had. Before this, every claim about my configuration was a guess dressed up as a fact, and the ones I was most confident about were the ones I had never checked. Twenty-eight tests did not make the setup better. They made it **knowable**, which turns out to be the part I was missing.
-
-If you have a configuration like this and have never tested it, you do not need a tool to start. Ask it something that should be sitting in your context files, and watch whether it reaches for `find`. Either it answers straight, and you have learned your file is doing its job, or it goes looking, and you have just found the first bug in software you did not know you were writing.
-
-Enjoy!
+You do not need a tool to start. Ask your assistant something that sits in your context files and watch whether it reaches for `find`. If it does, you just found the first bug in software you did not know you were writing.
